@@ -1,4 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import store from '../store';
+import { logoutInfo } from './UserSlice';
 
 export interface LoginDTO {
     username: string;
@@ -45,8 +47,8 @@ const authSlice = createSlice({
         registerFailed: (state, action: PayloadAction<string | string[]>) => {
             state.errors = action.payload.toString();
         },
-        updateToken: (state, action: PayloadAction<Token>) => {
-            state.token = action.payload.token;
+        updateToken: (state, action: PayloadAction<string>) => {
+            state.token = action.payload;
         },
         logoutSuccess: (state) => {
             state.isLogined = false;

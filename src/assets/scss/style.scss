@@ -1,74 +1,17 @@
-.card_job_requirements {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    line-height: 25px;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
-    -webkit-box-orient: vertical;
-}
-.truncate {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-}
-.company-name {
-    min-height: 50px;
-}
+// Configuration and helpers
+@import 'abstracts/variables', 'abstracts/functions', 'abstracts/mixins';
+// Vendors
+@import 'vendors/vendors-import';
+// Base stuff
+@import 'base/common', 'base/animation', 'base/typography';
+// Components
+@import 'components/buttons', 'components/form', 'components/slider', 'components/noUISlider', 'components/card',
+    'components/tabs', 'components/misc', 'components/banners', 'components/upload';
 
-.img-rounded {
-    height: 50px;
-    width: 50px;
-    object-fit: contain;
-}
-.sidebar-border .sidebar-heading .avatar-sidebar figure img,
-.sidebar-shadow .sidebar-heading .avatar-sidebar figure img {
-    object-fit: contain;
-}
-.banner-hero.hero-2 {
-    position: relative;
-    width: 100%;
-    padding: 100px 0px 80px 0px;
-    max-width: 100%;
-    background: url(/assets/imgs/banner/homebanner.jpg) no-repeat top center !important;
-    background-size: cover !important;
-}
-.eye-password {
-    position: absolute;
-    display: block;
-    top: 50%;
-    right: 45px;
-    cursor: pointer;
-    transform: translateY(-50%);
-}
-
-:root {
-    --primary-color: #05264e;
-}
-.account-bar-button {
-    background-color: transparent;
-    border: none;
-    & span {
-        color: var(--primary-color);
-        font-size: 16px;
-        font-weight: bold;
-    }
-}
-.dropdown .dropdown-menu.show {
-    border: none;
-}
-.header .main-menu li a {
-    color: var(--primary-color);
-    font-size: 16px;
-}
-.header .main-menu li a:hover,
-.header .main-menu li a.active {
-    color: var(--primary-color);
-}
-.header .main-menu li a:hover::before,
-.header .main-menu li a.active::before {
-    background-color: var(--primary-color);
-}
-.header {
-    padding: 10px 0;
-}
+// Layout-related sections
+@import 'layout/header', 'layout/navigation', 'layout/sidebar', 'layout/footer', 'layout/spacing';
+// Page-specific styles
+@import 'pages/pages', 'pages/blog', 'pages/candidates', 'pages/job-single', 'pages/job-single-2', 'pages/blog-grid-2',
+    'pages/job-listing-grid', 'pages/job-listing-list', 'pages/company', 'pages/login-register', 'pages/homepage3';
+// Responsive
+@import 'layout/responsive';

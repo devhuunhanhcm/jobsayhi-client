@@ -1,7 +1,8 @@
+import { UserProfileDto } from './../../page/Profile';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface UserProfileData {
-    userId: string;
+    id: string;
     username: string;
     displayName: string;
     email: string;
@@ -9,7 +10,7 @@ interface UserProfileData {
     phone: string;
 }
 const initialState: UserProfileData = {
-    userId: '',
+    id: '',
     username: '',
     displayName: '',
     email: '',
@@ -26,10 +27,22 @@ const userSlice = createSlice({
             state.username = action.payload.username;
             state.phone = action.payload.phone;
             state.displayName = action.payload.displayName;
-            state.userId = action.payload.userId;
+            state.id = action.payload.id;
             state.email = action.payload.email;
+        },
+        updateInfo: (state, action: PayloadAction<UserProfileDto>) => {
+            state.phone = action.payload.phone;
+            state.displayName = action.payload.displayName;
+        },
+        logoutInfo: (state) => {
+            state.avatar = '';
+            state.username = '';
+            state.phone = '';
+            state.displayName = '';
+            state.id = '';
+            state.email = '';
         },
     },
 });
-export const { setUserInfo } = userSlice.actions;
+export const { setUserInfo, updateInfo, logoutInfo } = userSlice.actions;
 export default userSlice.reducer;

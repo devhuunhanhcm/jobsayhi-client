@@ -1,8 +1,12 @@
 export interface Category {
     id: string;
-    href: string;
-    imageUrl: string;
-    title: string;
+    name: string;
     description: string;
-    count: number;
+}
+export interface CategoryResponse {
+    hasErrors: boolean;
+    content: Category[];
+    errors: string;
+    status: number;
+    timestamp: string;
 }

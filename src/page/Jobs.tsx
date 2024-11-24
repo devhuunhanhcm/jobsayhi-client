@@ -4,7 +4,7 @@ interface JobsProps {}
 
 const Jobs: React.FC<JobsProps> = ({}) => {
     return (
-        <main className="main">
+        <>
             <section className="section-box-2">
                 <div className="container">
                     <div className="banner-hero banner-single banner-single-bg">
@@ -1589,7 +1589,7 @@ const Jobs: React.FC<JobsProps> = ({}) => {
                     </div>
                 </div>
             </section>
-        </main>
+        </>
     );
 };
 

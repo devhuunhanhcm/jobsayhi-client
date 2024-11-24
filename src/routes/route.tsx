@@ -1,4 +1,15 @@
-import { Home, Login, Registration, ResetPassword, JobDetails, Jobs } from '../page';
+import {
+    Home,
+    Login,
+    Registration,
+    ResetPassword,
+    JobDetails,
+    Jobs,
+    UploadFile,
+    Profile,
+    MyCV,
+    FindJob,
+} from '../page';
 
 export const publicRoute = [
     {
@@ -24,6 +35,22 @@ export const publicRoute = [
     {
         path: '/jobs',
         component: Jobs,
+    },
+    {
+        path: '/find',
+        component: FindJob,
+    },
+    {
+        path: '/upload',
+        component: UploadFile,
+    },
+    {
+        path: '/profile',
+        component: Profile,
+    },
+    {
+        path: '/my-cv',
+        component: MyCV,
     },
     {
         path: '/test',

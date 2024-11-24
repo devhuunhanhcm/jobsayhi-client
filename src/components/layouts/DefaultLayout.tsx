@@ -5,11 +5,11 @@ type Props = {
 };
 function DefaultLayout({ children }: Props) {
     return (
-        <>
+        <main id="main">
             <Header />
             <div>{children}</div>
             <Footer />
-        </>
+        </main>
     );
 }
 

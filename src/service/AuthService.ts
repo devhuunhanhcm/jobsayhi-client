@@ -3,6 +3,7 @@ import {
     LoginDTO,
     loginFailed,
     loginSuccess,
+    logoutSuccess,
     RegisterDTO,
     registerFailed,
     registerSuccess,
@@ -10,11 +11,14 @@ import {
 import { loading, unLoading } from '../redux/Slice/LoadingSlice';
 import toast from 'react-hot-toast';
 import store from '../redux/store';
+import axiosInstance from '@/api/AxiosInstance';
 
 export const login = async (data: LoginDTO) => {
     try {
         store.dispatch(loading());
-        const response = await axios.post(`${import.meta.env.VITE_API_URL}/auth/login`, data);
+        const response = await axios.post(`${import.meta.env.VITE_API_URL}/auth/login`, data, {
+            withCredentials: true,
+        });
         store.dispatch(unLoading());
         store.dispatch(loginSuccess(response.data.content));
 
@@ -39,5 +43,15 @@ export const register = async (data: RegisterDTO) => {
         store.dispatch(registerFailed(error.response.data.errors));
         toast.success('Register failed!');
         return false;
+    }
+};
+export const logout = async () => {
+    try {
+        await axiosInstance.post(`${import.meta.env.VITE_API_URL}/auth/logout`);
+        store.dispatch(logoutSuccess());
+        toast.success('Logout successfully!');
+    } catch (error: any) {
+        console.log(error);
+        toast.error('Something wrong!');
     }
 };

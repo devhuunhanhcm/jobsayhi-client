@@ -5,11 +5,14 @@ function Footer() {
                 <div className="row">
                     <div className="footer-col-1 col-md-3 col-sm-12">
                         <a href="index.html">
-                            <img alt="jobBox" src={`${import.meta.env.VITE_PUBLIC_URL}/assets/imgs/logo-small.png`} />
+                            <img
+                                alt="jobBox"
+                                src={`${import.meta.env.VITE_PUBLIC_URL}/assets/imgs/logo/logo-jobsayhi.png`}
+                            />
                         </a>
                         <div className="mt-20 mb-20 font-xs color-text-paragraph-2">
-                            JobBox is the heart of the design community and the best resource to discover and connect
-                            with designers and jobs worldwide.
+                            Jobsayhi một website tìm việc thông minh ứng dụng AI để tìm việc chính xác và phù hợp nhất
+                            với bạn!
                         </div>
                         <div className="footer-social">
                             <a className="icon-socials icon-facebook" href="#" />
@@ -87,9 +90,7 @@ function Footer() {
                     </div>
                     <div className="footer-col-6 col-md-3 col-sm-12">
                         <h6 className="mb-20">Download App</h6>
-                        <p className="color-text-paragraph-2 font-xs">
-                            Download our Apps and get extra 15% Discount on your first Order…!
-                        </p>
+                        <p className="color-text-paragraph-2 font-xs">Comming soon!</p>
                         <div className="mt-15">
                             <a className="mr-5" href="#">
                                 <img
@@ -109,9 +110,7 @@ function Footer() {
                 <div className="footer-bottom mt-50">
                     <div className="row">
                         <div className="col-md-6">
-                            <span className="font-xs color-text-paragraph">
-                                Copyright © 2022. JobBox all right reserved
-                            </span>
+                            <span className="font-xs color-text-paragraph">Copyright © 2024. Dev by devhuunhan</span>
                         </div>
                         <div className="col-md-6 text-md-end text-start">
                             <div className="footer-social">

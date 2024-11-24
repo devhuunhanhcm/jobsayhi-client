@@ -4,3 +4,7 @@ export { default as Registration } from './Registration';
 export { default as ResetPassword } from './ResetPassword';
 export { default as JobDetails } from './JobDetails';
 export { default as Jobs } from './Jobs';
+export { default as UploadFile } from './UploadFile';
+export { default as Profile } from './Profile';
+export { default as MyCV } from './MyCV';
+export { default as FindJob } from './FindJob';

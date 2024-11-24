@@ -1,22 +1,41 @@
-import { useEffect } from 'react';
-import { useAppSelector } from '../../redux/hooks';
-import { getProfile } from '../../service/UserService';
+import { useEffect, useState } from 'react';
+import { useAppSelector } from '@/redux/hooks';
+import { getProfile } from '@/service/UserService';
+import { logout } from '@/service/AuthService';
+import { useNavigate } from 'react-router-dom';
 
 function Header() {
     const isLoged = useAppSelector((state) => state.auth.isLogined) || false;
-    const userInfo = useAppSelector((state) => state.user);
-
-    console.log(userInfo);
+    const userInfo = useAppSelector((state) => state.user) || null;
+    const navigate = useNavigate();
+    const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
 
     useEffect(() => {
-        if (isLoged && userInfo === null) {
-            const res = getProfile();
-            console.log(res);
+        const fetchUserProfile = async () => {
+            if (isLoged && (!userInfo || !userInfo.id)) {
+                try {
+                    await getProfile();
+                } catch (error) {
+                    console.error('Lỗi khi lấy thông tin người dùng:', error);
+                }
+            }
+        };
+
+        fetchUserProfile();
+    }, [isLoged, userInfo]);
+
+    const handleLogout = async () => {
+        try {
+            await logout();
+            navigate('/login');
+        } catch (e) {
+            console.log(e);
         }
-    }, []);
+    };
+
     return (
-        <div>
-            <header className="header sticky-bar sticky-top">
+        <>
+            <header className="header sticky-bar stick">
                 <div className="container">
                     <div className="main-header">
                         <div className="header-left">
@@ -24,7 +43,8 @@ function Header() {
                                 <a className="d-flex" href="/">
                                     <img
                                         alt="jobsayhi"
-                                        src={`${import.meta.env.VITE_PUBLIC_URL}/assets/imgs/logo-small.png`}
+                                        src={`${import.meta.env.VITE_PUBLIC_URL}/assets/imgs/logo/logo-jobsayhi.png`}
+                                        className="logo-header"
                                     />
                                 </a>
                             </div>
@@ -32,101 +52,61 @@ function Header() {
                         <div className="header-nav">
                             <nav className="nav-main-menu">
                                 <ul className="main-menu">
-                                    <li className="has-children">
+                                    <li>
                                         <a className="active" href="/">
-                                            Home
+                                            Trang chủ
                                         </a>
+                                    </li>
+                                    <li className="has-children">
+                                        <a href="/find">Việc làm</a>
                                         <ul className="sub-menu">
                                             <li>
-                                                <a href="/">Home 1</a>
+                                                <a href="/find">Việc làm</a>
                                             </li>
                                         </ul>
                                     </li>
                                     <li className="has-children">
-                                        <a href="jobs-grid.html">Find a Job</a>
+                                        <a href="companies-grid.html">Tuyển Dụng</a>
                                         <ul className="sub-menu">
                                             <li>
-                                                <a href="jobs-grid.html">Jobs Grid</a>
-                                            </li>
-                                            <li>
-                                                <a href="jobs-list.html">Jobs List</a>
-                                            </li>
-                                            <li>
-                                                <a href="job-details.html">Jobs Details</a>
-                                            </li>
-                                            <li>
-                                                <a href="job-details-2.html">Jobs Details 2 </a>
+                                                <a href="companies-grid.html">Tuyển Dụng</a>
                                             </li>
                                         </ul>
                                     </li>
                                     <li className="has-children">
-                                        <a href="companies-grid.html">Recruiters</a>
+                                        <a href="candidates-grid.html">Ứng viên</a>
                                         <ul className="sub-menu">
                                             <li>
-                                                <a href="companies-grid.html">Recruiters</a>
-                                            </li>
-                                            <li>
-                                                <a href="company-details.html">Company Details</a>
+                                                <a href="candidates-grid.html">Ứng viên</a>
                                             </li>
                                         </ul>
                                     </li>
-                                    <li className="has-children">
-                                        <a href="candidates-grid.html">Candidates</a>
-                                        <ul className="sub-menu">
-                                            <li>
-                                                <a href="candidates-grid.html">Candidates Grid</a>
-                                            </li>
-                                            <li>
-                                                <a href="candidate-details.html">Candidate Details</a>
-                                            </li>
-                                            <li>
-                                                <a href="candidate-profile.html">Candidate Profile</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li className="has-children">
-                                        <a href="blog-grid.html">Pages</a>
-                                        <ul className="sub-menu">
-                                            <li>
-                                                <a href="page-about.html">About Us</a>
-                                            </li>
-                                            <li>
-                                                <a href="page-pricing.html">Pricing Plan</a>
-                                            </li>
-                                            <li>
-                                                <a href="page-contact.html">Contact Us</a>
-                                            </li>
-                                            <li>
-                                                <a href="/register">Register</a>
-                                            </li>
-                                            <li>
-                                                <a href="/login">Signin</a>
-                                            </li>
-                                            <li>
-                                                <a href="/reset-password">Reset Password</a>
-                                            </li>
-                                            <li>
-                                                <a href="page-content-protected.html">Content Protected</a>
-                                            </li>
-                                        </ul>
-                                    </li>
+
                                     <li className="has-children">
                                         <a href="blog-grid.html">Blog</a>
                                         <ul className="sub-menu">
                                             <li>
-                                                <a href="blog-grid.html">Blog Grid</a>
+                                                <a href="blog-grid.html">Blog</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li className="has-children">
+                                        <a href="#!">CV</a>
+                                        <ul className="sub-menu">
+                                            <li>
+                                                <a href="/my-cv">Quản lý CV</a>
                                             </li>
                                             <li>
-                                                <a href="blog-grid-2.html">Blog Grid 2</a>
-                                            </li>
-                                            <li>
-                                                <a href="blog-details.html">Blog Single</a>
+                                                <a href="/upload">Tải lên CV</a>
                                             </li>
                                         </ul>
                                     </li>
                                 </ul>
                             </nav>
-                            <div className="burger-icon burger-icon-white">
+                            <div
+                                onClick={() => setShowMobileMenu(!showMobileMenu)}
+                                className="burger-icon burger-icon-white"
+                            >
                                 <span className="burger-icon-top" />
                                 <span className="burger-icon-mid" />
                                 <span className="burger-icon-bottom" />
@@ -145,10 +125,13 @@ function Header() {
                                         >
                                             <img
                                                 src={
-                                                    userInfo.avatar ??
-                                                    `${
-                                                        import.meta.env.VITE_PUBLIC_URL
-                                                    }/assets/imgs/avatar/avatar-default-icon.png`
+                                                    userInfo.avatar
+                                                        ? `${
+                                                              import.meta.env.VITE_PUBLIC_URL
+                                                          }/assets/imgs/avatar/avatar-default-icon.png`
+                                                        : `${
+                                                              import.meta.env.VITE_PUBLIC_URL
+                                                          }/assets/imgs/avatar/avatar-default-icon.png`
                                                 }
                                                 alt="User Avatar"
                                                 className="rounded-circle me-2"
@@ -158,19 +141,19 @@ function Header() {
                                         </button>
                                         <ul className="dropdown-menu" aria-labelledby="userDropdown">
                                             <li>
-                                                <a className="dropdown-item" href="#">
-                                                    Profile
+                                                <a className="dropdown-item" href="/profile">
+                                                    Tài khoản
                                                 </a>
                                             </li>
                                             <li>
                                                 <a className="dropdown-item" href="#">
-                                                    Settings
+                                                    Cài đặt
                                                 </a>
                                             </li>
                                             <li>
-                                                <a className="dropdown-item" href="#">
-                                                    Logout
-                                                </a>
+                                                <button className="dropdown-item" onClick={handleLogout}>
+                                                    Đăng xuất
+                                                </button>
                                             </li>
                                         </ul>
                                     </div>
@@ -189,7 +172,13 @@ function Header() {
                     </div>
                 </div>
             </header>
-            <div className="mobile-header-active mobile-header-wrapper-style perfect-scrollbar">
+            <div
+                className="mobile-header-active mobile-header-wrapper-style perfect-scrollbar"
+                style={{
+                    visibility: `${showMobileMenu ? 'unset' : 'hidden'}`,
+                    opacity: `${showMobileMenu ? '1' : '0'}`,
+                }}
+            >
                 <div className="mobile-header-wrapper-inner">
                     <div className="mobile-header-content-area">
                         <div className="perfect-scroll">
@@ -203,67 +192,32 @@ function Header() {
                                 {/* mobile menu start*/}
                                 <nav>
                                     <ul className="mobile-menu font-heading">
-                                        <li className="has-children">
+                                        <li>
                                             <a className="active" href="/">
-                                                Home
+                                                Trang chủ
                                             </a>
+                                        </li>
+                                        <li className="has-children">
+                                            <a href="/find">Việc làm</a>
                                             <ul className="sub-menu">
                                                 <li>
-                                                    <a href="/">Home 1</a>
-                                                </li>
-                                                <li>
-                                                    <a href="index-2.html">Home 2</a>
-                                                </li>
-                                                <li>
-                                                    <a href="index-3.html">Home 3</a>
-                                                </li>
-                                                <li>
-                                                    <a href="index-4.html">Home 4</a>
-                                                </li>
-                                                <li>
-                                                    <a href="index-5.html">Home 5</a>
-                                                </li>
-                                                <li>
-                                                    <a href="index-6.html">Home 6</a>
+                                                    <a href="/find">Danh sách việc làm</a>
                                                 </li>
                                             </ul>
                                         </li>
                                         <li className="has-children">
-                                            <a href="jobs-grid.html">Find a Job</a>
+                                            <a href="companies-grid.html">Tuyển Dụng</a>
                                             <ul className="sub-menu">
                                                 <li>
-                                                    <a href="jobs-grid.html">Jobs Grid</a>
-                                                </li>
-                                                <li>
-                                                    <a href="jobs-list.html">Jobs List</a>
-                                                </li>
-                                                <li>
-                                                    <a href="job-details.html">Jobs Details</a>
-                                                </li>
-                                                <li>
-                                                    <a href="job-details-2.html">Jobs Details 2 </a>
+                                                    <a href="companies-grid.html">Tuyển Dụng</a>
                                                 </li>
                                             </ul>
                                         </li>
                                         <li className="has-children">
-                                            <a href="companies-grid.html">Recruiters</a>
+                                            <a href="candidates-grid.html">Ứng viên</a>
                                             <ul className="sub-menu">
                                                 <li>
-                                                    <a href="companies-grid.html">Recruiters</a>
-                                                </li>
-                                                <li>
-                                                    <a href="company-details.html">Company Details</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li className="has-children">
-                                            <a href="candidates-grid.html">Candidates</a>
-                                            <ul className="sub-menu">
-                                                <li>
-                                                    <a href="candidates-grid.html">Candidates Grid</a>
-                                                </li>
-                                                <li>
-                                                    <a href="candidate-details.html">Candidate Details</a>
+                                                    <a href="candidates-grid.html">Top những ứng viên</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -299,12 +253,6 @@ function Header() {
                                                 <li>
                                                     <a href="blog-grid.html">Blog Grid</a>
                                                 </li>
-                                                <li>
-                                                    <a href="blog-grid-2.html">Blog Grid 2</a>
-                                                </li>
-                                                <li>
-                                                    <a href="blog-details.html">Blog Single</a>
-                                                </li>
                                             </ul>
                                         </li>
                                         <li>
@@ -316,7 +264,7 @@ function Header() {
                                 </nav>
                             </div>
                             <div className="mobile-account">
-                                <h6 className="mb-10">Your Account</h6>
+                                <h6 className="mb-10">Tài khoản</h6>
                                 <ul className="mobile-menu font-heading">
                                     <li>
                                         <a href="#">Profile</a>
@@ -335,169 +283,11 @@ function Header() {
                                     </li>
                                 </ul>
                             </div>
-                            <div className="site-copyright">
-                                Copyright 2024 © JobBox. <br />
-                                Designed by AliThemes.
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="mobile-header-active mobile-header-wrapper-style perfect-scrollbar">
-                <div className="mobile-header-wrapper-inner">
-                    <div className="mobile-header-content-area">
-                        <div className="perfect-scroll">
-                            <div className="mobile-search mobile-header-border mb-30">
-                                <form action="#">
-                                    <input type="text" placeholder="Search…" />
-                                    <i className="fi-rr-search" />
-                                </form>
-                            </div>
-                            <div className="mobile-menu-wrap mobile-header-border">
-                                {/* mobile menu start*/}
-                                <nav>
-                                    <ul className="mobile-menu font-heading">
-                                        <li className="has-children">
-                                            <a className="active" href="/">
-                                                Home
-                                            </a>
-                                            <ul className="sub-menu">
-                                                <li>
-                                                    <a href="/">Home 1</a>
-                                                </li>
-                                                <li>
-                                                    <a href="index-2.html">Home 2</a>
-                                                </li>
-                                                <li>
-                                                    <a href="index-3.html">Home 3</a>
-                                                </li>
-                                                <li>
-                                                    <a href="index-4.html">Home 4</a>
-                                                </li>
-                                                <li>
-                                                    <a href="index-5.html">Home 5</a>
-                                                </li>
-                                                <li>
-                                                    <a href="index-6.html">Home 6</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li className="has-children">
-                                            <a href="jobs-grid.html">Find a Job</a>
-                                            <ul className="sub-menu">
-                                                <li>
-                                                    <a href="jobs-grid.html">Jobs Grid</a>
-                                                </li>
-                                                <li>
-                                                    <a href="jobs-list.html">Jobs List</a>
-                                                </li>
-                                                <li>
-                                                    <a href="job-details.html">Jobs Details</a>
-                                                </li>
-                                                <li>
-                                                    <a href="job-details-2.html">Jobs Details 2 </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li className="has-children">
-                                            <a href="companies-grid.html">Recruiters</a>
-                                            <ul className="sub-menu">
-                                                <li>
-                                                    <a href="companies-grid.html">Recruiters</a>
-                                                </li>
-                                                <li>
-                                                    <a href="company-details.html">Company Details</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li className="has-children">
-                                            <a href="candidates-grid.html">Candidates</a>
-                                            <ul className="sub-menu">
-                                                <li>
-                                                    <a href="candidates-grid.html">Candidates Grid</a>
-                                                </li>
-                                                <li>
-                                                    <a href="candidate-details.html">Candidate Details</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li className="has-children">
-                                            <a href="blog-grid.html">Pages</a>
-                                            <ul className="sub-menu">
-                                                <li>
-                                                    <a href="page-about.html">About Us</a>
-                                                </li>
-                                                <li>
-                                                    <a href="page-pricing.html">Pricing Plan</a>
-                                                </li>
-                                                <li>
-                                                    <a href="page-contact.html">Contact Us</a>
-                                                </li>
-                                                <li>
-                                                    <a href="/register">Register</a>
-                                                </li>
-                                                <li>
-                                                    <a href="/login">Signin</a>
-                                                </li>
-                                                <li>
-                                                    <a href="page-reset-password.html">Reset Password</a>
-                                                </li>
-                                                <li>
-                                                    <a href="page-content-protected.html">Content Protected</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li className="has-children">
-                                            <a href="blog-grid.html">Blog</a>
-                                            <ul className="sub-menu">
-                                                <li>
-                                                    <a href="blog-grid.html">Blog Grid</a>
-                                                </li>
-                                                <li>
-                                                    <a href="blog-grid-2.html">Blog Grid 2</a>
-                                                </li>
-                                                <li>
-                                                    <a href="blog-details.html">Blog Single</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="#" target="_blank">
-                                                Dashboard
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
-                            <div className="mobile-account">
-                                <h6 className="mb-10">Your Account</h6>
-                                <ul className="mobile-menu font-heading">
-                                    <li>
-                                        <a href="#">Profile</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Work Preferences</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Account Settings</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Go Pro</a>
-                                    </li>
-                                    <li>
-                                        <a href="page-signin.html">Sign Out</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div className="site-copyright">
-                                Copyright 2024 © JobBox. <br />
-                                Designed by AliThemes.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </>
     );
 }
 

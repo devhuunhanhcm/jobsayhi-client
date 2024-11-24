@@ -5,75 +5,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { useState } from 'react';
 import { Category } from '../model/Category';
-const categoriesSample = [
-    {
-        href: 'jobs-list.html',
-        imageUrl: 'assets/imgs/page/homepage1/lightning.svg',
-        title: 'Software',
-        description: '',
-        count: 185,
-        id: '1',
-    },
-    {
-        href: 'jobs-list.html',
-        imageUrl: 'assets/imgs/page/homepage1/lightning.svg',
-        title: 'Software',
-        description: '',
-        count: 185,
-        id: '1',
-    },
-    {
-        href: 'jobs-list.html',
-        imageUrl: 'assets/imgs/page/homepage1/lightning.svg',
-        title: 'Software',
-        description: '',
-        count: 185,
-        id: '1',
-    },
-    {
-        href: 'jobs-list.html',
-        imageUrl: 'assets/imgs/page/homepage1/lightning.svg',
-        title: 'Software',
-        description: '',
-        count: 185,
-        id: '1',
-    },
-    {
-        href: 'jobs-list.html',
-        imageUrl: 'assets/imgs/page/homepage1/lightning.svg',
-        title: 'Software',
-        description: '',
-        count: 185,
-        id: '1',
-    },
-    {
-        href: 'jobs-list.html',
-        imageUrl: 'assets/imgs/page/homepage1/lightning.svg',
-        title: 'Software',
-        description: '',
-        count: 185,
-        id: '1',
-    },
-    {
-        href: 'jobs-list.html',
-        imageUrl: 'assets/imgs/page/homepage1/lightning.svg',
-        title: 'Software',
-        description: '',
-        count: 185,
-        id: '1',
-    },
-    {
-        href: 'jobs-list.html',
-        imageUrl: 'assets/imgs/page/homepage1/lightning.svg',
-        title: 'Software',
-        description: '',
-        count: 185,
-        id: '1',
-    },
-];
 
 function CategoriesSlide() {
-    const [categories, setCategories] = useState<Category[]>(categoriesSample);
+    const [categories, setCategories] = useState<Category[]>([]);
 
     return (
         <>
@@ -104,7 +38,7 @@ function CategoriesSlide() {
                                 >
                                     {categories.map((cate) => (
                                         <SwiperSlide key={cate.id} className="swiper-slide hover-up">
-                                            <a href={cate.href}>
+                                            {/* <a href={cate.href}>
                                                 <div className="item-logo">
                                                     <div className="image-left">
                                                         <img alt="jobBox" src={cate.imageUrl} />
@@ -117,7 +51,7 @@ function CategoriesSlide() {
                                                         </p>
                                                     </div>
                                                 </div>
-                                            </a>
+                                            </a> */}
                                         </SwiperSlide>
                                     ))}
                                 </Swiper>

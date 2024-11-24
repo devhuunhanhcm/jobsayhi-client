@@ -22,7 +22,7 @@ const JobDetails: React.FC = () => {
     }, [jobId]);
 
     return (
-        <main className="main">
+        <>
             <section className="section-box mt-50">
                 <div className="container">
                     <div className="row">
@@ -52,7 +52,7 @@ const JobDetails: React.FC = () => {
                                         <img
                                             src={`${
                                                 import.meta.env.VITE_PUBLIC_URL
-                                            }assets/imgs/page/job-single-2/img.png`}
+                                            }/assets/imgs/page/job-single-2/img.png`}
                                             alt="jobBox"
                                         />
                                     </div> */}
@@ -64,7 +64,7 @@ const JobDetails: React.FC = () => {
                                                     <img
                                                         src={`${
                                                             import.meta.env.VITE_PUBLIC_URL
-                                                        }assets/imgs/page/job-single/industry.svg`}
+                                                        }/assets/imgs/page/job-single/industry.svg`}
                                                         alt="jobBox"
                                                     />
                                                 </div>
@@ -83,7 +83,7 @@ const JobDetails: React.FC = () => {
                                                     <img
                                                         src={`${
                                                             import.meta.env.VITE_PUBLIC_URL
-                                                        }assets/imgs/page/job-single/job-level.svg`}
+                                                        }/assets/imgs/page/job-single/job-level.svg`}
                                                         alt="jobBox"
                                                     />
                                                 </div>
@@ -103,7 +103,7 @@ const JobDetails: React.FC = () => {
                                                     <img
                                                         src={`${
                                                             import.meta.env.VITE_PUBLIC_URL
-                                                        }assets/imgs/page/job-single/salary.svg`}
+                                                        }/assets/imgs/page/job-single/salary.svg`}
                                                         alt="jobBox"
                                                     />
                                                 </div>
@@ -117,7 +117,7 @@ const JobDetails: React.FC = () => {
                                                     <img
                                                         src={`${
                                                             import.meta.env.VITE_PUBLIC_URL
-                                                        }assets/imgs/page/job-single/experience.svg`}
+                                                        }/assets/imgs/page/job-single/experience.svg`}
                                                         alt="jobBox"
                                                     />
                                                 </div>
@@ -135,7 +135,7 @@ const JobDetails: React.FC = () => {
                                                     <img
                                                         src={`${
                                                             import.meta.env.VITE_PUBLIC_URL
-                                                        }assets/imgs/page/job-single/job-type.svg`}
+                                                        }/assets/imgs/page/job-single/job-type.svg`}
                                                         alt="jobBox"
                                                     />
                                                 </div>
@@ -151,7 +151,7 @@ const JobDetails: React.FC = () => {
                                                     <img
                                                         src={`${
                                                             import.meta.env.VITE_PUBLIC_URL
-                                                        }assets/imgs/page/job-single/deadline.svg`}
+                                                        }/assets/imgs/page/job-single/deadline.svg`}
                                                         alt="jobBox"
                                                     />
                                                 </div>
@@ -171,7 +171,7 @@ const JobDetails: React.FC = () => {
                                                     <img
                                                         src={`${
                                                             import.meta.env.VITE_PUBLIC_URL
-                                                        }assets/imgs/page/job-single/updated.svg`}
+                                                        }/assets/imgs/page/job-single/updated.svg`}
                                                         alt="jobBox"
                                                     />
                                                 </div>
@@ -189,7 +189,7 @@ const JobDetails: React.FC = () => {
                                                     <img
                                                         src={`${
                                                             import.meta.env.VITE_PUBLIC_URL
-                                                        }assets/imgs/page/job-single/location.svg`}
+                                                        }/assets/imgs/page/job-single/location.svg`}
                                                         alt="jobBox"
                                                     />
                                                 </div>
@@ -250,7 +250,7 @@ const JobDetails: React.FC = () => {
                                                         alt="jobBox"
                                                         src={`${
                                                             import.meta.env.VITE_PUBLIC_URL
-                                                        }assets/imgs/template/icons/share-fb.svg`}
+                                                        }/assets/imgs/template/icons/share-fb.svg`}
                                                     />
                                                 </a>
                                                 <a className="mr-5 d-inline-block d-middle" href="#">
@@ -258,7 +258,7 @@ const JobDetails: React.FC = () => {
                                                         alt="jobBox"
                                                         src={`${
                                                             import.meta.env.VITE_PUBLIC_URL
-                                                        }assets/imgs/template/icons/share-tw.svg`}
+                                                        }/assets/imgs/template/icons/share-tw.svg`}
                                                     />
                                                 </a>
                                                 <a className="mr-5 d-inline-block d-middle" href="#">
@@ -266,7 +266,7 @@ const JobDetails: React.FC = () => {
                                                         alt="jobBox"
                                                         src={`${
                                                             import.meta.env.VITE_PUBLIC_URL
-                                                        }assets/imgs/template/icons/share-red.svg`}
+                                                        }/assets/imgs/template/icons/share-red.svg`}
                                                     />
                                                 </a>
                                                 <a className="d-inline-block d-middle" href="#">
@@ -274,7 +274,7 @@ const JobDetails: React.FC = () => {
                                                         alt="jobBox"
                                                         src={`${
                                                             import.meta.env.VITE_PUBLIC_URL
-                                                        }assets/imgs/template/icons/share-whatsapp.svg`}
+                                                        }/assets/imgs/template/icons/share-whatsapp.svg`}
                                                     />
                                                 </a>
                                             </div>
@@ -333,7 +333,7 @@ const JobDetails: React.FC = () => {
                                                         <img
                                                             src={`${
                                                                 import.meta.env.VITE_PUBLIC_URL
-                                                            }assets/imgs/brands/brand-1.png`}
+                                                            }/assets/imgs/brands/brand-1.png`}
                                                             alt="jobBox"
                                                         />
                                                     </a>
@@ -371,7 +371,7 @@ const JobDetails: React.FC = () => {
                                                         <img
                                                             src={`${
                                                                 import.meta.env.VITE_PUBLIC_URL
-                                                            }assets/imgs/brands/brand-2.png`}
+                                                            }/assets/imgs/brands/brand-2.png`}
                                                             alt="jobBox"
                                                         />
                                                     </a>
@@ -409,7 +409,7 @@ const JobDetails: React.FC = () => {
                                                         <img
                                                             src={`${
                                                                 import.meta.env.VITE_PUBLIC_URL
-                                                            }assets/imgs/brands/brand-3.png`}
+                                                            }/assets/imgs/brands/brand-3.png`}
                                                             alt="jobBox"
                                                         />
                                                     </a>
@@ -447,7 +447,7 @@ const JobDetails: React.FC = () => {
                                                         <img
                                                             src={`${
                                                                 import.meta.env.VITE_PUBLIC_URL
-                                                            }assets/imgs/brands/brand-4.png`}
+                                                            }/assets/imgs/brands/brand-4.png`}
                                                             alt="jobBox"
                                                         />
                                                     </a>
@@ -485,7 +485,7 @@ const JobDetails: React.FC = () => {
                                                         <img
                                                             src={`${
                                                                 import.meta.env.VITE_PUBLIC_URL
-                                                            }assets/imgs/brands/brand-5.png`}
+                                                            }/assets/imgs/brands/brand-5.png`}
                                                             alt="jobBox"
                                                         />
                                                     </a>
@@ -523,7 +523,7 @@ const JobDetails: React.FC = () => {
                                                         <img
                                                             src={`${
                                                                 import.meta.env.VITE_PUBLIC_URL
-                                                            }assets/imgs/brands/brand-6.png`}
+                                                            }/assets/imgs/brands/brand-6.png`}
                                                             alt="jobBox"
                                                         />
                                                     </a>
@@ -561,7 +561,7 @@ const JobDetails: React.FC = () => {
                                                         <img
                                                             src={`${
                                                                 import.meta.env.VITE_PUBLIC_URL
-                                                            }assets/imgs/brands/brand-7.png`}
+                                                            }/assets/imgs/brands/brand-7.png`}
                                                             alt="jobBox"
                                                         />
                                                     </a>
@@ -599,7 +599,7 @@ const JobDetails: React.FC = () => {
                                                         <img
                                                             src={`${
                                                                 import.meta.env.VITE_PUBLIC_URL
-                                                            }assets/imgs/brands/brand-8.png`}
+                                                            }/assets/imgs/brands/brand-8.png`}
                                                             alt="jobBox"
                                                         />
                                                     </a>
@@ -678,535 +678,7 @@ const JobDetails: React.FC = () => {
                     </div>
                 </div>
             </section>
-            <section className="section-box mt-50 mb-50">
-                <div className="container">
-                    <div className="text-left">
-                        <h2 className="section-title mb-10 wow animate__animated animate__fadeInUp">Featured Jobs</h2>
-                        <p className="font-lg color-text-paragraph-2 wow animate__animated animate__fadeInUp">
-                            Get the latest news, updates and tips
-                        </p>
-                    </div>
-                    <div className="mt-50">
-                        <div className="box-swiper style-nav-top">
-                            <div className="swiper-container swiper-group-4 swiper">
-                                <div className="swiper-wrapper pb-10 pt-5">
-                                    <div className="swiper-slide">
-                                        <div className="card-grid-2 hover-up wow animate__animated animate__fadeIn">
-                                            <div className="card-grid-2-image-left">
-                                                <span className="flash" />
-                                                <div className="image-box">
-                                                    <img
-                                                        src={`${
-                                                            import.meta.env.VITE_PUBLIC_URL
-                                                        }assets/imgs/brands/brand-6.png`}
-                                                        alt="jobBox"
-                                                    />
-                                                </div>
-                                                <div className="right-info">
-                                                    <a className="name-job" href="company-details.html">
-                                                        Quora JSC
-                                                    </a>
-                                                    <span className="location-small">New York, US</span>
-                                                </div>
-                                            </div>
-                                            <div className="card-block-info">
-                                                <h6>
-                                                    <a href="job-details.html">Senior System Engineer</a>
-                                                </h6>
-                                                <div className="mt-5">
-                                                    <span className="card-briefcase">Part time</span>
-                                                    <span className="card-time">
-                                                        5<span> minutes ago</span>
-                                                    </span>
-                                                </div>
-                                                <p className="font-sm color-text-paragraph mt-15">
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae
-                                                    architecto eveniet, dolor quo repellendus pariatur.
-                                                </p>
-                                                <div className="mt-30">
-                                                    <a className="btn btn-grey-small mr-5" href="job-details.html">
-                                                        PHP
-                                                    </a>
-                                                    <a className="btn btn-grey-small mr-5" href="job-details.html">
-                                                        Android{' '}
-                                                    </a>
-                                                </div>
-                                                <div className="card-2-bottom mt-30">
-                                                    <div className="row">
-                                                        <div className="col-lg-7 col-7">
-                                                            <span className="card-text-price">$800</span>
-                                                            <span className="text-muted">/Hour</span>
-                                                        </div>
-                                                        <div className="col-lg-5 col-5 text-end">
-                                                            <a className="btn btn-apply-now" href="job-details.html">
-                                                                Apply now
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="swiper-slide">
-                                        <div className="card-grid-2 hover-up wow animate__animated animate__fadeIn">
-                                            <div className="card-grid-2-image-left">
-                                                <span className="flash" />
-                                                <div className="image-box">
-                                                    <img
-                                                        src={`${
-                                                            import.meta.env.VITE_PUBLIC_URL
-                                                        }assets/imgs/brands/brand-4.png`}
-                                                        alt="jobBox"
-                                                    />
-                                                </div>
-                                                <div className="right-info">
-                                                    <a className="name-job" href="company-details.html">
-                                                        Dailymotion
-                                                    </a>
-                                                    <span className="location-small">New York, US</span>
-                                                </div>
-                                            </div>
-                                            <div className="card-block-info">
-                                                <h6>
-                                                    <a href="job-details.html">Frontend Developer</a>
-                                                </h6>
-                                                <div className="mt-5">
-                                                    <span className="card-briefcase">Full time</span>
-                                                    <span className="card-time">
-                                                        6<span> minutes ago</span>
-                                                    </span>
-                                                </div>
-                                                <p className="font-sm color-text-paragraph mt-15">
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae
-                                                    architecto eveniet, dolor quo repellendus pariatur.
-                                                </p>
-                                                <div className="mt-30">
-                                                    <a className="btn btn-grey-small mr-5" href="jobs-grid.html">
-                                                        Typescript
-                                                    </a>
-                                                    <a className="btn btn-grey-small mr-5" href="jobs-grid.html">
-                                                        Java
-                                                    </a>
-                                                </div>
-                                                <div className="card-2-bottom mt-30">
-                                                    <div className="row">
-                                                        <div className="col-lg-7 col-7">
-                                                            <span className="card-text-price">$250</span>
-                                                            <span className="text-muted">/Hour</span>
-                                                        </div>
-                                                        <div className="col-lg-5 col-5 text-end">
-                                                            <a className="btn btn-apply-now" href="job-details.html">
-                                                                Apply now
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="swiper-slide">
-                                        <div className="card-grid-2 hover-up wow animate__animated animate__fadeIn">
-                                            <div className="card-grid-2-image-left">
-                                                <span className="flash" />
-                                                <div className="image-box">
-                                                    <img
-                                                        src={`${
-                                                            import.meta.env.VITE_PUBLIC_URL
-                                                        }assets/imgs/brands/brand-8.png`}
-                                                        alt="jobBox"
-                                                    />
-                                                </div>
-                                                <div className="right-info">
-                                                    <a className="name-job" href="company-details.html">
-                                                        Periscope
-                                                    </a>
-                                                    <span className="location-small">New York, US</span>
-                                                </div>
-                                            </div>
-                                            <div className="card-block-info">
-                                                <h6>
-                                                    <a href="job-details.html">Lead Quality Control QA</a>
-                                                </h6>
-                                                <div className="mt-5">
-                                                    <span className="card-briefcase">Full time</span>
-                                                    <span className="card-time">
-                                                        6<span> minutes ago</span>
-                                                    </span>
-                                                </div>
-                                                <p className="font-sm color-text-paragraph mt-15">
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae
-                                                    architecto eveniet, dolor quo repellendus pariatur.
-                                                </p>
-                                                <div className="mt-30">
-                                                    <a className="btn btn-grey-small mr-5" href="job-details.html">
-                                                        iOS
-                                                    </a>
-                                                    <a className="btn btn-grey-small mr-5" href="job-details.html">
-                                                        Laravel
-                                                    </a>
-                                                    <a className="btn btn-grey-small mr-5" href="job-details.html">
-                                                        Golang
-                                                    </a>
-                                                </div>
-                                                <div className="card-2-bottom mt-30">
-                                                    <div className="row">
-                                                        <div className="col-lg-7 col-7">
-                                                            <span className="card-text-price">$250</span>
-                                                            <span className="text-muted">/Hour</span>
-                                                        </div>
-                                                        <div className="col-lg-5 col-5 text-end">
-                                                            <a className="btn btn-apply-now" href="job-details.html">
-                                                                Apply now
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="swiper-slide">
-                                        <div className="card-grid-2 hover-up wow animate__animated animate__fadeIn">
-                                            <div className="card-grid-2-image-left">
-                                                <span className="flash" />
-                                                <div className="image-box">
-                                                    <img
-                                                        src={`${
-                                                            import.meta.env.VITE_PUBLIC_URL
-                                                        }assets/imgs/brands/brand-4.png`}
-                                                        alt="jobBox"
-                                                    />
-                                                </div>
-                                                <div className="right-info">
-                                                    <a className="name-job" href="company-details.html">
-                                                        Dailymotion
-                                                    </a>
-                                                    <span className="location-small">New York, US</span>
-                                                </div>
-                                            </div>
-                                            <div className="card-block-info">
-                                                <h6>
-                                                    <a href="job-details.html">Frontend Developer</a>
-                                                </h6>
-                                                <div className="mt-5">
-                                                    <span className="card-briefcase">Full time</span>
-                                                    <span className="card-time">
-                                                        6<span> minutes ago</span>
-                                                    </span>
-                                                </div>
-                                                <p className="font-sm color-text-paragraph mt-15">
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae
-                                                    architecto eveniet, dolor quo repellendus pariatur.
-                                                </p>
-                                                <div className="mt-30">
-                                                    <a className="btn btn-grey-small mr-5" href="jobs-grid.html">
-                                                        Typescript
-                                                    </a>
-                                                    <a className="btn btn-grey-small mr-5" href="jobs-grid.html">
-                                                        Java
-                                                    </a>
-                                                </div>
-                                                <div className="card-2-bottom mt-30">
-                                                    <div className="row">
-                                                        <div className="col-lg-7 col-7">
-                                                            <span className="card-text-price">$250</span>
-                                                            <span className="text-muted">/Hour</span>
-                                                        </div>
-                                                        <div className="col-lg-5 col-5 text-end">
-                                                            <a className="btn btn-apply-now" href="job-details.html">
-                                                                Apply now
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="swiper-button-next swiper-button-next-4" />
-                            <div className="swiper-button-prev swiper-button-prev-4" />
-                        </div>
-                        <div className="text-center">
-                            <a className="btn btn-grey" href="#">
-                                Load more posts
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section className="section-box mt-50 mb-50">
-                <div className="container">
-                    <div className="text-left">
-                        <h2 className="section-title mb-10 wow animate__animated animate__fadeInUp">Featured Jobs</h2>
-                        <p className="font-lg color-text-paragraph-2 wow animate__animated animate__fadeInUp">
-                            Get the latest news, updates and tips
-                        </p>
-                    </div>
-                    <div className="mt-50">
-                        <div className="box-swiper style-nav-top">
-                            <div className="swiper-container swiper-group-4 swiper">
-                                <div className="swiper-wrapper pb-10 pt-5">
-                                    <div className="swiper-slide">
-                                        <div className="card-grid-2 hover-up">
-                                            <div className="card-grid-2-image-left">
-                                                <span className="flash" />
-                                                <div className="image-box">
-                                                    <img
-                                                        src={`${
-                                                            import.meta.env.VITE_PUBLIC_URL
-                                                        }assets/imgs/brands/brand-6.png`}
-                                                        alt="jobBox"
-                                                    />
-                                                </div>
-                                                <div className="right-info">
-                                                    <a className="name-job" href="company-details.html">
-                                                        Quora JSC
-                                                    </a>
-                                                    <span className="location-small">New York, US</span>
-                                                </div>
-                                            </div>
-                                            <div className="card-block-info">
-                                                <h6>
-                                                    <a href="job-details.html">Senior System Engineer</a>
-                                                </h6>
-                                                <div className="mt-5">
-                                                    <span className="card-briefcase">Part time</span>
-                                                    <span className="card-time">
-                                                        5<span> minutes ago</span>
-                                                    </span>
-                                                </div>
-                                                <p className="font-sm color-text-paragraph mt-15">
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae
-                                                    architecto eveniet, dolor quo repellendus pariatur.
-                                                </p>
-                                                <div className="mt-30">
-                                                    <a className="btn btn-grey-small mr-5" href="job-details.html">
-                                                        PHP
-                                                    </a>
-                                                    <a className="btn btn-grey-small mr-5" href="job-details.html">
-                                                        Android{' '}
-                                                    </a>
-                                                </div>
-                                                <div className="card-2-bottom mt-30">
-                                                    <div className="row">
-                                                        <div className="col-lg-7 col-7">
-                                                            <span className="card-text-price">$800</span>
-                                                            <span className="text-muted">/Hour</span>
-                                                        </div>
-                                                        <div className="col-lg-5 col-5 text-end">
-                                                            <div
-                                                                className="btn btn-apply-now"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#ModalApplyJobForm"
-                                                            >
-                                                                Apply now
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="swiper-slide">
-                                        <div className="card-grid-2 hover-up">
-                                            <div className="card-grid-2-image-left">
-                                                <span className="flash" />
-                                                <div className="image-box">
-                                                    <img
-                                                        src={`${
-                                                            import.meta.env.VITE_PUBLIC_URL
-                                                        }assets/imgs/brands/brand-4.png`}
-                                                        alt="jobBox"
-                                                    />
-                                                </div>
-                                                <div className="right-info">
-                                                    <a className="name-job" href="company-details.html">
-                                                        Dailymotion
-                                                    </a>
-                                                    <span className="location-small">New York, US</span>
-                                                </div>
-                                            </div>
-                                            <div className="card-block-info">
-                                                <h6>
-                                                    <a href="job-details.html">Frontend Developer</a>
-                                                </h6>
-                                                <div className="mt-5">
-                                                    <span className="card-briefcase">Full time</span>
-                                                    <span className="card-time">
-                                                        6<span> minutes ago</span>
-                                                    </span>
-                                                </div>
-                                                <p className="font-sm color-text-paragraph mt-15">
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae
-                                                    architecto eveniet, dolor quo repellendus pariatur.
-                                                </p>
-                                                <div className="mt-30">
-                                                    <a className="btn btn-grey-small mr-5" href="jobs-grid.html">
-                                                        Typescript
-                                                    </a>
-                                                    <a className="btn btn-grey-small mr-5" href="jobs-grid.html">
-                                                        Java
-                                                    </a>
-                                                </div>
-                                                <div className="card-2-bottom mt-30">
-                                                    <div className="row">
-                                                        <div className="col-lg-7 col-7">
-                                                            <span className="card-text-price">$250</span>
-                                                            <span className="text-muted">/Hour</span>
-                                                        </div>
-                                                        <div className="col-lg-5 col-5 text-end">
-                                                            <div
-                                                                className="btn btn-apply-now"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#ModalApplyJobForm"
-                                                            >
-                                                                Apply now
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="swiper-slide">
-                                        <div className="card-grid-2 hover-up">
-                                            <div className="card-grid-2-image-left">
-                                                <span className="flash" />
-                                                <div className="image-box">
-                                                    <img
-                                                        src={`${
-                                                            import.meta.env.VITE_PUBLIC_URL
-                                                        }assets/imgs/brands/brand-8.png`}
-                                                        alt="jobBox"
-                                                    />
-                                                </div>
-                                                <div className="right-info">
-                                                    <a className="name-job" href="company-details.html">
-                                                        Periscope
-                                                    </a>
-                                                    <span className="location-small">New York, US</span>
-                                                </div>
-                                            </div>
-                                            <div className="card-block-info">
-                                                <h6>
-                                                    <a href="job-details.html">Lead Quality Control QA</a>
-                                                </h6>
-                                                <div className="mt-5">
-                                                    <span className="card-briefcase">Full time</span>
-                                                    <span className="card-time">
-                                                        6<span> minutes ago</span>
-                                                    </span>
-                                                </div>
-                                                <p className="font-sm color-text-paragraph mt-15">
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae
-                                                    architecto eveniet, dolor quo repellendus pariatur.
-                                                </p>
-                                                <div className="mt-30">
-                                                    <a className="btn btn-grey-small mr-5" href="job-details.html">
-                                                        iOS
-                                                    </a>
-                                                    <a className="btn btn-grey-small mr-5" href="job-details.html">
-                                                        Laravel
-                                                    </a>
-                                                    <a className="btn btn-grey-small mr-5" href="job-details.html">
-                                                        Golang
-                                                    </a>
-                                                </div>
-                                                <div className="card-2-bottom mt-30">
-                                                    <div className="row">
-                                                        <div className="col-lg-7 col-7">
-                                                            <span className="card-text-price">$250</span>
-                                                            <span className="text-muted">/Hour</span>
-                                                        </div>
-                                                        <div className="col-lg-5 col-5 text-end">
-                                                            <div
-                                                                className="btn btn-apply-now"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#ModalApplyJobForm"
-                                                            >
-                                                                Apply now
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="swiper-slide">
-                                        <div className="card-grid-2 hover-up">
-                                            <div className="card-grid-2-image-left">
-                                                <span className="flash" />
-                                                <div className="image-box">
-                                                    <img
-                                                        src={`${
-                                                            import.meta.env.VITE_PUBLIC_URL
-                                                        }assets/imgs/brands/brand-4.png`}
-                                                        alt="jobBox"
-                                                    />
-                                                </div>
-                                                <div className="right-info">
-                                                    <a className="name-job" href="company-details.html">
-                                                        Dailymotion
-                                                    </a>
-                                                    <span className="location-small">New York, US</span>
-                                                </div>
-                                            </div>
-                                            <div className="card-block-info">
-                                                <h6>
-                                                    <a href="job-details.html">Frontend Developer</a>
-                                                </h6>
-                                                <div className="mt-5">
-                                                    <span className="card-briefcase">Full time</span>
-                                                    <span className="card-time">
-                                                        6<span> minutes ago</span>
-                                                    </span>
-                                                </div>
-                                                <p className="font-sm color-text-paragraph mt-15">
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae
-                                                    architecto eveniet, dolor quo repellendus pariatur.
-                                                </p>
-                                                <div className="mt-30">
-                                                    <a className="btn btn-grey-small mr-5" href="jobs-grid.html">
-                                                        Typescript
-                                                    </a>
-                                                    <a className="btn btn-grey-small mr-5" href="jobs-grid.html">
-                                                        Java
-                                                    </a>
-                                                </div>
-                                                <div className="card-2-bottom mt-30">
-                                                    <div className="row">
-                                                        <div className="col-lg-7 col-7">
-                                                            <span className="card-text-price">$250</span>
-                                                            <span className="text-muted">/Hour</span>
-                                                        </div>
-                                                        <div className="col-lg-5 col-5 text-end">
-                                                            <div
-                                                                className="btn btn-apply-now"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#ModalApplyJobForm"
-                                                            >
-                                                                Apply now
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="swiper-button-next swiper-button-next-4" />
-                            <div className="swiper-button-prev swiper-button-prev-4" />
-                        </div>
-                        <div className="text-center">
-                            <a className="btn btn-grey" href="#">
-                                Load more posts
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
+        </>
     );
 };
 
