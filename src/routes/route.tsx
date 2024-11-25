@@ -1,3 +1,4 @@
+import RecruiterLayout from '@/components/layouts/RecruiterLayout';
 import {
     Home,
     Login,
@@ -9,6 +10,7 @@ import {
     Profile,
     MyCV,
     FindJob,
+    CreateJob,
 } from '../page';
 
 export const publicRoute = [
@@ -51,6 +53,12 @@ export const publicRoute = [
     {
         path: '/my-cv',
         component: MyCV,
+    },
+    {
+        path: '/recruiter',
+        component: Home,
+        layout: RecruiterLayout,
+        children: [{ path: 'create-job', component: CreateJob, layout: RecruiterLayout }],
     },
     {
         path: '/test',

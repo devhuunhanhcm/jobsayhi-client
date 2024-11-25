@@ -12,6 +12,7 @@
 @import 'layout/header', 'layout/navigation', 'layout/sidebar', 'layout/footer', 'layout/spacing';
 // Page-specific styles
 @import 'pages/pages', 'pages/blog', 'pages/candidates', 'pages/job-single', 'pages/job-single-2', 'pages/blog-grid-2',
-    'pages/job-listing-grid', 'pages/job-listing-list', 'pages/company', 'pages/login-register', 'pages/homepage3';
+    'pages/job-listing-grid', 'pages/job-listing-list', 'pages/company', 'pages/login-register', 'pages/homepage3',
+    'pages/recruiter';
 // Responsive
 @import 'layout/responsive';

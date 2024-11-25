@@ -46,7 +46,7 @@ interface IProps {
     searchResults: SearchResult;
 }
 
-const SearchingBar: React.FC<IProps> = () => {
+const SearchingBar: React.FC = () => {
     const [categories, setCategories] = useState<Category[]>([]);
     const [locations, setLocations] = useState<LocationData[]>([]);
     const navigate = useNavigate();

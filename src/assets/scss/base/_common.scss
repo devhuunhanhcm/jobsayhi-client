@@ -673,3 +673,11 @@ main {
 input[type='text'] {
     height: unset !important;
 }
+.background-primary {
+    background-color: $background-brand !important;
+}
+#user-dropdown-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}

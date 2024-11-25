@@ -1,3 +1,4 @@
+import axiosInstance from '@/api/AxiosInstance';
 import axios from 'axios';
 
 export const getLatestJobs = async () => {

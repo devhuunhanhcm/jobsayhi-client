@@ -4,6 +4,8 @@ import DefaultLayout from './components/layouts/DefaultLayout';
 import { useAppSelector } from './redux/hooks';
 import Loading from './components/layouts/Loading';
 import { Toaster } from 'react-hot-toast';
+import { useEffect } from 'react';
+import { getProfile } from './service/UserService';
 
 type ConfigRoute = {
     path: string;
@@ -13,6 +15,21 @@ type ConfigRoute = {
 };
 function App() {
     const isLoading = useAppSelector((state) => state.loading.isLoading);
+    const isLoged = useAppSelector((state) => state.auth.isLogined) || false;
+
+    useEffect(() => {
+        const fetchUserProfile = async () => {
+            if (isLoged) {
+                try {
+                    await getProfile();
+                } catch (error) {
+                    console.error('Lỗi khi lấy thông tin người dùng:', error);
+                }
+            }
+        };
+
+        fetchUserProfile();
+    }, []);
     const renderRoute = (route: ConfigRoute) => {
         const Component = route.component;
         const Layout = route.layout || DefaultLayout;

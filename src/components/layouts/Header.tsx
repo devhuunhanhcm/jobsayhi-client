@@ -4,26 +4,14 @@ import { getProfile } from '@/service/UserService';
 import { logout } from '@/service/AuthService';
 import { useNavigate } from 'react-router-dom';
 import { RiVipCrownFill } from 'react-icons/ri';
+import { NavDropdown } from 'react-bootstrap';
+import { PersonCircle } from 'react-bootstrap-icons';
 
 function Header() {
     const isLoged = useAppSelector((state) => state.auth.isLogined) || false;
     const userInfo = useAppSelector((state) => state.user) || null;
     const navigate = useNavigate();
     const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
-
-    useEffect(() => {
-        const fetchUserProfile = async () => {
-            if (isLoged && (!userInfo || !userInfo.id)) {
-                try {
-                    await getProfile();
-                } catch (error) {
-                    console.error('Lỗi khi lấy thông tin người dùng:', error);
-                }
-            }
-        };
-
-        fetchUserProfile();
-    }, [isLoged, userInfo]);
 
     const handleLogout = async () => {
         try {
@@ -122,46 +110,21 @@ function Header() {
                             {isLoged && userInfo ? (
                                 <div className="container mt-5">
                                     <div className="dropdown account-bar">
-                                        <button
-                                            className="dropdown-toggle d-flex align-items-center account-bar-button"
-                                            type="button"
-                                            id="userDropdown"
-                                            data-bs-toggle="dropdown"
-                                            aria-expanded="false"
+                                        <NavDropdown
+                                            title={
+                                                <div className="d-inline-flex align-items-center">
+                                                    <PersonCircle size={20} className="me-2" />
+                                                    {userInfo.username}
+                                                </div>
+                                            }
+                                            id="user-dropdown-header"
+                                            align="end"
                                         >
-                                            <img
-                                                src={
-                                                    userInfo.avatar
-                                                        ? `${
-                                                              import.meta.env.VITE_PUBLIC_URL
-                                                          }/assets/imgs/avatar/avatar-default-icon.png`
-                                                        : `${
-                                                              import.meta.env.VITE_PUBLIC_URL
-                                                          }/assets/imgs/avatar/avatar-default-icon.png`
-                                                }
-                                                alt="User Avatar"
-                                                className="rounded-circle me-2"
-                                                style={{ width: 40 }}
-                                            />
-                                            <span>{userInfo.username}</span>
-                                        </button>
-                                        <ul className="dropdown-menu" aria-labelledby="userDropdown">
-                                            <li>
-                                                <a className="dropdown-item" href="/profile">
-                                                    Tài khoản
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a className="dropdown-item" href="#">
-                                                    Cài đặt
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <button className="dropdown-item" onClick={handleLogout}>
-                                                    Đăng xuất
-                                                </button>
-                                            </li>
-                                        </ul>
+                                            <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
+                                            <NavDropdown.Item>Settings</NavDropdown.Item>
+                                            <NavDropdown.Divider />
+                                            <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
+                                        </NavDropdown>
                                     </div>
                                 </div>
                             ) : (
