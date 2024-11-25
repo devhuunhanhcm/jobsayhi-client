@@ -4,6 +4,8 @@ import Select from 'react-select';
 import { IoLocationOutline } from 'react-icons/io5';
 import { BiCategory } from 'react-icons/bi';
 import { JobReview } from '../model/Job';
+import { SearchResult } from '@/page/FindJob';
+import { useNavigate } from 'react-router-dom';
 
 interface Category {
     id: string;
@@ -38,13 +40,16 @@ interface SelectOption {
     value: string;
     label: string;
 }
+
 interface IProps {
-    setSearchResults: (newSearchResults: JobReview[]) => void;
+    setSearchResults: (newSearchResults: SearchResult) => void;
+    searchResults: SearchResult;
 }
 
-const SearchingBar: React.FC<IProps> = (props: IProps) => {
+const SearchingBar: React.FC<IProps> = () => {
     const [categories, setCategories] = useState<Category[]>([]);
     const [locations, setLocations] = useState<LocationData[]>([]);
+    const navigate = useNavigate();
 
     const [formData, setFormData] = useState<SearchFormData>({
         keyword: '',
@@ -53,7 +58,6 @@ const SearchingBar: React.FC<IProps> = (props: IProps) => {
     });
     const [isLoading, setIsLoading] = useState(false);
 
-    // Convert categories and locations to react-select options
     const categoryOptions: SelectOption[] = categories.map((category) => ({
         value: category.name,
         label: category.name,
@@ -97,28 +101,17 @@ const SearchingBar: React.FC<IProps> = (props: IProps) => {
         setIsLoading(true);
 
         const normalizedLocation = formData.location?.value
-            ?.replace(/^Thành phố\s*/i, '') // Loại bỏ tiền tố "Thành phố"
-            ?.replace(/^Tỉnh\s*/i, '') // Loại bỏ tiền tố "Tỉnh"
+            ?.replace(/^Thành phố\s*/i, '')
+            ?.replace(/^Tỉnh\s*/i, '')
             ?.trim();
-        console.log('rut gon location: ', normalizedLocation);
 
-        try {
-            const response = await axios.post(
-                `http://localhost:8080/api/v1/job/search?keyword=${formData.keyword}&limit=10&page=1&order-by=title`,
-                {
-                    location: normalizedLocation || '',
-                    experience: null,
-                    categoryName: formData.categoryName?.value || '',
-                    skills: [],
-                },
-            );
-            console.log('Search results:', response.data);
-            props.setSearchResults(response.data.content.data);
-        } catch (error) {
-            console.error('Error performing search:', error);
-        } finally {
-            setIsLoading(false);
-        }
+        const queryParams = new URLSearchParams({
+            keyword: formData.keyword || '', // Từ khóa tìm kiếm
+            city: normalizedLocation || '', // Thành phố đã chuẩn hóa
+            category: formData.categoryName?.value || '', // Danh mục
+        }).toString();
+
+        navigate(`/find?${queryParams}`);
     };
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

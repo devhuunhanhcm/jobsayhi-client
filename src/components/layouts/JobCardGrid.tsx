@@ -1,4 +1,5 @@
 import { JobReview } from '../model/Job';
+import { formatTime } from '../time/time';
 
 interface IProps {
     job: JobReview;
@@ -28,14 +29,11 @@ const JobCardGrid: React.FC<IProps> = (props: IProps) => {
                     </div>
                     <div className="card-block-info">
                         <h4>
-                            <a href="job-details.html">{job.title}</a>
+                            <a href={`/job-details/${job.id}`}>{job.title}</a>
                         </h4>
                         <div className="mt-5">
                             <span className="card-briefcase">Fulltime</span>
-                            <span className="card-time">
-                                <span>4</span>
-                                <span> mins ago</span>
-                            </span>
+                            <span className="card-time">{formatTime(new Date(job.createAt))}</span>
                         </div>
                         <p className="font-sm color-text-paragraph mt-10">{job.description}</p>
                         <div className="card-2-bottom mt-20">

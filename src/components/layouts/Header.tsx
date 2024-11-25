@@ -3,6 +3,7 @@ import { useAppSelector } from '@/redux/hooks';
 import { getProfile } from '@/service/UserService';
 import { logout } from '@/service/AuthService';
 import { useNavigate } from 'react-router-dom';
+import { RiVipCrownFill } from 'react-icons/ri';
 
 function Header() {
     const isLoged = useAppSelector((state) => state.auth.isLogined) || false;
@@ -98,6 +99,11 @@ function Header() {
                                             </li>
                                             <li>
                                                 <a href="/upload">Tải lên CV</a>
+                                            </li>
+                                            <li>
+                                                <a href="/upload">
+                                                    <RiVipCrownFill size={18} color="#f1c40f" /> Tìm việc qua CV
+                                                </a>
                                             </li>
                                         </ul>
                                     </li>

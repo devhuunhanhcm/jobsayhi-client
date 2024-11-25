@@ -38,4 +38,5 @@ export interface JobReview {
     description: string;
     requirements: string;
     benefits: string;
+    createAt: string;
 }

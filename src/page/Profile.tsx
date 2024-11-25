@@ -5,16 +5,21 @@ export interface UserProfileDto {
     id: string;
     displayName: string;
     phone: string;
+    email: string;
+    avatar: string;
 }
 
 const Profile: React.FC = () => {
     const userInfo = useAppSelector((state) => state.user);
-    const [userUpdateDto, setUserUpdateDto] = useState<UserProfileDto>();
+
+    console.log(userInfo);
 
     const [profileData, setProfileData] = useState<UserProfileDto>({
         id: userInfo?.id || '',
-        displayName: userInfo?.email || '',
+        displayName: userInfo?.displayName || '',
+        email: userInfo?.email || '',
         phone: userInfo?.phone || '',
+        avatar: userInfo?.avatar || '',
     });
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

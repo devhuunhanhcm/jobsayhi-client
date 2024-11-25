@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getLatestJobs } from '../../service/JobService';
 import { JobReview } from '../model/Job';
+import { formatTime } from '../time/time';
 
 function JobCard() {
     const [jobs, setJobs] = useState<JobReview[]>([]);
@@ -36,7 +37,7 @@ function JobCard() {
                                     </h6>
                                     <div>
                                         <span className="card-briefcase mr-15">{job.location}</span>
-                                        <span className="card-time">3 mins ago</span>
+                                        <span className="card-time">{formatTime(new Date(job.createAt))}</span>
                                     </div>
                                     <div className="mt-10 card_job_requirements flex-grow-1 mb-10">
                                         {job.requirements}

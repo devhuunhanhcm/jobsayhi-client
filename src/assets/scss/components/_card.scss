@@ -742,14 +742,15 @@ ul {
     -webkit-box-orient: vertical;
 }
 .company-name {
-    height: 50px;
+    height: 45px;
+    font-size: 14px;
     overflow: hidden;
     color: #000 !important;
     margin-bottom: 5px;
     text-overflow: ellipsis;
 }
 .card-location {
-    font-size: 14px !important;
+    font-size: 12px !important;
     text-align: justify;
     line-height: 1.6;
     height: 70px;
