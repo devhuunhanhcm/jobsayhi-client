@@ -1,0 +1,23 @@
+.choose-cv {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    & button {
+        display: none;
+    }
+    &:hover,
+    &.active {
+        background-color: $color-brand;
+        p,
+        button {
+            color: $color-white;
+            display: block;
+        }
+    }
+}
+.modal-footer {
+    justify-content: center;
+}

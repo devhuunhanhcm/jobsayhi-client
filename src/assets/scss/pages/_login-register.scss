@@ -1,4 +1,4 @@
-.login-register-cover{
+.login-register-cover {
     border-bottom: 1px solid $border-color;
     position: relative;
     width: 100%;
@@ -6,14 +6,14 @@
         position: absolute;
         right: 10%;
         top: 20%;
-        width: unset;        
+        width: unset;
     }
 }
 .divider-text-center {
     position: relative;
     text-align: center;
     &::after {
-        content: "";
+        content: '';
         height: 1px;
         width: 100%;
         position: absolute;
@@ -30,10 +30,29 @@
         position: relative;
     }
 }
-.login-register {    
+.login-register {
     input {
-        height: 53px;
-        line-height: 53px;
         font-size: $font-sm;
+    }
+}
+.account-type {
+    div {
+        padding: 8px 10px;
+        cursor: pointer;
+        border-radius: 6px;
+        border: 1px solid #e0e6f6;
+        transition: all 0.3s ease-in-out;
+    }
+    div:hover {
+        background-color: $color-brand;
+        color: $color-white;
+    }
+    div.active {
+        color: $color-white;
+        background-color: $color-brand;
+    }
+
+    div.active:hover {
+        background-color: $color-brand-2;
     }
 }

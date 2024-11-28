@@ -13,6 +13,9 @@ import {
 } from 'react-icons/hi2';
 import { GrArticle } from 'react-icons/gr';
 import { MdOutlineDashboardCustomize } from 'react-icons/md';
+import { useAppSelector } from '@/redux/hooks';
+import { logout } from '@/service/AuthService';
+import { useNavigate } from 'react-router-dom';
 
 interface RecruiterLayoutProps {
     children: React.ReactNode;
@@ -22,6 +25,8 @@ const RecruiterLayout: React.FC<RecruiterLayoutProps> = ({ children }) => {
     const [isSidebarMinimized, setIsSidebarMinimized] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
     const [openSubmenus, setOpenSubmenus] = useState<{ [key: string]: boolean }>({});
+    const userInfo = useAppSelector((state) => state.user);
+    const navigate = useNavigate();
 
     React.useEffect(() => {
         const handleResize = () => {
@@ -47,6 +52,14 @@ const RecruiterLayout: React.FC<RecruiterLayoutProps> = ({ children }) => {
         }));
     };
 
+    const handleLogout = async () => {
+        try {
+            await logout();
+            navigate('/login');
+        } catch (e) {
+            console.log(e);
+        }
+    };
     return (
         <div className="d-flex vh-100">
             {/* Sidebar */}
@@ -69,7 +82,7 @@ const RecruiterLayout: React.FC<RecruiterLayoutProps> = ({ children }) => {
                     {isSidebarMinimized ? <List /> : <XLg />}
                 </Button>
                 <Nav.Item className="mt-30">
-                    <Nav.Link href="/recruiter" className="text-dark">
+                    <Nav.Link href="/recruiter" className="text-dark ">
                         <MdOutlineDashboardCustomize className="me-2" size={20} />
                         {!isSidebarMinimized && 'Trang chủ'}
                     </Nav.Link>
@@ -77,7 +90,7 @@ const RecruiterLayout: React.FC<RecruiterLayoutProps> = ({ children }) => {
                 <Nav.Item>
                     <div
                         onClick={() => !isSidebarMinimized && toggleSubmenu('post')}
-                        className="text-dark nav-link d-flex justify-content-between align-items-center"
+                        className="text-dark  nav-link d-flex justify-content-between align-items-center"
                         style={{ cursor: isSidebarMinimized ? 'default' : 'pointer' }}
                     >
                         <div>
@@ -89,31 +102,30 @@ const RecruiterLayout: React.FC<RecruiterLayoutProps> = ({ children }) => {
                     {!isSidebarMinimized && (
                         <Collapse in={openSubmenus['post']}>
                             <div>
-                                <Nav.Link href="recruiter/create-job" className="text-dark ps-4">
+                                <Nav.Link href="/recruiter/create-job" className="text-dark  ps-4">
                                     Tạo bài viết mới
                                 </Nav.Link>
-                                <Nav.Link href="#" className="text-dark ps-4">
+                                <Nav.Link href="/recruiter/job-list" className="text-dark  ps-4">
                                     Danh sách bài viết
                                 </Nav.Link>
                             </div>
                         </Collapse>
                     )}
                 </Nav.Item>
-
                 <Nav.Item>
-                    <Nav.Link href="/settings" className="text-dark">
+                    <Nav.Link href="/settings" className="text-dark ">
                         <HiOutlineUserGroup className="me-2" size={22} />
                         {!isSidebarMinimized && 'Ứng viên'}
                     </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link href="/settings" className="text-dark">
+                    <Nav.Link href="/recruiter/profile" className="text-dark ">
                         <HiOutlineInformationCircle className="me-2" size={22} />
                         {!isSidebarMinimized && 'Thông tin công ty'}
                     </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link href="/settings" className="text-dark">
+                    <Nav.Link href="/settings" className="text-dark ">
                         <CiSettings className="me-2" size={24} />
                         {!isSidebarMinimized && 'Cài đặt'}
                     </Nav.Link>
@@ -164,16 +176,16 @@ const RecruiterLayout: React.FC<RecruiterLayoutProps> = ({ children }) => {
                                 title={
                                     <div className="d-flex align-items-center">
                                         <PersonCircle size={20} className="me-2" />
-                                        John Doe
+                                        {userInfo?.username}
                                     </div>
                                 }
                                 id="user-dropdown"
                                 align="end"
                             >
-                                <NavDropdown.Item>Profile</NavDropdown.Item>
-                                <NavDropdown.Item>Settings</NavDropdown.Item>
+                                <NavDropdown.Item href="/profile">Tài khoản</NavDropdown.Item>
+                                <NavDropdown.Item href="/settings">Cài đặt</NavDropdown.Item>
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item>Logout</NavDropdown.Item>
+                                <NavDropdown.Item onClick={handleLogout}>Đăng xuất</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
                     </Container>

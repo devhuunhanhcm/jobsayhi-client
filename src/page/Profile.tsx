@@ -48,28 +48,6 @@ const Profile: React.FC = () => {
 
     return (
         <>
-            <section className="section-box-2">
-                <div className="container">
-                    <div className="banner-hero banner-image-single">
-                        <img src="assets/imgs/page/candidates/img.png" alt="jobbox" />
-                        <a className="btn-editor" href="#" />
-                    </div>
-                    <div className="box-company-profile">
-                        <div className="image-compay">
-                            <img src="assets/imgs/page/candidates/candidate-profile.png" alt="jobbox" />
-                        </div>
-                        <div className="row mt-10">
-                            <div className="col-lg-8 col-md-12">
-                                <h5 className="f-18 d-flex align-items-center">
-                                    <p>{userInfo.displayName !== null ? userInfo.displayName : 'Chưa có tên'}</p>
-                                    <p className="card-location font-regular">Viet Nam</p>
-                                </h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="border-bottom pt-10 pb-10" />
-                </div>
-            </section>
             <section className="section-box mt-50">
                 <div className="container">
                     <div className="row">
@@ -113,12 +91,6 @@ const Profile: React.FC = () => {
                                         </a>
                                     </li>
                                 </ul>
-                                <div className="border-bottom pt-10 pb-10" />
-                                <div className="mt-20 mb-20">
-                                    <a className="link-red" href="#">
-                                        Xóa tài khoản
-                                    </a>
-                                </div>
                             </div>
                         </div>
                         <div className="col-lg-9 col-md-8 col-sm-12 col-12 mb-50">

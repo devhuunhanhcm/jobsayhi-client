@@ -48,8 +48,14 @@ function JobCard() {
                                                 <div className="d-flex">
                                                     <img
                                                         className="img-rounded company-avatar"
-                                                        src={job.company.avatarUrl}
-                                                        alt="jobBox"
+                                                        src={
+                                                            job?.company?.avatarUrl && job.company.avatarUrl.length > 0
+                                                                ? job.company.avatarUrl
+                                                                : `${
+                                                                      import.meta.env.VITE_PUBLIC_URL
+                                                                  }/public/assets/imgs/avatar/default-logo-company.svg`
+                                                        }
+                                                        alt="jobsayhi"
                                                     />
                                                     <div className="info-right-img">
                                                         <h6 className="color-brand-1 lh-base company-name">

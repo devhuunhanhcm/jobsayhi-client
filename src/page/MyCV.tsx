@@ -6,7 +6,7 @@ import { useAppDispatch } from '@/redux/hooks';
 import { loading, unLoading } from '@/redux/Slice/LoadingSlice';
 
 interface Props {}
-interface FileInfo {
+export interface FileInfo {
     id: string;
     createAt: string;
     name: string;

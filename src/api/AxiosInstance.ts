@@ -54,8 +54,6 @@ axiosInstance.interceptors.request.use(
     async (config: InternalAxiosRequestConfig): Promise<InternalAxiosRequestConfig> => {
         let token = store.getState().auth.token;
 
-        console.log('token: ', token);
-
         if (!token) {
             return config;
         }

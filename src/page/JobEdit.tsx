@@ -8,10 +8,11 @@ import { IoLocationOutline } from 'react-icons/io5';
 import axios from 'axios';
 import axiosInstance from '@/api/AxiosInstance';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { loading, unLoading } from '@/redux/Slice/LoadingSlice';
 import toast from 'react-hot-toast';
 import { BiCategory } from 'react-icons/bi';
+import { getJobDetails } from '@/service/JobService';
 
 interface Category {
     id: string;
@@ -41,7 +42,7 @@ const STATUS = [
     { value: 'HIDE', label: 'Ẩn bài viết' },
 ];
 
-export const customStylesSelect = {
+const customStyles = {
     control: (provided: any) => ({
         ...provided,
         minHeight: '48px',
@@ -91,13 +92,16 @@ interface SelectOption {
     label: string;
 }
 
-const CreateJob: React.FC = () => {
-    const [locations, setLocations] = useState<LocationData[]>([]);
-    const [categories, setCategories] = useState<Category[]>([]);
+const JobEdit: React.FC = () => {
+    const { search } = useLocation();
+    const queryParams = new URLSearchParams(search);
+
+    const jobId = queryParams.get('id') || '';
+
+    const [locations, setLocations] = useState<SelectOption[]>([]);
+    const [categories, setCategories] = useState<SelectOption[]>([]);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
-
-    const userId = useAppSelector((state) => state.user.id);
 
     const [jobForm, setJobForm] = useState<JobDto>({
         title: '',
@@ -115,33 +119,33 @@ const CreateJob: React.FC = () => {
         deadline: null,
     });
 
-    const locationOptions: SelectOption[] = locations.map((location) => ({
-        value: location.Name,
-        label: location.Name,
-    }));
-    const categoryOptions: SelectOption[] = categories.map((category) => ({
-        value: category.id,
-        label: category.name,
-    }));
     useEffect(() => {
         const fetchCategories = async () => {
             try {
                 const response = await axios.get<CategoryResponse>('http://localhost:8080/api/v1/category');
-                setCategories(response.data.content);
+                const categoryOptions: SelectOption[] = response.data.content.map((category) => ({
+                    value: category.id,
+                    label: category.name,
+                }));
+
+                setCategories(categoryOptions);
             } catch (error) {
                 console.error('Error fetching categories:', error);
             }
         };
         fetchCategories();
     }, []);
-    // Fetch locations
     useEffect(() => {
         const fetchLocations = async () => {
             try {
-                const response = await axios.get(
+                const response = await axios.get<LocationData[]>(
                     'https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json',
                 );
-                setLocations(response.data);
+                const locationOptions: SelectOption[] = response.data.map((location) => ({
+                    value: location.Name,
+                    label: location.Name,
+                }));
+                setLocations(locationOptions);
             } catch (error) {
                 console.error('Error fetching locations:', error);
             }
@@ -159,31 +163,55 @@ const CreateJob: React.FC = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (userId == null) navigate('/login');
-
+        const { category, ...jobData } = jobForm;
+        console.log('dto', { jobForm });
         const data = {
-            ...jobForm,
-            id: userId,
+            ...jobData,
             status: jobForm.status?.value,
             location: jobForm.location?.value,
             categoryId: jobForm.category?.value,
             position: jobForm.position?.value,
             deadline: jobForm.deadline?.toISOString(),
         };
-
-        console.log({ data });
+        console.log('Data gui', data);
 
         try {
             dispatch(loading());
-            const response = await axiosInstance.post(`${import.meta.env.VITE_API_URL}/job`, data);
+
+            const response = await axiosInstance.put(`${import.meta.env.VITE_API_URL}/job/${jobForm.id}`, data);
+
+            if (!response.data.hasErrors) {
+                toast.success('Cập nhật bài viết thành công.');
+                setTimeout(() => navigate('/recruiter/job-list'), 2000);
+            }
             dispatch(unLoading());
-            toast.success('Đăng bài viết thành công!');
-            console.log(response.data);
-        } catch (error) {
+        } catch (err) {
+            toast.error(err instanceof Error ? err.message : 'Đã xảy ra lỗi');
             dispatch(unLoading());
-            toast.error('Đăng bài viết không thành công. Vui lòng thử lại!');
         }
     };
+    const getJob = async () => {
+        if (jobId && locations.length > 0 && categories.length > 0) {
+            const res = await getJobDetails(jobId);
+            console.log(res);
+            const { lastModifiedAt, company, ...data } = res;
+            setJobForm((prev) => ({
+                ...prev,
+                ...data,
+                status: STATUS.find((t) => t.value === res?.status),
+                location: locations.find((t) => t.label === res?.location) || null,
+                position: POSITIONS.find((t) => t.value === res?.position) || null,
+                category: categories.find((t) => t.value === res?.categoryId) || null,
+                deadline: res?.deadline ? new Date(res.deadline) : null,
+            }));
+        }
+    };
+
+    useEffect(() => {
+        if (locations.length > 0 && categories.length > 0) {
+            getJob();
+        }
+    }, [jobId, locations, categories]);
 
     return (
         <Container fluid className="p-4">
@@ -227,10 +255,10 @@ const CreateJob: React.FC = () => {
                                     <Select
                                         value={jobForm.location}
                                         onChange={(option) => setJobForm((prev) => ({ ...prev, location: option }))}
-                                        options={locationOptions}
+                                        options={locations}
                                         placeholder="Chọn địa điểm"
                                         isClearable
-                                        styles={customStylesSelect}
+                                        styles={customStyles}
                                         components={{
                                             IndicatorSeparator: () => <IoLocationOutline />,
                                         }}
@@ -246,7 +274,7 @@ const CreateJob: React.FC = () => {
                                         options={POSITIONS}
                                         placeholder="Chọn vị trí mong muốn"
                                         isClearable
-                                        styles={customStylesSelect}
+                                        styles={customStyles}
                                     />
                                 </Form.Group>
                             </Col>
@@ -366,7 +394,7 @@ const CreateJob: React.FC = () => {
                                         options={STATUS}
                                         placeholder="Trạng thái của bài viết"
                                         isClearable
-                                        styles={customStylesSelect}
+                                        styles={customStyles}
                                     />
                                 </Form.Group>
                             </Col>
@@ -376,10 +404,10 @@ const CreateJob: React.FC = () => {
                                     <Select
                                         value={jobForm.category}
                                         onChange={(option) => setJobForm((prev) => ({ ...prev, category: option }))}
-                                        options={categoryOptions}
+                                        options={categories}
                                         placeholder="Chọn danh mục"
                                         isClearable
-                                        styles={customStylesSelect}
+                                        styles={customStyles}
                                         components={{
                                             IndicatorSeparator: () => <BiCategory />,
                                         }}
@@ -389,7 +417,7 @@ const CreateJob: React.FC = () => {
                         </Row>
 
                         <Button type="submit" className="w-100 background-primary">
-                            Tạo mới
+                            Cập nhật
                         </Button>
                     </Form>
                 </Card.Body>
@@ -398,4 +426,4 @@ const CreateJob: React.FC = () => {
     );
 };
 
-export default CreateJob;
+export default JobEdit;

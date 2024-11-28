@@ -55,10 +55,10 @@ function Header() {
                                         </ul>
                                     </li>
                                     <li className="has-children">
-                                        <a href="companies-grid.html">Tuyển Dụng</a>
+                                        <a href="/recruiter">Tuyển Dụng</a>
                                         <ul className="sub-menu">
                                             <li>
-                                                <a href="companies-grid.html">Tuyển Dụng</a>
+                                                <a href="/recruiter">Tuyển Dụng</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -120,10 +120,10 @@ function Header() {
                                             id="user-dropdown-header"
                                             align="end"
                                         >
-                                            <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
-                                            <NavDropdown.Item>Settings</NavDropdown.Item>
+                                            <NavDropdown.Item href="/profile">Tài khoản</NavDropdown.Item>
+                                            <NavDropdown.Item>Cài đặt</NavDropdown.Item>
                                             <NavDropdown.Divider />
-                                            <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
+                                            <NavDropdown.Item onClick={handleLogout}>Đăng xuất</NavDropdown.Item>
                                         </NavDropdown>
                                     </div>
                                 </div>
@@ -175,10 +175,10 @@ function Header() {
                                             </ul>
                                         </li>
                                         <li className="has-children">
-                                            <a href="companies-grid.html">Tuyển Dụng</a>
+                                            <a href="/recruiter">Tuyển Dụng</a>
                                             <ul className="sub-menu">
                                                 <li>
-                                                    <a href="companies-grid.html">Tuyển Dụng</a>
+                                                    <a href="/recruiter">Tuyển Dụng</a>
                                                 </li>
                                             </ul>
                                         </li>

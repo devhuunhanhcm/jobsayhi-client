@@ -11,6 +11,10 @@ import {
     MyCV,
     FindJob,
     CreateJob,
+    JobsList,
+    JobEdit,
+    ManagerJobApplies,
+    CompanyProfile,
 } from '../page';
 
 export const publicRoute = [
@@ -58,7 +62,13 @@ export const publicRoute = [
         path: '/recruiter',
         component: Home,
         layout: RecruiterLayout,
-        children: [{ path: 'create-job', component: CreateJob, layout: RecruiterLayout }],
+        children: [
+            { path: 'create-job', component: CreateJob, layout: RecruiterLayout },
+            { path: 'job-list', component: JobsList, layout: RecruiterLayout },
+            { path: 'edit', component: JobEdit, layout: RecruiterLayout },
+            { path: 'manager-applies', component: ManagerJobApplies, layout: RecruiterLayout },
+            { path: 'profile', component: CompanyProfile, layout: RecruiterLayout },
+        ],
     },
     {
         path: '/test',

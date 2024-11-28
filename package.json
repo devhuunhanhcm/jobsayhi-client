@@ -37,6 +37,7 @@
     "sass": "^1.32.0",
     "swiper": "^11.1.14",
     "wow.js": "^1.2.2",
+    "xlsx": "^0.18.5",
     "yup": "^1.4.0"
   },
   "devDependencies": {

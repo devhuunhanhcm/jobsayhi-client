@@ -1,7 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import store from '../store';
 import { logoutInfo } from './UserSlice';
-
+export const enum AccountType {
+    USER = 'USER',
+    COMPANY = 'COMPANY',
+}
 export interface LoginDTO {
     username: string;
     password: string;
@@ -9,7 +12,7 @@ export interface LoginDTO {
 export interface RegisterDTO extends LoginDTO {
     email: string;
     rePassword: string;
-    accountType: 'COMPANY' | 'USER';
+    accountType?: string | AccountType.USER;
 }
 export interface Token {
     token: string;

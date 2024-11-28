@@ -1,6 +1,6 @@
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import { RegisterDTO } from '../redux/Slice/AuthSlice';
+import { AccountType, RegisterDTO } from '../redux/Slice/AuthSlice';
 import { useState } from 'react';
 import { register } from '../service/AuthService';
 import { useAppDispatch } from '../redux/hooks';
@@ -24,27 +24,37 @@ const validationSchema = yup.object({
         .required('Mật khẩu không khớp')
         .oneOf([yup.ref('password')], 'Nhập lại mật khẩu'),
 });
+
 function Registration() {
     const [showPassword, setShowPassword] = useState(false);
     const [showRePassword, setRePassword] = useState(false);
+
+    const [accountType, setAccountType] = useState<AccountType>(AccountType.USER);
+
     const navigate = useNavigate();
 
     const handleSubmit = async (values: RegisterDTO) => {
-        console.log(values);
-        const result = await register(values);
+        const data = {
+            ...values,
+            accountType,
+        };
+
+        const result = await register(data);
         if (result) {
             navigate('/login');
         }
     };
 
     const formik = useFormik({
-        initialValues: { username: '', password: '', email: '', rePassword: '', accountType: 'USER' },
+        initialValues: { username: '', password: '', email: '', rePassword: '' },
         validateOnBlur: true,
         validateOnChange: true,
         onSubmit: handleSubmit,
         validationSchema: validationSchema,
     });
-
+    const handleChangeAccountType = (accountType: AccountType) => {
+        setAccountType(accountType);
+    };
     return (
         <>
             <section className="pt-100 login-register">
@@ -52,20 +62,35 @@ function Registration() {
                     <div className="row login-register-cover">
                         <div className="col-lg-4 col-md-6 col-sm-12 mx-auto">
                             <div className="text-center">
-                                <p className="font-sm text-brand-2">Register </p>
-                                <h2 className="mt-10 mb-5 text-brand-1">Start for free Today</h2>
-                                <p className="font-sm text-muted mb-30">
-                                    Access to all features. No credit card required.
-                                </p>
+                                <h2 className="mt-10 mb-5 text-brand-1">Đăng Ký</h2>
                                 <button className="btn social-login hover-up mb-20">
                                     <img src="assets/imgs/template/icons/icon-google.svg" alt="jobbox" />
-                                    <strong>Sign up with Google</strong>
+                                    <strong>Đăng ký với Google</strong>
                                 </button>
                                 <div className="divider-text-center">
-                                    <span>Or continue with</span>
+                                    <span>Hoặc tiếp tục với</span>
                                 </div>
                             </div>
                             <form className="login-register text-start mt-20" onSubmit={formik.handleSubmit}>
+                                <div className="form-group">
+                                    <label className="form-label" htmlFor="input-3">
+                                        Đăng ký tài khoản cho
+                                    </label>
+                                    <div className="d-flex align-item-center justify-content-between account-type">
+                                        <div
+                                            className={`${accountType === AccountType.USER ? 'active' : ''}`}
+                                            onClick={() => handleChangeAccountType(AccountType.USER)}
+                                        >
+                                            Người tìm việc
+                                        </div>
+                                        <div
+                                            className={`${accountType === AccountType.COMPANY ? 'active' : ''}`}
+                                            onClick={() => handleChangeAccountType(AccountType.COMPANY)}
+                                        >
+                                            Nhà tuyển dụng
+                                        </div>
+                                    </div>
+                                </div>
                                 <div className="form-group">
                                     <label className="form-label" htmlFor="input-3">
                                         Username *
@@ -141,7 +166,7 @@ function Registration() {
                                 </div>
                                 <div className="form-group">
                                     <label className="form-label" htmlFor="input-5">
-                                        Re-Password *
+                                        Nhập lại Password *
                                     </label>
                                     <div className="position-relative">
                                         <input
@@ -173,20 +198,20 @@ function Registration() {
                                 <div className="login_footer form-group d-flex justify-content-between">
                                     <label className="cb-container">
                                         <input type="checkbox" />
-                                        <span className="text-small">Agree our terms and policy</span>
+                                        <span className="text-small">Đồng ý với điều khoản </span>
                                         <span className="checkmark" />
                                     </label>
                                     <a className="text-muted" href="page-contact.html">
-                                        Lean more
+                                        Chi tiết
                                     </a>
                                 </div>
                                 <div className="form-group">
                                     <button className="btn btn-brand-1 hover-up w-100" type="submit" name="login">
-                                        Submit &amp; Register
+                                        Đăng ký
                                     </button>
                                 </div>
                                 <div className="text-muted text-center">
-                                    Already have an account? <a href="page-signin.html">Sign in</a>
+                                    Bạn đã có tài khoản? <a href="/login">Đăng nhập </a>
                                 </div>
                             </form>
                         </div>
