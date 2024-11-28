@@ -7,7 +7,7 @@ function DefaultLayout({ children }: Props) {
     return (
         <main id="main">
             <Header />
-            <div>{children}</div>
+            <div className="content">{children}</div>
             <Footer />
         </main>
     );

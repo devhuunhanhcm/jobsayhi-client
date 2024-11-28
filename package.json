@@ -19,6 +19,7 @@
     "formik": "^2.4.6",
     "javascript-time-ago": "^2.5.11",
     "jwt-decode": "^4.0.0",
+    "lucide-react": "^0.462.0",
     "normalize.css": "^8.0.1",
     "path": "^0.12.7",
     "perfect-scrollbar": "^1.5.6",

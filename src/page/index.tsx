@@ -13,3 +13,4 @@ export { default as JobsList } from './JobList';
 export { default as JobEdit } from './JobEdit';
 export { default as ManagerJobApplies } from './ManagerJobApplies';
 export { default as CompanyProfile } from './CompanyProfile';
+export { default as SearchByCV } from './SearchByCV';

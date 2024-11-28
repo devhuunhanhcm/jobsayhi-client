@@ -15,6 +15,7 @@ import {
     JobEdit,
     ManagerJobApplies,
     CompanyProfile,
+    SearchByCV,
 } from '../page';
 
 export const publicRoute = [
@@ -57,6 +58,10 @@ export const publicRoute = [
     {
         path: '/my-cv',
         component: MyCV,
+    },
+    {
+        path: '/search-by-cv',
+        component: SearchByCV,
     },
     {
         path: '/recruiter',

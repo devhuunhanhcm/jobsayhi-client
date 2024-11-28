@@ -89,7 +89,7 @@ function Header() {
                                                 <a href="/upload">Tải lên CV</a>
                                             </li>
                                             <li>
-                                                <a href="/upload">
+                                                <a href="/search-by-cv">
                                                     <RiVipCrownFill size={18} color="#f1c40f" /> Tìm việc qua CV
                                                 </a>
                                             </li>
