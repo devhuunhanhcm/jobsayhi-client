@@ -20,6 +20,7 @@ import {
     Candidates,
     Admin,
 } from '../page';
+import AdminLayout from '@/components/layouts/AdminLayout';
 
 // Utility function to create recruiter route config
 const createRecruiterRoute = (path: string, component: React.ComponentType) => ({
@@ -27,6 +28,12 @@ const createRecruiterRoute = (path: string, component: React.ComponentType) => (
     component,
     layout: RecruiterLayout,
     roles: ['ROLE_COMPANY', 'ROLE_ADMIN'],
+});
+const createAdminRoute = (path: string, component: React.ComponentType) => ({
+    path,
+    component,
+    layout: AdminLayout,
+    roles: ['ROLE_ADMIN'],
 });
 
 // Public routes that don't require authentication
@@ -55,6 +62,17 @@ const recruiterChildren = [
     { path: 'candidates', component: Candidates },
 ].map((route) => createRecruiterRoute(route.path, route.component));
 
+// admin child routes
+const adminChildren = [
+    { path: 'create-job', component: CreateJob },
+    { path: 'job-list', component: JobsList },
+    { path: 'edit', component: JobEdit },
+    { path: 'manager-applies', component: ManagerJobApplies },
+    { path: 'profile', component: CompanyProfile },
+    { path: 'settings', component: Settings },
+    { path: 'candidates', component: Candidates },
+].map((route) => createRecruiterRoute(route.path, route.component));
+
 export const publicRoute = [
     ...publicPages,
     {
@@ -67,6 +85,8 @@ export const publicRoute = [
     {
         path: '/admin',
         component: Admin,
+        layout: AdminLayout,
         roles: ['ROLE_ADMIN'],
+        children: adminChildren,
     },
 ];
