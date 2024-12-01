@@ -113,7 +113,7 @@ const RecruiterLayout: React.FC<RecruiterLayoutProps> = ({ children }) => {
                     )}
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link href="/settings" className="text-dark ">
+                    <Nav.Link href="/recruiter/candidates" className="text-dark ">
                         <HiOutlineUserGroup className="me-2" size={22} />
                         {!isSidebarMinimized && 'Ứng viên'}
                     </Nav.Link>
@@ -125,7 +125,7 @@ const RecruiterLayout: React.FC<RecruiterLayoutProps> = ({ children }) => {
                     </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link href="/settings" className="text-dark ">
+                    <Nav.Link href="/recruiter/settings" className="text-dark ">
                         <CiSettings className="me-2" size={24} />
                         {!isSidebarMinimized && 'Cài đặt'}
                     </Nav.Link>

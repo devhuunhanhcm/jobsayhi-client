@@ -85,8 +85,8 @@
             display: inline-block;
             img {
                 border-radius: 50%;
-                height: 100px;
-                width: 100px;
+                height: 80px;
+                width: 80px;
             }
         }
         &.online {
@@ -97,8 +97,8 @@
                     border-radius: 50%;
                     content: '';
                     position: absolute;
-                    bottom: 13px;
-                    right: 9px;
+                    bottom: 8px;
+                    right: 4px;
                     background: $background-success;
                 }
             }
@@ -275,6 +275,7 @@
     .card-grid-2-image-left {
         padding: 30px 20px 15px 20px;
         display: flex;
+        flex-direction: column;
         position: relative;
         .image-box {
             width: 50px;
@@ -469,6 +470,7 @@
             }
         }
         .card-profile {
+            flex: 1;
             strong {
                 font-size: $font-lg;
                 color: $color-brand;

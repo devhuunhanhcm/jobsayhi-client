@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 const validationSchema = yup.object({
-    username: yup.string().required('Nhập tên đăng nhập.').min(5, 'Tên đăng nhập ít nhất 5 kí tự.'),
+    username: yup.string().required('Nhập tên đăng nhập.').min(6, 'Tên đăng nhập ít nhất 6 kí tự.'),
     password: yup
         .string()
         .required('Nhập mật khẩu.')

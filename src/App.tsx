@@ -6,12 +6,14 @@ import Loading from './components/layouts/Loading';
 import { Toaster } from 'react-hot-toast';
 import { useEffect } from 'react';
 import { getProfile } from './service/UserService';
+import { ProtectedRoute } from './components/layouts/ProtectedRoute';
 
 type ConfigRoute = {
     path: string;
     component: React.ComponentType;
     layout?: React.ComponentType<{ children: React.ReactNode }>;
     children?: ConfigRoute[];
+    roles?: string[];
 };
 function App() {
     const isLoading = useAppSelector((state) => state.loading.isLoading);
@@ -36,7 +38,13 @@ function App() {
 
         const routeElement = (
             <Layout>
-                <Component />
+                {route.roles ? (
+                    <ProtectedRoute allowedRoles={route.roles}>
+                        <Component />
+                    </ProtectedRoute>
+                ) : (
+                    <Component />
+                )}
             </Layout>
         );
         if (route.children) {

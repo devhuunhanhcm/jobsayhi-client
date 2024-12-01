@@ -1,22 +1,14 @@
 import { useAppSelector } from '@/redux/hooks';
-import { getCompanyProfile } from '@/service/CompanyService';
+import { getCompanyProfile, ICompanyProfileDTO, updateCompanyProfile } from '@/service/CompanyService';
 import { updateProfile } from '@/service/ProfileSerivce';
 import React, { useEffect, useState } from 'react';
-interface CompanyProfile {
-    name: string;
-    avatarUrl: string;
-    address: string;
-    email: string;
-    noEmployees: string;
-    introduction: string;
-    establishDate: string;
-    phone: string;
-    isVerified: boolean;
-}
+import { useNavigate } from 'react-router-dom';
+
 const CompanyProfile: React.FC = () => {
     const userId = useAppSelector((state) => state.user.id);
+    const navigate = useNavigate();
 
-    const [companyProfile, setCompanyProfile] = useState<CompanyProfile>({
+    const [companyProfile, setCompanyProfile] = useState<ICompanyProfileDTO>({
         name: '',
         avatarUrl: '',
         address: '',
@@ -30,7 +22,7 @@ const CompanyProfile: React.FC = () => {
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
-        useAppSelector((prev) => ({
+        setCompanyProfile((prev) => ({
             ...prev,
             [name]: value,
         }));
@@ -49,6 +41,13 @@ const CompanyProfile: React.FC = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        console.log(companyProfile);
+        if (userId) {
+            await updateCompanyProfile(userId, companyProfile);
+            await fetchProfile(userId);
+        } else {
+            navigate('/login');
+        }
 
         try {
         } catch (error) {
@@ -75,7 +74,6 @@ const CompanyProfile: React.FC = () => {
                                             <img src="https://placehold.co/500x500" alt="company" />
                                         </div>
                                         <a className="btn btn-apply">Tải lên avatar</a>
-                                        <a className="btn btn-link">Xóa</a>
                                     </div>
                                     <div className="row form-contact">
                                         <div className="col-lg-6 col-md-12">
@@ -86,7 +84,7 @@ const CompanyProfile: React.FC = () => {
                                                     type="text"
                                                     name="name"
                                                     value={companyProfile.name}
-                                                    onChange={(e) => handleInputChange(e)}
+                                                    onChange={handleInputChange}
                                                 />
                                             </div>
                                             <div className="form-group">
@@ -94,8 +92,9 @@ const CompanyProfile: React.FC = () => {
                                                 <input
                                                     className="form-control"
                                                     type="text"
+                                                    name="email"
                                                     value={companyProfile.email}
-                                                    readOnly
+                                                    onChange={handleInputChange}
                                                 />
                                             </div>
                                             <div className="form-group">
@@ -105,7 +104,7 @@ const CompanyProfile: React.FC = () => {
                                                     type="text"
                                                     name="phone"
                                                     value={companyProfile.phone}
-                                                    onChange={(e) => handleInputChange(e)}
+                                                    onChange={handleInputChange}
                                                 />
                                             </div>
                                             <div className="form-group">
@@ -115,7 +114,7 @@ const CompanyProfile: React.FC = () => {
                                                     type="text"
                                                     name="noEmployees"
                                                     value={companyProfile.noEmployees}
-                                                    onChange={(e) => handleInputChange(e)}
+                                                    onChange={handleInputChange}
                                                 />
                                             </div>
                                             <div className="form-group">
@@ -127,7 +126,7 @@ const CompanyProfile: React.FC = () => {
                                                     type="text"
                                                     name="introduction"
                                                     value={companyProfile.introduction}
-                                                    onChange={(e) => handleInputChange(e)}
+                                                    onChange={handleInputChange}
                                                 />
                                             </div>
                                             <div className="form-group">
