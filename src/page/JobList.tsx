@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Table, Button, Badge, Dropdown, Card, Modal } from 'react-bootstrap';
 import { Eye, Pencil, Trash, Filter, SortNumericDown, SortNumericUp } from 'react-bootstrap-icons';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import axios from 'axios';
 import { loading, unLoading } from '@/redux/Slice/LoadingSlice';

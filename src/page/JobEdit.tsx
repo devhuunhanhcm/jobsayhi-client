@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import DatePicker from 'react-datepicker';
 import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 import 'react-datepicker/dist/react-datepicker.css';
 import { IoLocationOutline } from 'react-icons/io5';
 import axios from 'axios';

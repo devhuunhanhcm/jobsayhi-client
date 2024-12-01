@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Nav, Navbar, NavDropdown, Button, Collapse } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 import { House, People, Gear, Bell, PersonCircle, List, XLg } from 'react-bootstrap-icons';
 import { CiMail, CiSettings } from 'react-icons/ci';
 import {
