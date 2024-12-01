@@ -39,4 +39,5 @@ export interface JobReview {
     requirements: string;
     benefits: string;
     createAt: string;
+    similarityScore?: number;
 }

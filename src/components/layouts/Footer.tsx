@@ -109,21 +109,8 @@ function Footer() {
                 </div>
                 <div className="footer-bottom mt-50">
                     <div className="row">
-                        <div className="col-md-6">
+                        <div className="col-md-12 text-center">
                             <span className="font-xs color-text-paragraph">Copyright © 2024. Dev by devhuunhan</span>
-                        </div>
-                        <div className="col-md-6 text-md-end text-start">
-                            <div className="footer-social">
-                                <a className="font-xs color-text-paragraph" href="#">
-                                    Privacy Policy
-                                </a>
-                                <a className="font-xs color-text-paragraph mr-30 ml-30" href="#">
-                                    Terms &amp; Conditions
-                                </a>
-                                <a className="font-xs color-text-paragraph" href="#">
-                                    Security
-                                </a>
-                            </div>
                         </div>
                     </div>
                 </div>

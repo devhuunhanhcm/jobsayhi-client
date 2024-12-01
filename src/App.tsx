@@ -31,7 +31,7 @@ function App() {
         };
 
         fetchUserProfile();
-    }, []);
+    }, [isLoged]);
     const renderRoute = (route: ConfigRoute) => {
         const Component = route.component;
         const Layout = route.layout || DefaultLayout;

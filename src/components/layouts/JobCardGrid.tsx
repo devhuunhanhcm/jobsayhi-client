@@ -4,9 +4,7 @@ import { formatTime } from '../time/time';
 interface IProps {
     job: JobReview;
 }
-const JobCardGrid: React.FC<IProps> = (props: IProps) => {
-    const job = props.job;
-
+const JobCardGrid: React.FC<IProps> = ({ job }) => {
     return (
         <>
             <div className="col-xl-12 col-12">

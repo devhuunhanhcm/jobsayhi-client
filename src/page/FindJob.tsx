@@ -52,7 +52,7 @@ export interface SearchResult {
     page: number;
     limit: number;
 }
-const itemRender = (current: number, type: string, element: React.ReactNode) => {
+export const itemRender = (current: number, type: string, element: React.ReactNode) => {
     if (type === 'prev') {
         return (
             <button className="rc-pagination-item-link">
@@ -69,7 +69,7 @@ const itemRender = (current: number, type: string, element: React.ReactNode) => 
     }
     return element;
 };
-const customStyles = {
+export const customStyles = {
     control: (provided: any) => ({
         ...provided,
         minHeight: '48px',

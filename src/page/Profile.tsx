@@ -12,16 +12,15 @@ export interface UserProfileDto {
 const Profile: React.FC = () => {
     const userInfo = useAppSelector((state) => state.user);
 
-    console.log(userInfo);
-
     const [profileData, setProfileData] = useState<UserProfileDto>({
-        id: userInfo?.id || '',
-        displayName: userInfo?.displayName || '',
-        email: userInfo?.email || '',
-        phone: userInfo?.phone || '',
-        avatar: userInfo?.avatar || '',
+        id: '',
+        displayName: '',
+        email: '',
+        phone: '',
+        avatar: '',
     });
 
+    console.log(profileData);
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setProfileData((prev) => ({
@@ -32,7 +31,15 @@ const Profile: React.FC = () => {
 
     useEffect(() => {
         if (userInfo === null) window.location.href = '/login';
-    }, []);
+        setProfileData((prev) => ({
+            ...prev,
+            id: userInfo.id,
+            displayName: userInfo.displayName,
+            email: userInfo.email,
+            phone: userInfo.phone,
+            avatar: userInfo.avatar,
+        }));
+    }, [userInfo]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();

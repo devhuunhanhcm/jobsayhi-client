@@ -2,6 +2,11 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Container, Row, Col, Card, Button, ListGroup, Modal } from 'react-bootstrap';
 import axiosInstance from '@/api/AxiosInstance';
+import { JobReview } from '@/components/model/Job';
+import JobCardGrid from '@/components/layouts/JobCardGrid';
+import { useAppDispatch } from '@/redux/hooks';
+import { loading, unLoading } from '@/redux/Slice/LoadingSlice';
+import { MdOutlineTipsAndUpdates } from 'react-icons/md';
 
 interface CVFile {
     id: string;
@@ -24,10 +29,9 @@ const extractFileId = (url: string): string | null => {
 const SearchByCV: React.FC = () => {
     const [cvFiles, setCvFiles] = useState<CVFile[]>([]);
     const [selectedFile, setSelectedFile] = useState<CVFile | null>(null);
-    const [recommendations, setRecommendations] = useState<JobRecommendation[]>([]);
-    const [loading, setLoading] = useState<boolean>(false);
-    const [showModal, setShowModal] = useState<boolean>(false);
+    const [recommendations, setRecommendations] = useState<JobReview[]>([]);
     const [error, setError] = useState<string | null>(null);
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         const fetchCVFiles = async () => {
@@ -51,16 +55,15 @@ const SearchByCV: React.FC = () => {
 
     const handleGetRecommendations = async () => {
         if (!selectedFile) return;
-
-        setLoading(true);
+        dispatch(loading());
         setError(null);
 
         try {
             const recommendResponse = await axios.post<{
                 status: string;
-                recommendations: JobRecommendation[];
+                recommendations: JobReview[];
             }>(
-                'http://localhost:5000/api/recommend',
+                'http://localhost:5000/api/recommend/drive-url-file',
                 { file_url: selectedFile.url },
                 {
                     headers: { 'Content-Type': 'multipart/form-data' },
@@ -68,12 +71,11 @@ const SearchByCV: React.FC = () => {
             );
 
             setRecommendations(recommendResponse.data.recommendations);
-            setShowModal(true);
         } catch (err) {
             setError('Failed to get recommendations');
             console.error(err);
         } finally {
-            setLoading(false);
+            dispatch(unLoading());
         }
     };
 
@@ -98,33 +100,18 @@ const SearchByCV: React.FC = () => {
                     <Button
                         variant="primary"
                         className="mt-3"
-                        disabled={!selectedFile || loading}
+                        disabled={!selectedFile}
                         onClick={handleGetRecommendations}
                     >
-                        {loading ? 'Processing...' : 'Get Job Recommendations'}
+                        <MdOutlineTipsAndUpdates size={20} /> Nhận gợi ý ngay
                     </Button>
                 </Card.Body>
             </Card>
-
-            <Modal show={showModal} onHide={() => setShowModal(false)} size="lg">
-                <Modal.Header closeButton>
-                    <Modal.Title>Gợi ý</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    {recommendations.map((job) => (
-                        <Card key={job.id} className="mb-3">
-                            <Card.Body>
-                                <Card.Title>{job.title}</Card.Title>
-                                <Card.Subtitle className="mb-2 text-muted">{job.location}</Card.Subtitle>
-                                <Card.Text>{job.description}</Card.Text>
-                                <div className="d-flex justify-content-between">
-                                    <span>Similarity: {(job.similarity_score * 100).toFixed(2)}%</span>
-                                </div>
-                            </Card.Body>
-                        </Card>
-                    ))}
-                </Modal.Body>
-            </Modal>
+            <div className="mt-20">
+                {recommendations.map((job) => (
+                    <JobCardGrid job={job} />
+                ))}
+            </div>
         </Container>
     );
 };

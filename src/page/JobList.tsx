@@ -7,6 +7,8 @@ import axios from 'axios';
 import { loading, unLoading } from '@/redux/Slice/LoadingSlice';
 import { IoReload } from 'react-icons/io5';
 import toast from 'react-hot-toast';
+import { itemRender } from './FindJob';
+import Pagination from 'rc-pagination';
 
 export interface JobDto {
     id: string;
@@ -35,9 +37,23 @@ interface ApiResponse {
     status: number;
     timestamp: string;
 }
+type SearchResult = {
+    data: JobDto[];
+    total: number;
+    page: number;
+    limit: number;
+    orderBy: string;
+};
 
 const JobList: React.FC = () => {
-    const [jobs, setJobs] = useState<JobDto[]>([]);
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const [jobs, setJobs] = useState<SearchResult>({
+        data: [],
+        total: 0,
+        page: currentPage,
+        limit: 5,
+        orderBy: 'createAt:desc',
+    });
     const [filteredJobs, setFilteredJobs] = useState<JobDto[]>([]);
     const [selectedJob, setSelectedJob] = useState<JobDto | null>(null);
     const [showDetailsModal, setShowDetailsModal] = useState(false);
@@ -52,6 +68,15 @@ const JobList: React.FC = () => {
         direction: 'desc',
     });
 
+    const handlePageChange = (page: number, pageSize: number) => {
+        setCurrentPage(page);
+        setJobs((prev) => ({
+            ...prev,
+            page: page,
+            limit: pageSize,
+        }));
+    };
+
     useEffect(() => {
         if (userId) {
             fetchJobs(userId);
@@ -65,9 +90,21 @@ const JobList: React.FC = () => {
     const fetchJobs = async (userId: string) => {
         try {
             dispatch(loading());
-            const response = await axios.get(`${import.meta.env.VITE_API_URL}/job/${userId}`);
-
-            setJobs(response.data.content);
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}/job/${userId}`, {
+                params: {
+                    limit: jobs.limit,
+                    page: jobs.page,
+                    orderBy: jobs.orderBy,
+                },
+            });
+            const data = response.data.content;
+            setJobs((prev) => ({
+                ...prev,
+                data: data.data,
+                limit: data.limit,
+                total: data.total,
+                orderBy: jobs.orderBy,
+            }));
             dispatch(unLoading());
         } catch (err) {
             dispatch(unLoading());
@@ -75,7 +112,7 @@ const JobList: React.FC = () => {
     };
 
     const filterAndSortJobs = () => {
-        let result = [...jobs];
+        let result = [...jobs.data];
 
         // Filter by status
         if (statusFilter) {
@@ -135,7 +172,10 @@ const JobList: React.FC = () => {
             );
 
             if (!response.data.hasErrors) {
-                setJobs(jobs.filter((job) => job.id !== selectedJob.id));
+                setJobs((prev) => ({
+                    ...prev,
+                    data: jobs.data.filter((job) => job.id !== selectedJob.id),
+                }));
                 setShowDeleteConfirmModal(false);
                 setSelectedJob(null);
                 toast.success('Xóa bài viết thành công!');
@@ -158,13 +198,13 @@ const JobList: React.FC = () => {
                         <Dropdown className="me-2 d-inline">
                             <Dropdown.Toggle variant="outline-secondary" size="sm">
                                 <Filter className="me-1" />
-                                {statusFilter ? `Status: ${statusFilter}` : 'Lọc theo status'}
+                                {statusFilter ? `Trạng thái: ${statusFilter}` : 'Lọc theo trạng thái'}
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
                                 <Dropdown.Item onClick={() => setStatusFilter(null)}>Tất cả</Dropdown.Item>
                                 <Dropdown.Item onClick={() => setStatusFilter('OPEN')}>Đang mở</Dropdown.Item>
                                 <Dropdown.Item onClick={() => setStatusFilter('CLOSED')}>Đang đóng</Dropdown.Item>
-                                <Dropdown.Item onClick={() => setStatusFilter('HIDE')}>In Progress</Dropdown.Item>
+                                <Dropdown.Item onClick={() => setStatusFilter('HIDE')}>Đang Ẩn</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
 
@@ -235,6 +275,30 @@ const JobList: React.FC = () => {
                     </Table>
                 </Card.Body>
             </Card>
+            <section className="section-box mt-30">
+                <div className="container">
+                    {jobs.data.length > 0 ? (
+                        <>
+                            <div className="d-flex justify-content-center mt-4">
+                                <Pagination
+                                    current={jobs.page}
+                                    total={jobs.total}
+                                    pageSize={jobs.limit}
+                                    onChange={handlePageChange}
+                                    itemRender={itemRender}
+                                    showTotal={(total, range) =>
+                                        `Hiển thị ${range[0]}-${range[1]} trên ${total} việc làm`
+                                    }
+                                    showSizeChanger
+                                    showPrevNextJumpers={false}
+                                />
+                            </div>
+                        </>
+                    ) : (
+                        <strong>Chưa tìm thấy công việc nào.</strong>
+                    )}
+                </div>
+            </section>
 
             <Modal show={showDetailsModal} onHide={() => setShowDetailsModal(false)} size="lg">
                 <Modal.Body>

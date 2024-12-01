@@ -1,31 +1,25 @@
 .footer {
-    .footer-col-1
-    {
+    .footer-col-1 {
         flex: 0 0 auto;
         width: 24%;
     }
-    .footer-col-2
-    {
+    .footer-col-2 {
         flex: 0 0 auto;
         width: 14%;
     }
-    .footer-col-3
-    {
+    .footer-col-3 {
         flex: 0 0 auto;
         width: 14%;
     }
-    .footer-col-4
-    {
+    .footer-col-4 {
         flex: 0 0 auto;
         width: 14%;
     }
-    .footer-col-5
-    {
+    .footer-col-5 {
         flex: 0 0 auto;
         width: 14%;
     }
-    .footer-col-6
-    {
+    .footer-col-6 {
         flex: 0 0 auto;
         width: 20%;
     }
@@ -59,20 +53,20 @@
         }
         &.icon-facebook {
             background: url(../imgs/template/icons/facebook.svg) no-repeat 0px 0px;
-            transition-duration: 0.2s;           
+            transition-duration: 0.2s;
         }
         &.icon-twitter {
             background: url(../imgs/template/icons/twitter.svg) no-repeat 0px 0px;
-            transition-duration: 0.2s;           
+            transition-duration: 0.2s;
         }
         &.icon-linkedin {
             background: url(../imgs/template/icons/linkedin.svg) no-repeat 0px 0px;
-            transition-duration: 0.2s;           
+            transition-duration: 0.2s;
         }
     }
     .footer-bottom {
         border-top: 1px solid $color-border-2;
-        padding: 30px 0px;
+        padding: 10px 0px;
         color: $color-text-paragraph;
         font-size: $font-sm;
         strong {
@@ -85,7 +79,7 @@
     }
 }
 #scrollUp {
-	width: 48px;
+    width: 48px;
     height: 48px;
     color: $color-white;
     right: 30px;
