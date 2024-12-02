@@ -3,6 +3,7 @@ import { Container, Row, Col, Nav, Navbar, NavDropdown, Button, Collapse } from 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { House, People, Gear, Bell, PersonCircle, List, XLg } from 'react-bootstrap-icons';
 import { CiMail, CiSettings } from 'react-icons/ci';
+import { FaUsersViewfinder } from 'react-icons/fa6';
 import {
     HiChevronDown,
     HiChevronUp,
@@ -12,7 +13,7 @@ import {
     HiOutlineUserGroup,
 } from 'react-icons/hi2';
 import { GrArticle } from 'react-icons/gr';
-import { MdOutlineDashboardCustomize } from 'react-icons/md';
+import { MdOutlineBusiness, MdOutlineDashboardCustomize } from 'react-icons/md';
 import { useAppSelector } from '@/redux/hooks';
 import { logout } from '@/service/AuthService';
 import { useNavigate } from 'react-router-dom';
@@ -88,39 +89,26 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
                     </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <div
-                        onClick={() => !isSidebarMinimized && toggleSubmenu('post')}
-                        className="text-dark  nav-link d-flex justify-content-between align-items-center"
-                        style={{ cursor: isSidebarMinimized ? 'default' : 'pointer' }}
-                    >
-                        <div>
-                            <GrArticle className="me-2" size={22} />
-                            {!isSidebarMinimized && 'Bài viết'}
-                        </div>
-                        {!isSidebarMinimized && (openSubmenus['post'] ? <HiChevronUp /> : <HiChevronDown />)}
-                    </div>
-                    {!isSidebarMinimized && (
-                        <Collapse in={openSubmenus['post']}>
-                            <div>
-                                <Nav.Link href="/recruiter/create-job" className="text-dark  ps-4">
-                                    Tạo bài viết mới
-                                </Nav.Link>
-                                <Nav.Link href="/recruiter/job-list" className="text-dark  ps-4">
-                                    Danh sách bài viết
-                                </Nav.Link>
-                            </div>
-                        </Collapse>
-                    )}
+                    <Nav.Link href="/admin/jobs" className="text-dark ">
+                        <GrArticle className="me-2" size={22} />
+                        {!isSidebarMinimized && 'Quản lý bài viết'}
+                    </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link href="/recruiter/candidates" className="text-dark ">
+                    <Nav.Link href="/admin/recruiters" className="text-dark ">
+                        <FaUsersViewfinder className="me-2" size={22} />
+                        {!isSidebarMinimized && 'Tuyển dụng'}
+                    </Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link href="/admin/users" className="text-dark ">
                         <HiOutlineUserGroup className="me-2" size={22} />
                         {!isSidebarMinimized && 'Ứng viên'}
                     </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
                     <Nav.Link href="/recruiter/profile" className="text-dark ">
-                        <HiOutlineInformationCircle className="me-2" size={22} />
+                        <MdOutlineBusiness className="me-2" size={22} />
                         {!isSidebarMinimized && 'Công ty'}
                     </Nav.Link>
                 </Nav.Item>

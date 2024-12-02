@@ -365,3 +365,23 @@ button {
     border: none;
     background-color: transparent;
 }
+.btn-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    & .btn-sm {
+        padding: 5px 10px;
+    }
+}
+.btn-reload {
+    background-color: transparent;
+    color: $color-black-1;
+    border: none;
+    padding: 0;
+    &:hover,
+    &:active,
+    &:focus {
+        background-color: transparent !important;
+        color: $color-brand;
+    }
+}

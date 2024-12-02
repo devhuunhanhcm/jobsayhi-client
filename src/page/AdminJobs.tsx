@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Table, Button, Badge, Dropdown, Card, Modal } from 'react-bootstrap';
-import { Eye, Pencil, Trash, Filter, SortNumericDown, SortNumericUp } from 'react-bootstrap-icons';
+import { Container, Table, Button, Badge, Dropdown, Card, Modal, InputGroup, Form } from 'react-bootstrap';
+import { Eye, Pencil, Trash, Filter, SortNumericDown, SortNumericUp, Search } from 'react-bootstrap-icons';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import axios from 'axios';
@@ -9,6 +9,7 @@ import { IoReload } from 'react-icons/io5';
 import toast from 'react-hot-toast';
 import { itemRender } from './FindJob';
 import Pagination from 'rc-pagination';
+import axiosInstance from '@/api/AxiosInstance';
 
 export interface JobDto {
     id: string;
@@ -44,29 +45,34 @@ type SearchResult = {
     limit: number;
     orderBy: string;
 };
+type JobStatus = 'OPEN' | 'CLOSED' | 'HIDE';
 
-const JobList: React.FC = () => {
+const AdminJobs: React.FC = () => {
     const [currentPage, setCurrentPage] = useState<number>(1);
+    const [searchTerm, setSearchTerm] = useState<string>('');
     const [jobs, setJobs] = useState<SearchResult>({
         data: [],
         total: 0,
         page: currentPage,
-        limit: 5,
+        limit: 10,
         orderBy: 'createAt:desc',
     });
-    const [filteredJobs, setFilteredJobs] = useState<JobDto[]>([]);
     const [selectedJob, setSelectedJob] = useState<JobDto | null>(null);
     const [showDetailsModal, setShowDetailsModal] = useState(false);
     const userId = useAppSelector((state) => state.user.id);
     const [showDeleteConfirmModal, setShowDeleteConfirmModal] = useState(false);
+    const [statusFilter, setStatusFilter] = useState<JobStatus | null>(null);
 
     const dispatch = useAppDispatch();
-
-    const [statusFilter, setStatusFilter] = useState<string | null>(null);
     const [sortConfig, setSortConfig] = useState<{ key: keyof JobDto; direction: 'asc' | 'desc' }>({
         key: 'createAt',
         direction: 'desc',
     });
+
+    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchTerm(e.target.value);
+        setCurrentPage(1);
+    };
 
     const handlePageChange = (page: number, pageSize: number) => {
         setCurrentPage(page);
@@ -79,22 +85,23 @@ const JobList: React.FC = () => {
 
     useEffect(() => {
         if (userId) {
-            fetchJobs(userId);
+            const delayDebounceFn = setTimeout(() => {
+                fetchJobs();
+            }, 300);
+            return () => clearTimeout(delayDebounceFn);
         }
-    }, [userId]);
+    }, [userId, currentPage, searchTerm, statusFilter, jobs.orderBy]);
 
-    useEffect(() => {
-        filterAndSortJobs();
-    }, [jobs, statusFilter, sortConfig]);
-
-    const fetchJobs = async (userId: string) => {
+    const fetchJobs = async () => {
         try {
             dispatch(loading());
-            const response = await axios.get(`${import.meta.env.VITE_API_URL}/job/${userId}`, {
+            const response = await axiosInstance.get(`${import.meta.env.VITE_API_URL}/job/findAll`, {
                 params: {
                     limit: jobs.limit,
                     page: jobs.page,
                     orderBy: jobs.orderBy,
+                    search: searchTerm,
+                    status: statusFilter,
                 },
             });
             const data = response.data.content;
@@ -111,34 +118,13 @@ const JobList: React.FC = () => {
         }
     };
 
-    const filterAndSortJobs = () => {
-        let result = [...jobs.data];
-
-        // Filter by status
-        if (statusFilter) {
-            result = result.filter((job) => job.status === statusFilter);
-        }
-
-        // Sort
-        result.sort((a, b) => {
-            if (a[sortConfig.key] < b[sortConfig.key]) {
-                return sortConfig.direction === 'asc' ? -1 : 1;
-            }
-            if (a[sortConfig.key] > b[sortConfig.key]) {
-                return sortConfig.direction === 'asc' ? 1 : -1;
-            }
-            return 0;
-        });
-
-        setFilteredJobs(result);
-    };
-
-    const handleSort = (key: keyof JobDto) => {
-        setSortConfig((prev) => ({
-            key,
-            direction: prev.key === key && prev.direction === 'asc' ? 'desc' : 'asc',
+    const handleSortCreateAt = () => {
+        setJobs((prev) => ({
+            ...prev,
+            orderBy: prev.orderBy === 'createAt:desc' ? 'createAt:asc' : 'createAt:desc',
         }));
     };
+
     const confirmDeleteJob = (job: JobDto) => {
         setSelectedJob(job);
         setShowDeleteConfirmModal(true);
@@ -188,14 +174,31 @@ const JobList: React.FC = () => {
             dispatch(unLoading());
         }
     };
+    const handleSort = (key: keyof JobDto) => {
+        setSortConfig((prev) => ({
+            key,
+            direction: prev.key === key && prev.direction === 'asc' ? 'desc' : 'asc',
+        }));
+    };
 
     return (
         <Container fluid className="p-4">
             <Card>
                 <Card.Header className="d-flex justify-content-between align-items-center">
                     <h4>Danh sách bài viết</h4>
-                    <div>
-                        <Dropdown className="me-2 d-inline">
+                    <div className="d-flex gap-2">
+                        <InputGroup>
+                            <InputGroup.Text>
+                                <Search />
+                            </InputGroup.Text>
+                            <Form.Control
+                                type="text"
+                                placeholder="Tìm kiếm..."
+                                value={searchTerm}
+                                onChange={handleSearch}
+                            />
+                        </InputGroup>
+                        <Dropdown className="me-2">
                             <Dropdown.Toggle variant="outline-secondary" size="sm">
                                 <Filter className="me-1" />
                                 {statusFilter ? `Trạng thái: ${statusFilter}` : 'Lọc theo trạng thái'}
@@ -207,9 +210,8 @@ const JobList: React.FC = () => {
                                 <Dropdown.Item onClick={() => setStatusFilter('HIDE')}>Đang Ẩn</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
-
-                        <Button variant="outline-primary" size="sm" onClick={() => fetchJobs(userId)}>
-                            <IoReload />
+                        <Button className="btn-reload" onClick={fetchJobs}>
+                            <IoReload size={22} />
                         </Button>
                     </div>
                 </Card.Header>
@@ -230,12 +232,15 @@ const JobList: React.FC = () => {
                                 <th>Địa điểm</th>
                                 <th>Vị trí</th>
                                 <th>Trạng thái</th>
-                                <th>Tạo ngày</th>
+                                <th onClick={handleSortCreateAt} style={{ cursor: 'pointer' }}>
+                                    Tạo ngày
+                                    {jobs.orderBy === 'createAt:desc' ? <SortNumericDown /> : <SortNumericUp />}
+                                </th>
                                 <th>Hành động</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {filteredJobs.map((job) => (
+                            {jobs?.data?.map((job) => (
                                 <tr key={job.id}>
                                     <td>{job.title}</td>
                                     <td>{job.salary}</td>
@@ -248,7 +253,6 @@ const JobList: React.FC = () => {
                                             variant="outline-info"
                                             size="sm"
                                             className="me-1"
-                                            // onClick={() => handleViewDetails(job)}
                                             href={`/recruiter/manager-applies?id=${job.id}`}
                                         >
                                             <Eye />
@@ -363,4 +367,4 @@ const JobList: React.FC = () => {
     );
 };
 
-export default JobList;
+export default AdminJobs;

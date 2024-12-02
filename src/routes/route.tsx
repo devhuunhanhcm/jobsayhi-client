@@ -19,6 +19,10 @@ import {
     Settings,
     Candidates,
     Admin,
+    Blog,
+    AdminJobs,
+    AdminUsers,
+    AdminRecruiters,
 } from '../page';
 import AdminLayout from '@/components/layouts/AdminLayout';
 
@@ -44,11 +48,12 @@ const publicPages = [
     { path: '/reset-password', component: ResetPassword },
     { path: '/job-details/:jobId', component: JobDetails },
     { path: '/jobs', component: Jobs },
+    { path: '/blog', component: Blog },
     { path: '/find', component: FindJob },
-    { path: '/upload', component: UploadFile },
+    { path: '/upload', component: UploadFile, roles: ['ROLE_USER', 'ROLE_ADMIN'] },
     { path: '/profile', component: Profile },
-    { path: '/my-cv', component: MyCV },
-    { path: '/search-by-cv', component: SearchByCV },
+    { path: '/my-cv', component: MyCV, roles: ['ROLE_USER', 'ROLE_ADMIN'] },
+    { path: '/search-by-cv', component: SearchByCV, roles: ['ROLE_USER', 'ROLE_ADMIN'] },
 ];
 
 // Recruiter child routes
@@ -64,14 +69,10 @@ const recruiterChildren = [
 
 // admin child routes
 const adminChildren = [
-    { path: 'create-job', component: CreateJob },
-    { path: 'job-list', component: JobsList },
-    { path: 'edit', component: JobEdit },
-    { path: 'manager-applies', component: ManagerJobApplies },
-    { path: 'profile', component: CompanyProfile },
-    { path: 'settings', component: Settings },
-    { path: 'candidates', component: Candidates },
-].map((route) => createRecruiterRoute(route.path, route.component));
+    { path: 'jobs', component: AdminJobs },
+    { path: 'recruiters', component: AdminRecruiters },
+    { path: 'users', component: AdminUsers },
+].map((route) => createAdminRoute(route.path, route.component));
 
 export const publicRoute = [
     ...publicPages,

@@ -109,7 +109,7 @@ const SearchByCV: React.FC = () => {
             </Card>
             <div className="mt-20">
                 {recommendations.map((job) => (
-                    <JobCardGrid job={job} />
+                    <JobCardGrid key={job.id} job={job} />
                 ))}
             </div>
         </Container>

@@ -17,3 +17,7 @@ export { default as SearchByCV } from './SearchByCV';
 export { default as Settings } from './Settings';
 export { default as Candidates } from './Candidates';
 export { default as Admin } from './Admin';
+export { default as AdminJobs } from './AdminJobs';
+export { default as AdminUsers } from './AdminUsers';
+export { default as AdminRecruiters } from './AdminRecruiters';
+export { default as Blog } from './Blog';

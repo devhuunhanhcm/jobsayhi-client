@@ -12,7 +12,7 @@ import {
     HiOutlineUserGroup,
 } from 'react-icons/hi2';
 import { GrArticle } from 'react-icons/gr';
-import { MdOutlineDashboardCustomize } from 'react-icons/md';
+import { MdOutlineBusiness, MdOutlineDashboardCustomize } from 'react-icons/md';
 import { useAppSelector } from '@/redux/hooks';
 import { logout } from '@/service/AuthService';
 import { useNavigate } from 'react-router-dom';
@@ -120,7 +120,7 @@ const RecruiterLayout: React.FC<RecruiterLayoutProps> = ({ children }) => {
                 </Nav.Item>
                 <Nav.Item>
                     <Nav.Link href="/recruiter/profile" className="text-dark ">
-                        <HiOutlineInformationCircle className="me-2" size={22} />
+                        <MdOutlineBusiness className="me-2" size={22} />
                         {!isSidebarMinimized && 'Thông tin công ty'}
                     </Nav.Link>
                 </Nav.Item>

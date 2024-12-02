@@ -72,10 +72,10 @@ function Header() {
                                     </li>
 
                                     <li className="has-children">
-                                        <a href="blog-grid.html">Blog</a>
+                                        <a href="/blog">Blog</a>
                                         <ul className="sub-menu">
                                             <li>
-                                                <a href="blog-grid.html">Blog</a>
+                                                <a href="/blog">Blog</a>
                                             </li>
                                         </ul>
                                     </li>
