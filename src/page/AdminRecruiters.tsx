@@ -136,7 +136,7 @@ const AdminRecruiters: React.FC = () => {
         <Container fluid className="p-4">
             <Card>
                 <Card.Header className="d-flex justify-content-between align-items-center">
-                    <h4>Danh sách ứng viên</h4>
+                    <h4>Danh sách nhà tuyển dụng</h4>
                     <div className="d-flex gap-2">
                         <InputGroup>
                             <InputGroup.Text>

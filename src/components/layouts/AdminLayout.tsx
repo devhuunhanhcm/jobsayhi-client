@@ -83,7 +83,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
                     {isSidebarMinimized ? <List /> : <XLg />}
                 </Button>
                 <Nav.Item className="mt-30">
-                    <Nav.Link href="#!" className="text-dark ">
+                    <Nav.Link href="/admin" className="text-dark ">
                         <MdOutlineDashboardCustomize className="me-2" size={20} />
                         {!isSidebarMinimized && 'Trang chủ'}
                     </Nav.Link>
@@ -97,7 +97,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
                 <Nav.Item>
                     <Nav.Link href="/admin/recruiters" className="text-dark ">
                         <FaUsersViewfinder className="me-2" size={22} />
-                        {!isSidebarMinimized && 'Tuyển dụng'}
+                        {!isSidebarMinimized && 'Nhà tuyển dụng'}
                     </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
@@ -107,7 +107,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
                     </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link href="/recruiter/profile" className="text-dark ">
+                    <Nav.Link href="/admin/company" className="text-dark ">
                         <MdOutlineBusiness className="me-2" size={22} />
                         {!isSidebarMinimized && 'Công ty'}
                     </Nav.Link>

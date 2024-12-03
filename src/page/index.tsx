@@ -20,4 +20,5 @@ export { default as Admin } from './Admin';
 export { default as AdminJobs } from './AdminJobs';
 export { default as AdminUsers } from './AdminUsers';
 export { default as AdminRecruiters } from './AdminRecruiters';
+export { default as AdminCompany } from './AdminCompany';
 export { default as Blog } from './Blog';

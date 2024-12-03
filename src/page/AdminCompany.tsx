@@ -13,12 +13,15 @@ import axiosInstance from '@/api/AxiosInstance';
 
 export interface UserDto {
     id: string;
-    username: string;
+    name: string;
     phone: string;
-    avatar: string;
     email: string;
-    active: boolean;
-    createAt: string;
+    avatarUrl: string;
+    address: string;
+    noEmployees: string;
+    introduction: null;
+    establishDate: string;
+    verified: boolean;
 }
 
 interface ApiResponse {
@@ -36,7 +39,7 @@ type SearchResult = {
     orderBy: string;
 };
 
-const AdminUsers: React.FC = () => {
+const AdminCompany: React.FC = () => {
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [searchTerm, setSearchTerm] = useState<string>('');
     const [users, setUsers] = useState<SearchResult>({
@@ -44,7 +47,7 @@ const AdminUsers: React.FC = () => {
         total: 0,
         page: currentPage,
         limit: 10,
-        orderBy: 'createAt:desc',
+        orderBy: 'establishDate:desc',
     });
     const [selectedUser, setSelectedUser] = useState<UserDto | null>(null);
     const [showDetailsModal, setShowDetailsModal] = useState(false);
@@ -54,7 +57,7 @@ const AdminUsers: React.FC = () => {
 
     const dispatch = useAppDispatch();
     const [sortConfig, setSortConfig] = useState<{ key: keyof UserDto; direction: 'asc' | 'desc' }>({
-        key: 'createAt',
+        key: 'establishDate',
         direction: 'desc',
     });
 
@@ -84,14 +87,12 @@ const AdminUsers: React.FC = () => {
     const fetchUser = async () => {
         try {
             dispatch(loading());
-            const response = await axiosInstance.get(`${import.meta.env.VITE_API_URL}/users/findAll`, {
+            const response = await axiosInstance.get(`${import.meta.env.VITE_API_URL}/company/findAll`, {
                 params: {
                     limit: users.limit,
                     page: users.page,
                     orderBy: users.orderBy,
                     search: searchTerm,
-                    status: statusFilter,
-                    accountType: 'USER',
                 },
             });
             const data = response.data.content;
@@ -108,10 +109,10 @@ const AdminUsers: React.FC = () => {
         }
     };
 
-    const handleSortCreateAt = () => {
+    const handleSortEstablishDate = () => {
         setUsers((prev) => ({
             ...prev,
-            orderBy: prev.orderBy === 'createAt:desc' ? 'createAt:asc' : 'createAt:desc',
+            orderBy: prev.orderBy === 'establishDate:desc' ? 'establishDate:asc' : 'establishDate:desc',
         }));
     };
 
@@ -136,7 +137,7 @@ const AdminUsers: React.FC = () => {
         <Container fluid className="p-4">
             <Card>
                 <Card.Header className="d-flex justify-content-between align-items-center">
-                    <h4>Danh sách ứng viên</h4>
+                    <h4>Danh sách công ty</h4>
                     <div className="d-flex gap-2">
                         <InputGroup>
                             <InputGroup.Text>
@@ -171,12 +172,12 @@ const AdminUsers: React.FC = () => {
                             <tr>
                                 <th>Id</th>
                                 <th>Avatar</th>
-                                <th>Username</th>
+                                <th>Tên</th>
                                 <th>Email</th>
                                 <th>Phone</th>
-                                <th onClick={handleSortCreateAt} style={{ cursor: 'pointer' }}>
+                                <th onClick={handleSortEstablishDate} style={{ cursor: 'pointer' }}>
                                     Tạo ngày
-                                    {users.orderBy === 'createAt:desc' ? <SortNumericDown /> : <SortNumericUp />}
+                                    {users.orderBy === 'establishDate:desc' ? <SortNumericDown /> : <SortNumericUp />}
                                 </th>
                                 <th>Status</th>
                                 <th>Hành động</th>
@@ -188,14 +189,14 @@ const AdminUsers: React.FC = () => {
                                     <td>{user.id}</td>
                                     <td>
                                         <div className="d-flex aligns-item-center h-100">
-                                            {user.avatar || <Image src="https://placehold.co/50" rounded />}
+                                            <Image src={user.avatarUrl || 'https://placehold.co/50'} rounded />
                                         </div>
                                     </td>
-                                    <td>{user.username}</td>
+                                    <td>{user.name}</td>
                                     <td>{user.email}</td>
                                     <td>{user.phone}</td>
-                                    <td>{new Date(user.createAt).toLocaleDateString()}</td>
-                                    <td>{getStatusBadge(user.active)}</td>
+                                    <td>{new Date(user.establishDate).toLocaleDateString()}</td>
+                                    <td>{getStatusBadge(user.verified)}</td>
                                     <td>
                                         <div className="btn-actions">
                                             <Button
@@ -253,10 +254,10 @@ const AdminUsers: React.FC = () => {
                         <div>
                             <p>
                                 <strong>Avatar:</strong>{' '}
-                                {selectedUser.avatar || <Image src="https://placehold.co/100" />}
+                                <Image src={selectedUser.avatarUrl || 'https://placehold.co/50'} rounded />
                             </p>
                             <p>
-                                <strong>Username:</strong> {selectedUser.username}
+                                <strong>Tên:</strong> {selectedUser.name}
                             </p>
                             <p>
                                 <strong>Phone:</strong> {selectedUser.phone}
@@ -265,7 +266,7 @@ const AdminUsers: React.FC = () => {
                                 <strong>Email:</strong> {selectedUser.email}
                             </p>
                             <p>
-                                <strong>Active:</strong> {selectedUser.active}
+                                <strong>Verified:</strong> {selectedUser.establishDate}
                             </p>
                         </div>
                     )}
@@ -275,4 +276,4 @@ const AdminUsers: React.FC = () => {
     );
 };
 
-export default AdminUsers;
+export default AdminCompany;

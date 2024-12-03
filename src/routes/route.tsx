@@ -23,6 +23,7 @@ import {
     AdminJobs,
     AdminUsers,
     AdminRecruiters,
+    AdminCompany,
 } from '../page';
 import AdminLayout from '@/components/layouts/AdminLayout';
 
@@ -71,6 +72,7 @@ const recruiterChildren = [
 const adminChildren = [
     { path: 'jobs', component: AdminJobs },
     { path: 'recruiters', component: AdminRecruiters },
+    { path: 'company', component: AdminCompany },
     { path: 'users', component: AdminUsers },
 ].map((route) => createAdminRoute(route.path, route.component));
 
