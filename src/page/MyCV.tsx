@@ -54,7 +54,7 @@ const MyCV: React.FC<Props> = ({}) => {
     };
     return (
         <>
-            <div className="container mt-100">
+            <div className="container">
                 {fileInfos.length !== 0 ? (
                     <>
                         <strong className="cv_list_header mb-12 d-block">Danh sách cv đã tải lên</strong>

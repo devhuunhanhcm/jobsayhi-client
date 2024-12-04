@@ -267,10 +267,10 @@
     .flash {
         position: absolute;
         top: 15px;
-        right: 15px;
+        right: 0;
         height: 25px;
         width: 25px;
-        background: url(../assets/imgs/template/icons/flash.svg) no-repeat 0px 0px;
+        transform: translateX(-60px);
     }
     .card-grid-2-image-left {
         padding: 30px 20px 15px 20px;

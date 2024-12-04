@@ -32,9 +32,13 @@ interface UserFileDTO {
 }
 
 interface JobApplyDTO {
-    userProfileDTO: UserProfileDTO;
     message: string;
-    userFile: UserFileDTO;
+    userId: string;
+    name: string;
+    phone: string;
+    email: string;
+    fileName: string;
+    fileUrl: string;
     status: string;
 }
 
@@ -76,11 +80,11 @@ const JobAppliesTable: React.FC<JobAppliesTableProps> = ({ jobId }) => {
 
     const handleExportToExcel = () => {
         const exportData = applies.map((apply) => ({
-            Tên: apply.userProfileDTO.displayName,
-            Email: apply.userProfileDTO.email,
-            'Số điện thoại': apply.userProfileDTO.phone,
+            Tên: apply.name,
+            Email: apply.email,
+            'Số điện thoại': apply.phone,
             'Lời nhắn': apply.message,
-            'File CV': apply.userFile ? apply.userFile.url : 'Không có CV',
+            'File CV': apply.fileUrl || 'Không có CV',
         }));
 
         const worksheet = XLSX.utils.json_to_sheet(exportData);
@@ -124,16 +128,16 @@ const JobAppliesTable: React.FC<JobAppliesTableProps> = ({ jobId }) => {
                             const status = ApplyStatus.find((t) => t.value === apply.status);
 
                             return (
-                                <tr key={apply.userProfileDTO.id}>
-                                    <td>{apply.userProfileDTO.displayName}</td>
-                                    <td>{apply.userProfileDTO.email}</td>
-                                    <td>{apply.userProfileDTO.phone}</td>
+                                <tr key={apply.userId}>
+                                    <td>{apply.name}</td>
+                                    <td>{apply.email}</td>
+                                    <td>{apply.phone}</td>
                                     <td>{apply.message}</td>
                                     <td>
-                                        {apply.userFile ? (
+                                        {apply.fileName ? (
                                             <div className="d-flex align-items-center">
                                                 <ImFileText2 className="me-2" size={20} />
-                                                {apply.userFile.name}
+                                                {apply.fileName}
                                             </div>
                                         ) : (
                                             'No resume'
@@ -147,17 +151,15 @@ const JobAppliesTable: React.FC<JobAppliesTableProps> = ({ jobId }) => {
                                                 variant="outline-primary"
                                                 size="sm"
                                                 className="me-1"
-                                                onClick={() => handleViewProfile(apply.userProfileDTO.id)}
+                                                onClick={() => handleViewProfile(apply.userId)}
                                             >
                                                 <ImEye size={16} />
                                             </Button>
-                                            {apply.userFile && (
+                                            {apply.fileUrl && (
                                                 <Button
                                                     variant="outline-success"
                                                     size="sm"
-                                                    onClick={() =>
-                                                        handleDownloadResume(apply.userFile.url, apply.userFile.name)
-                                                    }
+                                                    onClick={() => handleDownloadResume(apply.fileUrl, apply.fileUrl)}
                                                 >
                                                     <IoCloudDownloadOutline size={16} />
                                                 </Button>

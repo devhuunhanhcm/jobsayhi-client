@@ -130,10 +130,10 @@ function Header() {
                             ) : (
                                 <div className="block-signin">
                                     <a className="text-link-bd-btom hover-up" href="/register">
-                                        Register
+                                        Đăng ký
                                     </a>
                                     <a className="btn btn-default btn-shadow ml-40 hover-up" href="/login">
-                                        Sign in
+                                        Đăng nhập
                                     </a>
                                 </div>
                             )}
@@ -191,43 +191,26 @@ function Header() {
                                             </ul>
                                         </li>
                                         <li className="has-children">
-                                            <a href="blog-grid.html">Pages</a>
+                                            <a href="blog-grid.html">Blog</a>
                                             <ul className="sub-menu">
                                                 <li>
-                                                    <a href="page-about.html">About Us</a>
-                                                </li>
-                                                <li>
-                                                    <a href="page-pricing.html">Pricing Plan</a>
-                                                </li>
-                                                <li>
-                                                    <a href="page-contact.html">Contact Us</a>
-                                                </li>
-                                                <li>
-                                                    <a href="/register">Register</a>
-                                                </li>
-                                                <li>
-                                                    <a href="/login">Signin</a>
-                                                </li>
-                                                <li>
-                                                    <a href="/reset-password">Reset Password</a>
-                                                </li>
-                                                <li>
-                                                    <a href="page-content-protected.html">Content Protected</a>
+                                                    <a href="page-about.html">Blog</a>
                                                 </li>
                                             </ul>
                                         </li>
                                         <li className="has-children">
-                                            <a href="blog-grid.html">Blog</a>
+                                            <a href="/search-by-cv">Cv</a>
                                             <ul className="sub-menu">
                                                 <li>
-                                                    <a href="blog-grid.html">Blog Grid</a>
+                                                    <a href="/my-cv">Quản lý CV</a>
                                                 </li>
+                                                <li>
+                                                    <a href="/upload">Tải lên CV</a>
+                                                </li>
+                                                <a href="/search-by-cv">
+                                                    <RiVipCrownFill size={18} color="#f1c40f" /> Tìm việc qua CV
+                                                </a>
                                             </ul>
-                                        </li>
-                                        <li>
-                                            <a href="#" target="_blank">
-                                                Dashboard
-                                            </a>
                                         </li>
                                     </ul>
                                 </nav>
@@ -236,19 +219,13 @@ function Header() {
                                 <h6 className="mb-10">Tài khoản</h6>
                                 <ul className="mobile-menu font-heading">
                                     <li>
-                                        <a href="#">Profile</a>
+                                        <a href="/profile">Tài khoản</a>
                                     </li>
                                     <li>
-                                        <a href="#">Work Preferences</a>
+                                        <a href="/settings">Cài đặt</a>
                                     </li>
                                     <li>
-                                        <a href="#">Account Settings</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Go Pro</a>
-                                    </li>
-                                    <li>
-                                        <a href="page-signin.html">Sign Out</a>
+                                        <button onClick={handleLogout}>Đăng xuất</button>
                                     </li>
                                 </ul>
                             </div>

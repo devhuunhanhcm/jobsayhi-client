@@ -1,5 +1,6 @@
 import { JobReview } from '../model/Job';
 import { formatTime } from '../time/time';
+import SimilarTag from './SimilarTag';
 
 interface IProps {
     job: JobReview;
@@ -9,7 +10,11 @@ const JobCardGrid: React.FC<IProps> = ({ job }) => {
         <>
             <div className="col-xl-12 col-12">
                 <div className="card-grid-2 hover-up">
-                    <span className="flash" />
+                    {job?.similarityScore && (
+                        <span className="flash">
+                            <SimilarTag percent={job.similarityScore} />
+                        </span>
+                    )}
                     <div className="row">
                         <div>
                             <div className="card-grid-2-image-left">

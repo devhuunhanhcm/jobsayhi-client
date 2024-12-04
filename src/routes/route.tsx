@@ -24,6 +24,7 @@ import {
     AdminUsers,
     AdminRecruiters,
     AdminCompany,
+    SearchByCVResult,
 } from '../page';
 import AdminLayout from '@/components/layouts/AdminLayout';
 
@@ -55,6 +56,7 @@ const publicPages = [
     { path: '/profile', component: Profile },
     { path: '/my-cv', component: MyCV, roles: ['ROLE_USER', 'ROLE_ADMIN'] },
     { path: '/search-by-cv', component: SearchByCV, roles: ['ROLE_USER', 'ROLE_ADMIN'] },
+    { path: '/search-by-cv/result', component: SearchByCVResult, roles: ['ROLE_USER', 'ROLE_ADMIN'] },
 ];
 
 // Recruiter child routes

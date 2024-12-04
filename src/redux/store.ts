@@ -5,20 +5,20 @@ import storage from 'redux-persist/lib/storage';
 import authReducer from './Slice/AuthSlice';
 import userReducer from './Slice/UserSlice';
 import loadingReducer from './Slice/LoadingSlice';
-import searchResultReducer from './Slice/SearchResultSlice';
+import recommendationsReducer from './Slice/RecommendationsSlice';
 
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['auth'],
-    blacklist: ['user', 'loading', 'searchResult'],
+    whitelist: ['auth', 'recommendations'],
+    blacklist: ['user', 'loading'],
 };
 
 const rootReducer = combineReducers({
     auth: authReducer,
     loading: loadingReducer,
     user: userReducer,
-    searchResult: searchResultReducer,
+    recommendations: recommendationsReducer,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

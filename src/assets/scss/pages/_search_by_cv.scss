@@ -1,0 +1,12 @@
+.cv-file {
+    padding: 6px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    &:hover {
+        background-color: $background-1;
+    }
+    &.active {
+        background-color: $color-brand;
+        color: $color-white;
+    }
+}

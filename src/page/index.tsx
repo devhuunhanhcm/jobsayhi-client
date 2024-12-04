@@ -14,6 +14,7 @@ export { default as JobEdit } from './JobEdit';
 export { default as ManagerJobApplies } from './ManagerJobApplies';
 export { default as CompanyProfile } from './CompanyProfile';
 export { default as SearchByCV } from './SearchByCV';
+export { default as SearchByCVResult } from './SearchByCVResult';
 export { default as Settings } from './Settings';
 export { default as Candidates } from './Candidates';
 export { default as Admin } from './Admin';

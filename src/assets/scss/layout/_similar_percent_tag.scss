@@ -1,0 +1,55 @@
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: not-allowed;
+    scale: 0.7;
+}
+
+.central {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 6em;
+    height: 6em;
+    border-radius: 50%;
+    box-shadow: 0.5em 1em 1em red, -0.5em 0.5em 1em orange, 0.5em -0.5em 1em orangered, -0.5em -0.5em 1em yellow;
+}
+
+.external-shadow {
+    width: 6em;
+    height: 6em;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    box-shadow: 0.5em 0.5em 3em red, -0.5em 0.5em 3em orange, 0.5em -0.5em 3em orangered, -0.5em -0.5em 3em yellow;
+    z-index: 999;
+    animation: rotate 3s linear infinite;
+    background-color: #fff;
+}
+
+.intern {
+    position: absolute;
+    color: #000;
+    z-index: 9999;
+    display: inline-flex;
+    font-size: 20px;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(180deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

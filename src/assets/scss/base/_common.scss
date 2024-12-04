@@ -669,7 +669,6 @@ main {
 }
 .content {
     min-height: 100vh;
-    margin-top: 100px;
 }
 .mt-100 {
     margin-top: 100px;
@@ -689,4 +688,19 @@ textarea.form-control {
     min-height: 150px;
     resize: none;
     overflow: hidden;
+}
+.j-primary-color {
+    color: $color-brand !important;
+}
+
+.preloader-search {
+    background-color: rgba(#fafbfc, 0.9) !important;
+    & img {
+        max-width: 500px !important;
+    }
+}
+.img-full {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
 }

@@ -9,10 +9,10 @@ function Home() {
                 <div className="container">
                     <div className="text-center">
                         <h2 className="section-title mb-10 wow animate__animated animate__fadeInUp">
-                            Việc làm mới nhất
+                            Việc làm IT mới nhất
                         </h2>
                         <p className="font-lg color-text-paragraph-2 wow animate__animated animate__fadeInUp">
-                            Tìm kiếm ngay những công việc mới nhất trong ngày.
+                            Tìm kiếm ngay những công việc IT mới nhất trong ngày.
                         </p>
                     </div>
                     <div className="mt-50">
