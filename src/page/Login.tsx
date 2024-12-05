@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { login } from '../service/AuthService';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import axios from 'axios';
 
 const validationSchema = yup.object({
     username: yup.string().required('Nhập tên đăng nhập.').min(6, 'Tên đăng nhập ít nhất 6 kí tự.'),
@@ -35,6 +36,21 @@ function Login() {
         onSubmit: handleSubmit,
         validationSchema: validationSchema,
     });
+
+    const handleGoogleLogin = async () => {
+        try {
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}/auth/login-social`, {
+                params: {
+                    loginType: 'google',
+                },
+            });
+            const data = response.data.content;
+            window.location.href = data;
+        } catch (error) {
+            console.error('Login error:', error);
+        }
+    };
+
     return (
         <>
             <section className="pt-100 login-register">
@@ -44,7 +60,7 @@ function Login() {
                             <div className="text-center">
                                 <p className="font-sm text-brand-2">Welcome back! </p>
                                 <h2 className="mt-10 mb-5 text-brand-1">Member Login</h2>
-                                <button className="btn social-login hover-up mb-20">
+                                <button className="btn social-login hover-up mb-20" onClick={handleGoogleLogin}>
                                     <img src="assets/imgs/template/icons/icon-google.svg" alt="jobbox" />
                                     <strong>Đăng nhập với Google</strong>
                                 </button>

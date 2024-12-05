@@ -188,6 +188,12 @@
         // }
     }
     .block-signin {
+        display: flex;
+        gap: 10px;
+        & a {
+            display: block;
+            flex-shrink: 0;
+        }
         .btn-shadow {
             box-shadow: $box-shadow-1;
         }

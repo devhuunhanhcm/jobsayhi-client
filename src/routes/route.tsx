@@ -25,6 +25,7 @@ import {
     AdminRecruiters,
     AdminCompany,
     SearchByCVResult,
+    AuthCallback,
 } from '../page';
 import AdminLayout from '@/components/layouts/AdminLayout';
 
@@ -46,6 +47,7 @@ const createAdminRoute = (path: string, component: React.ComponentType) => ({
 const publicPages = [
     { path: '/', component: Home },
     { path: '/login', component: Login },
+    { path: '/auth/google/callback', component: AuthCallback },
     { path: '/register', component: Registration },
     { path: '/reset-password', component: ResetPassword },
     { path: '/job-details/:jobId', component: JobDetails },
