@@ -19,3 +19,9 @@
 .nav-link {
     padding-left: 28px;
 }
+.noti .dropdown-toggle::after {
+    display: none;
+}
+.noti .btn-link {
+    color: $color-text-paragraph;
+}

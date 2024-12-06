@@ -16,6 +16,7 @@ import { MdOutlineBusiness, MdOutlineDashboardCustomize } from 'react-icons/md';
 import { useAppSelector } from '@/redux/hooks';
 import { logout } from '@/service/AuthService';
 import { useNavigate } from 'react-router-dom';
+import NotificationDropdown from './DropdownNotification';
 
 interface RecruiterLayoutProps {
     children: React.ReactNode;
@@ -165,12 +166,7 @@ const RecruiterLayout: React.FC<RecruiterLayoutProps> = ({ children }) => {
                         </div>
                         <Nav className="d-flex ms-auto align-items-center">
                             <Nav.Item className="me-3">
-                                <HiOutlineBellAlert size={20} />
-                                <span className="badge bg-danger rounded-circle ms-1">3</span>
-                            </Nav.Item>
-                            <Nav.Item className="me-3">
-                                <CiMail size={20} />
-                                <span className="badge bg-danger rounded-circle ms-1">2</span>
+                                <NotificationDropdown />
                             </Nav.Item>
                             <NavDropdown
                                 title={

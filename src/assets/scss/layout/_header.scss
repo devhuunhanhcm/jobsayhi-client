@@ -190,6 +190,7 @@
     .block-signin {
         display: flex;
         gap: 10px;
+        align-items: center;
         & a {
             display: block;
             flex-shrink: 0;
