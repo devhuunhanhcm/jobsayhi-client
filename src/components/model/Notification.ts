@@ -6,7 +6,7 @@ export interface Notification {
     userId: string;
     timestamp: string;
     metadata?: string;
-    isRead: boolean;
+    read: boolean;
 }
 
 export interface NotificationState {

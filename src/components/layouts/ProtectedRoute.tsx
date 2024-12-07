@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 import { useAppSelector } from '@/redux/hooks';
 
-interface JWTPayload {
+export interface JWTPayload {
     authorities: string[];
     sub: string;
     tokenType: string;

@@ -17,6 +17,7 @@ import { MdOutlineBusiness, MdOutlineDashboardCustomize } from 'react-icons/md';
 import { useAppSelector } from '@/redux/hooks';
 import { logout } from '@/service/AuthService';
 import { useNavigate } from 'react-router-dom';
+import NotificationDropdown from './DropdownNotification';
 
 interface AdminLayoutProps {
     children: React.ReactNode;
@@ -113,7 +114,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
                     </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link href="/recruiter/settings" className="text-dark ">
+                    <Nav.Link href="#!" className="text-dark ">
                         <CiSettings className="me-2" size={24} />
                         {!isSidebarMinimized && 'Cài đặt'}
                     </Nav.Link>
@@ -153,12 +154,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
                         </div>
                         <Nav className="d-flex ms-auto align-items-center">
                             <Nav.Item className="me-3">
-                                <HiOutlineBellAlert size={20} />
-                                <span className="badge bg-danger rounded-circle ms-1">3</span>
-                            </Nav.Item>
-                            <Nav.Item className="me-3">
-                                <CiMail size={20} />
-                                <span className="badge bg-danger rounded-circle ms-1">2</span>
+                                <NotificationDropdown />
                             </Nav.Item>
                             <NavDropdown
                                 title={

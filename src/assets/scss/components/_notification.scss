@@ -1,0 +1,23 @@
+.notification-item {
+    min-width: 450px;
+}
+.notification-options .dropdown-toggle::after {
+    display: none;
+}
+
+.notification-options .dropdown-menu {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1060;
+}
+
+.notification-options .dropdown-item {
+    cursor: pointer;
+    padding: 8px 12px;
+}
+
+.notification-options .dropdown-item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+.un-read {
+    background-color: $color-brand;
+}

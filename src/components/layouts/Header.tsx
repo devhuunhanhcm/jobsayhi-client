@@ -6,12 +6,25 @@ import { useNavigate } from 'react-router-dom';
 import { RiVipCrownFill } from 'react-icons/ri';
 import { NavDropdown } from 'react-bootstrap';
 import { PersonCircle } from 'react-bootstrap-icons';
-
+import { jwtDecode } from 'jwt-decode';
+import { JWTPayload } from './ProtectedRoute';
+import NotificationDropdown from './DropdownNotification';
+import { IoClose } from 'react-icons/io5';
 function Header() {
     const isLoged = useAppSelector((state) => state.auth.isLogined) || false;
     const userInfo = useAppSelector((state) => state.user) || null;
     const navigate = useNavigate();
     const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
+    const token = useAppSelector((state) => state.auth.token);
+    const [currentRole, setCurrentRole] = useState<string>('');
+
+    useEffect(() => {
+        if (token) {
+            const decoded = jwtDecode<JWTPayload>(token);
+            const userRoles = decoded.authorities[0];
+            setCurrentRole(userRoles);
+        }
+    }, [token]);
 
     const handleLogout = async () => {
         try {
@@ -24,6 +37,7 @@ function Header() {
 
     return (
         <>
+            {/* header */}
             <header className="header sticky-bar stick">
                 <div className="container">
                     <div className="main-header">
@@ -54,14 +68,18 @@ function Header() {
                                             </li>
                                         </ul>
                                     </li>
-                                    <li className="has-children">
-                                        <a href="/recruiter">Tuyển Dụng</a>
-                                        <ul className="sub-menu">
-                                            <li>
-                                                <a href="/recruiter">Tuyển Dụng</a>
-                                            </li>
-                                        </ul>
-                                    </li>
+                                    {currentRole.length > 0 && currentRole === 'ROLE_COMPANY' ? (
+                                        <li className="has-children">
+                                            <a href="/recruiter">Tuyển Dụng</a>
+                                            <ul className="sub-menu">
+                                                <li>
+                                                    <a href="/recruiter">Tuyển Dụng</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    ) : (
+                                        ''
+                                    )}
                                     <li className="has-children">
                                         <a href="candidates-grid.html">Ứng viên</a>
                                         <ul className="sub-menu">
@@ -95,6 +113,13 @@ function Header() {
                                             </li>
                                         </ul>
                                     </li>
+                                    {currentRole.length > 0 && currentRole === 'ROLE_ADMIN' ? (
+                                        <li>
+                                            <a href="/admin">Admin</a>
+                                        </li>
+                                    ) : (
+                                        ''
+                                    )}
                                 </ul>
                             </nav>
                             <div
@@ -108,7 +133,8 @@ function Header() {
                         </div>
                         <div className="header-right">
                             {isLoged && userInfo ? (
-                                <div className="container mt-5">
+                                <div className="container mt-5 d-flex">
+                                    <NotificationDropdown />
                                     <div className="dropdown account-bar">
                                         <NavDropdown
                                             title={
@@ -141,6 +167,7 @@ function Header() {
                     </div>
                 </div>
             </header>
+            {/* header mobile */}
             <div
                 className="mobile-header-active mobile-header-wrapper-style perfect-scrollbar"
                 style={{
@@ -150,13 +177,13 @@ function Header() {
             >
                 <div className="mobile-header-wrapper-inner">
                     <div className="mobile-header-content-area">
+                        <div
+                            onClick={() => setShowMobileMenu(!showMobileMenu)}
+                            className="burger-icon burger-icon-white"
+                        >
+                            <IoClose size={24} />
+                        </div>
                         <div className="perfect-scroll">
-                            <div className="mobile-search mobile-header-border mb-30">
-                                <form action="#">
-                                    <input type="text" placeholder="Search…" />
-                                    <i className="fi-rr-search" />
-                                </form>
-                            </div>
                             <div className="mobile-menu-wrap mobile-header-border">
                                 {/* mobile menu start*/}
                                 <nav>
@@ -174,14 +201,19 @@ function Header() {
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li className="has-children">
-                                            <a href="/recruiter">Tuyển Dụng</a>
-                                            <ul className="sub-menu">
-                                                <li>
-                                                    <a href="/recruiter">Tuyển Dụng</a>
-                                                </li>
-                                            </ul>
-                                        </li>
+                                        {currentRole.length > 0 && currentRole === 'ROLE_COMPANY' ? (
+                                            <li className="has-children">
+                                                <a href="/recruiter">Tuyển Dụng</a>
+                                                <ul className="sub-menu">
+                                                    <li>
+                                                        <a href="/recruiter">Tuyển Dụng</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        ) : (
+                                            ''
+                                        )}
+
                                         <li className="has-children">
                                             <a href="candidates-grid.html">Ứng viên</a>
                                             <ul className="sub-menu">
@@ -212,6 +244,13 @@ function Header() {
                                                 </a>
                                             </ul>
                                         </li>
+                                        {currentRole.length > 0 && currentRole === 'ROLE_ADMIN' ? (
+                                            <li>
+                                                <a href="/admin">Admin</a>
+                                            </li>
+                                        ) : (
+                                            ''
+                                        )}
                                     </ul>
                                 </nav>
                             </div>
@@ -225,7 +264,7 @@ function Header() {
                                         <a href="/settings">Cài đặt</a>
                                     </li>
                                     <li>
-                                        <button onClick={handleLogout}>Đăng xuất</button>
+                                        <a onClick={handleLogout}>Đăng xuất</a>
                                     </li>
                                 </ul>
                             </div>
