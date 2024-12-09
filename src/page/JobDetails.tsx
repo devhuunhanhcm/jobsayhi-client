@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Job } from '../components/model/Job';
-import { getJobDetails } from '../service/JobService';
+import { Job, JobReview } from '../components/model/Job';
+import { getJobDetails, getRelateJobs } from '../service/JobService';
 import { useParams } from 'react-router-dom';
 import { formatTime } from '@/components/time/time';
 import { Form, Modal } from 'react-bootstrap';
@@ -22,9 +22,21 @@ const JobDetails: React.FC = () => {
     const [fileInfos, setFileInfos] = useState<FileInfo[]>([]);
     const dispatch = useAppDispatch();
 
+    const [relateJobs, setRelateJob] = useState<Job[]>([]);
+
     useEffect(() => {
         loadFiles();
     }, []);
+
+    const fetchRelateJob = async (jobId: string) => {
+        try {
+            const res = await getRelateJobs(jobId);
+            console.log(res);
+            setRelateJob(res);
+        } catch (e) {
+            console.log(e);
+        }
+    };
 
     useEffect(() => {
         const fetchJobDetails = async () => {
@@ -32,6 +44,7 @@ const JobDetails: React.FC = () => {
                 if (jobId) {
                     const response = await getJobDetails(jobId);
                     setJob(response);
+                    fetchRelateJob(jobId);
                 }
             } catch (err) {
                 console.log(err);
@@ -348,7 +361,7 @@ const JobDetails: React.FC = () => {
                                                         ? job.company.avatarUrl
                                                         : `${
                                                               import.meta.env.VITE_PUBLIC_URL
-                                                          }/public/assets/imgs/avatar/default-logo-company.svg`
+                                                          }/assets/imgs/avatar/default-logo-company.svg`
                                                 }
                                                 alt="jobsayhi"
                                             />
@@ -383,121 +396,53 @@ const JobDetails: React.FC = () => {
                             <div className="sidebar-border">
                                 <h6 className="f-18">Công việc tương tự</h6>
                                 <div className="sidebar-list-job">
-                                    <ul>
-                                        <li>
-                                            <div className="card-list-4 wow animate__animated animate__fadeIn hover-up">
-                                                <div className="image">
-                                                    <a href="job-details.html">
-                                                        <img
-                                                            src={`${
-                                                                import.meta.env.VITE_PUBLIC_URL
-                                                            }/assets/imgs/brands/brand-1.png`}
-                                                            alt="jobBox"
-                                                        />
-                                                    </a>
-                                                </div>
-                                                <div className="info-text">
-                                                    <h5 className="font-md font-bold color-brand-1">
-                                                        <a href="job-details.html">UI / UX Designer fulltime</a>
-                                                    </h5>
-                                                    <div className="mt-0">
-                                                        <span className="card-briefcase">Fulltime</span>
-                                                        <span className="card-time">
-                                                            <span>3</span>
-                                                            <span> mins ago</span>
-                                                        </span>
+                                    <ul className="relate-job">
+                                        {relateJobs.map((j) => (
+                                            <li>
+                                                <div className="card-list-4 wow animate__animated animate__fadeIn hover-up">
+                                                    <div className="image">
+                                                        <a href="job-details.html">
+                                                            <img
+                                                                src={
+                                                                    j?.company?.avatarUrl &&
+                                                                    j.company.avatarUrl.length > 0
+                                                                        ? j.company.avatarUrl
+                                                                        : `${
+                                                                              import.meta.env.VITE_PUBLIC_URL
+                                                                          }/assets/imgs/avatar/default-logo-company.svg`
+                                                                }
+                                                                alt="jobBox"
+                                                            />
+                                                        </a>
                                                     </div>
-                                                    <div className="mt-5">
-                                                        <div className="row">
-                                                            <div className="col-6">
-                                                                <h6 className="card-price">
-                                                                    $250<span>/Hour</span>
-                                                                </h6>
-                                                            </div>
-                                                            <div className="col-6 text-end">
-                                                                <span className="card-briefcase">New York, US</span>
+                                                    <div className="info-text">
+                                                        <h5 className="font-md font-bold color-brand-1">
+                                                            <a href={`/job-details/${j.id}`}>{j.title}</a>
+                                                        </h5>
+                                                        <div className="mt-0">
+                                                            <span className="card-briefcase">{j.experience}</span>
+                                                            <span className="card-time">
+                                                                {j.lastModifiedAt
+                                                                    ? new Date(j.lastModifiedAt).toLocaleDateString(
+                                                                          'en-GB',
+                                                                      )
+                                                                    : 'Không có deadline'}
+                                                            </span>
+                                                        </div>
+                                                        <div className="mt-5">
+                                                            <div className="row">
+                                                                <div className="col-6">
+                                                                    <h6 className="card-price">{j.salary}</h6>
+                                                                </div>
+                                                                <div className="col-6 text-end">
+                                                                    <span className="card-briefcase">{j.location}</span>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div className="card-list-4 wow animate__animated animate__fadeIn hover-up">
-                                                <div className="image">
-                                                    <a href="job-details.html">
-                                                        <img
-                                                            src={`${
-                                                                import.meta.env.VITE_PUBLIC_URL
-                                                            }/assets/imgs/brands/brand-2.png`}
-                                                            alt="jobBox"
-                                                        />
-                                                    </a>
-                                                </div>
-                                                <div className="info-text">
-                                                    <h5 className="font-md font-bold color-brand-1">
-                                                        <a href="job-details.html">Java Software Engineer</a>
-                                                    </h5>
-                                                    <div className="mt-0">
-                                                        <span className="card-briefcase">Fulltime</span>
-                                                        <span className="card-time">
-                                                            <span>5</span>
-                                                            <span> mins ago</span>
-                                                        </span>
-                                                    </div>
-                                                    <div className="mt-5">
-                                                        <div className="row">
-                                                            <div className="col-6">
-                                                                <h6 className="card-price">
-                                                                    $500<span>/Hour</span>
-                                                                </h6>
-                                                            </div>
-                                                            <div className="col-6 text-end">
-                                                                <span className="card-briefcase">Tokyo, Japan</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div className="card-list-4 wow animate__animated animate__fadeIn hover-up">
-                                                <div className="image">
-                                                    <a href="job-details.html">
-                                                        <img
-                                                            src={`${
-                                                                import.meta.env.VITE_PUBLIC_URL
-                                                            }/assets/imgs/brands/brand-3.png`}
-                                                            alt="jobBox"
-                                                        />
-                                                    </a>
-                                                </div>
-                                                <div className="info-text">
-                                                    <h5 className="font-md font-bold color-brand-1">
-                                                        <a href="job-details.html">Frontend Developer</a>
-                                                    </h5>
-                                                    <div className="mt-0">
-                                                        <span className="card-briefcase">Fulltime</span>
-                                                        <span className="card-time">
-                                                            <span>8</span>
-                                                            <span> mins ago</span>
-                                                        </span>
-                                                    </div>
-                                                    <div className="mt-5">
-                                                        <div className="row">
-                                                            <div className="col-6">
-                                                                <h6 className="card-price">
-                                                                    $650<span>/Hour</span>
-                                                                </h6>
-                                                            </div>
-                                                            <div className="col-6 text-end">
-                                                                <span className="card-briefcase">Hanoi, Vietnam</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
+                                            </li>
+                                        ))}
                                     </ul>
                                 </div>
                             </div>
