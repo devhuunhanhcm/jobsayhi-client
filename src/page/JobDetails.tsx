@@ -398,7 +398,7 @@ const JobDetails: React.FC = () => {
                                 <div className="sidebar-list-job">
                                     <ul className="relate-job">
                                         {relateJobs.map((j) => (
-                                            <li>
+                                            <li key={j.id}>
                                                 <div className="card-list-4 wow animate__animated animate__fadeIn hover-up">
                                                     <div className="image">
                                                         <a href="job-details.html">

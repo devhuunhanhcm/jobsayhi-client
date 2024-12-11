@@ -12,6 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import { loading, unLoading } from '@/redux/Slice/LoadingSlice';
 import toast from 'react-hot-toast';
 import { BiCategory } from 'react-icons/bi';
+import { POSITIONS } from '@/components/model/Job';
 
 interface Category {
     id: string;
@@ -27,14 +28,6 @@ interface CategoryResponse {
     timestamp: string;
 }
 
-const POSITIONS = [
-    { value: 'FRESHER', label: 'Fresher' },
-    { value: 'JUNIOR', label: 'Junior' },
-    { value: 'MIDDLE', label: 'Middle' },
-    { value: 'SENIOR', label: 'Senior' },
-    { value: 'LEAD', label: 'Lead' },
-    { value: 'EXPERT', label: 'Expert' },
-];
 const STATUS = [
     { value: 'OPEN', label: 'Mở đăng ký' },
     { value: 'CLOSED', label: 'Đóng đăng ký' },

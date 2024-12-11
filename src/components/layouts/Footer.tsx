@@ -1,6 +1,6 @@
 function Footer() {
     return (
-        <footer className="footer mt-50">
+        <footer className="footer mt-50 border-top pt-50">
             <div className="container">
                 <div className="row">
                     <div className="footer-col-1 col-md-3 col-sm-12">
@@ -91,20 +91,6 @@ function Footer() {
                     <div className="footer-col-6 col-md-3 col-sm-12">
                         <h6 className="mb-20">Download App</h6>
                         <p className="color-text-paragraph-2 font-xs">Comming soon!</p>
-                        <div className="mt-15">
-                            <a className="mr-5" href="#">
-                                <img
-                                    src={`${import.meta.env.VITE_PUBLIC_URL}/assets/imgs/template/icons/app-store.png`}
-                                    alt="joxBox"
-                                />
-                            </a>
-                            <a href="#">
-                                <img
-                                    src={`${import.meta.env.VITE_PUBLIC_URL}/assets/imgs/template/icons/android.png`}
-                                    alt="joxBox"
-                                />
-                            </a>
-                        </div>
                     </div>
                 </div>
                 <div className="footer-bottom mt-50">

@@ -34,8 +34,6 @@ export default function NotificationDropdown() {
     const stompClientRef = useRef<Client | null>(null);
     const userId = useAppSelector((state) => state.user.id);
 
-    console.log(state.notifications);
-
     useEffect(() => {
         const connectWebSocket = () => {
             try {

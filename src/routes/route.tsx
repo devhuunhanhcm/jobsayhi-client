@@ -26,8 +26,10 @@ import {
     AdminCompany,
     SearchByCVResult,
     AuthCallback,
+    CompanyDetails,
 } from '../page';
 import AdminLayout from '@/components/layouts/AdminLayout';
+import Company from '@/page/Company';
 
 // Utility function to create recruiter route config
 const createRecruiterRoute = (path: string, component: React.ComponentType) => ({
@@ -49,11 +51,15 @@ const publicPages = [
     { path: '/login', component: Login },
     { path: '/auth/google/callback', component: AuthCallback },
     { path: '/register', component: Registration },
+    { path: '/company', component: Company },
+    { path: '/company-details/:companyId', component: CompanyDetails },
     { path: '/reset-password', component: ResetPassword },
     { path: '/job-details/:jobId', component: JobDetails },
     { path: '/jobs', component: Jobs },
     { path: '/blog', component: Blog },
     { path: '/find', component: FindJob },
+    { path: '/candidates', component: Candidates },
+    { path: '/reset-password', component: ResetPassword },
     { path: '/upload', component: UploadFile, roles: ['ROLE_USER', 'ROLE_ADMIN'] },
     { path: '/profile', component: Profile },
     { path: '/my-cv', component: MyCV, roles: ['ROLE_USER', 'ROLE_ADMIN'] },

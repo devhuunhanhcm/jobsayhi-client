@@ -26,7 +26,7 @@ function Home() {
                                 <JobCard />
                             </div>
                             <div className="text-center">
-                                <a className="btn btn-brand-1 btn-icon-load hover-up" href="blog-grid.html">
+                                <a className="btn btn-brand-1 btn-icon-load hover-up" href="/find">
                                     Xem thêm
                                 </a>
                             </div>

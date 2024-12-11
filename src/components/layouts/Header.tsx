@@ -68,6 +68,14 @@ function Header() {
                                             </li>
                                         </ul>
                                     </li>
+                                    <li className="has-children">
+                                        <a href="/company">Nhà tuyển dụng</a>
+                                        <ul className="sub-menu">
+                                            <li>
+                                                <a href="/company">Nhà tuyển dụng mới nhất</a>
+                                            </li>
+                                        </ul>
+                                    </li>
                                     {currentRole.length > 0 && currentRole === 'ROLE_COMPANY' ? (
                                         <li className="has-children">
                                             <a href="/recruiter">Tuyển Dụng</a>
@@ -81,10 +89,10 @@ function Header() {
                                         ''
                                     )}
                                     <li className="has-children">
-                                        <a href="candidates-grid.html">Ứng viên</a>
+                                        <a href="/candidates">Ứng viên</a>
                                         <ul className="sub-menu">
                                             <li>
-                                                <a href="candidates-grid.html">Ứng viên</a>
+                                                <a href="/candidates">Ứng viên</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -215,10 +223,10 @@ function Header() {
                                         )}
 
                                         <li className="has-children">
-                                            <a href="candidates-grid.html">Ứng viên</a>
+                                            <a href="/candidates">Ứng viên</a>
                                             <ul className="sub-menu">
                                                 <li>
-                                                    <a href="candidates-grid.html">Top những ứng viên</a>
+                                                    <a href="/candidates">Top những ứng viên</a>
                                                 </li>
                                             </ul>
                                         </li>
