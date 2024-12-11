@@ -11,7 +11,7 @@ const DashboardDataService = {
             });
             return response.data;
         } catch (error) {
-            console.error('Error fetching dashboard data:', error);
+            console.error('Lỗi khi lấy dữ liệu bảng điều khiển:', error);
             throw error;
         }
     },
@@ -31,8 +31,8 @@ const DashboardDataService = {
             link.click();
             link.remove();
         } catch (error) {
-            console.error('PDF Export failed:', error);
-            alert('Failed to export PDF');
+            console.error('Xuất PDF thất bại:', error);
+            alert('Xuất PDF thất bại');
         }
     },
 
@@ -51,8 +51,8 @@ const DashboardDataService = {
             link.click();
             link.remove();
         } catch (error) {
-            console.error('Excel Export failed:', error);
-            alert('Failed to export Excel');
+            console.error('Xuất Excel thất bại:', error);
+            alert('Xuất Excel thất bại');
         }
     },
 };

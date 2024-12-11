@@ -122,7 +122,7 @@ const JobEdit: React.FC = () => {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const response = await axios.get<CategoryResponse>('http://localhost:8080/api/v1/category');
+                const response = await axios.get<CategoryResponse>(`${import.meta.env.VITE_API_URL}/category`);
                 const categoryOptions: SelectOption[] = response.data.content.map((category) => ({
                     value: category.id,
                     label: category.name,

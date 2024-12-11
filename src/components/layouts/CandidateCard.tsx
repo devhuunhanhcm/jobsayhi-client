@@ -14,7 +14,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({ candidate }) => {
                     <div className="card-grid-2-image-rd online">
                         <a href="candidate-details.html">
                             <figure>
-                                <img alt="jobBox" src="https://placehold.co/100" />
+                                <img alt="jobBox" src={candidate?.avatarUrl || 'https://placehold.co/100'} />
                             </figure>
                         </a>
                     </div>

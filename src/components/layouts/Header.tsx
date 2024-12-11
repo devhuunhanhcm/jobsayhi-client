@@ -147,7 +147,13 @@ function Header() {
                                         <NavDropdown
                                             title={
                                                 <div className="d-inline-flex align-items-center">
-                                                    <PersonCircle size={20} className="me-2" />
+                                                    <img
+                                                        src={userInfo.avatar || 'https://placehold.co/20'}
+                                                        alt="avatar"
+                                                        className="rounded-circle me-2"
+                                                        width={20}
+                                                        height={20}
+                                                    />
                                                     {userInfo.username}
                                                 </div>
                                             }

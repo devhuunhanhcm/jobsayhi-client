@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { useAppDispatch } from '@/redux/hooks';
 import axios from 'axios';
 import { loading, unLoading } from '@/redux/Slice/LoadingSlice';
 import Pagination from 'rc-pagination';
 import TextBanner from '@/components/layouts/TextBanner';
 import { itemRender } from './FindJob';
+import { CiSearch } from 'react-icons/ci';
 
 export interface CompanyDto {
     id: string;
@@ -46,7 +46,6 @@ const Company: React.FC = () => {
         limit: 10,
         orderBy: 'establishDate:desc',
     });
-    const userId = useAppSelector((state) => state.user.id);
     const [statusFilter, setStatusFilter] = useState<boolean | null>(false);
 
     const dispatch = useAppDispatch();
@@ -70,13 +69,11 @@ const Company: React.FC = () => {
     };
 
     useEffect(() => {
-        if (userId) {
-            const delayDebounceFn = setTimeout(() => {
-                fetchCompany();
-            }, 300);
-            return () => clearTimeout(delayDebounceFn);
-        }
-    }, [userId, currentPage, searchTerm, statusFilter, companies.orderBy]);
+        const delayDebounceFn = setTimeout(() => {
+            fetchCompany();
+        }, 300);
+        return () => clearTimeout(delayDebounceFn);
+    }, [currentPage, searchTerm, statusFilter, companies.orderBy]);
 
     const fetchCompany = async () => {
         try {
@@ -130,6 +127,20 @@ const Company: React.FC = () => {
                     <div className="row flex-row-reverse">
                         <div className="col col-md-12 col-sm-12 col-12 float-right">
                             <div className="content-page">
+                                <div className="row mb-4">
+                                    <div className="col-12">
+                                        <div className="d-flex align-items-center">
+                                            <CiSearch size={30} className="mr-10" />
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                placeholder="Tìm kiếm công ty..."
+                                                value={searchTerm}
+                                                onChange={handleSearch}
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
                                 <div className="row">
                                     {companies.data.length > 0
                                         ? companies.data.map((c, i) => (
@@ -137,7 +148,10 @@ const Company: React.FC = () => {
                                                   <div className="company-card card-grid-1 hover-up wow animate__animated animate__fadeIn">
                                                       <div className="image-box">
                                                           <a href={`/company-details/${c.id}`}>
-                                                              <img src={c.avatarUrl} alt="jobBox" />
+                                                              <img
+                                                                  src={c.avatarUrl || 'https://placehold.co/80'}
+                                                                  alt="jobBox"
+                                                              />
                                                           </a>
                                                       </div>
                                                       <div className="info-text mt-10">
@@ -187,19 +201,21 @@ const Company: React.FC = () => {
                                           ))
                                         : 'Hiện tại chưa có công ty nào.'}
                                 </div>
-                                <div className="d-flex justify-content-center mt-4">
-                                    <Pagination
-                                        current={currentPage}
-                                        total={companies.total}
-                                        pageSize={companies.limit}
-                                        onChange={handlePageChange}
-                                        showSizeChanger
-                                        itemRender={itemRender}
-                                        showTotal={(total, range) =>
-                                            `Hiển thị ${range[0]}-${range[1]} trên ${total} công ty`
-                                        }
-                                    />
-                                </div>
+                                {companies.total > companies.limit && (
+                                    <div className="d-flex justify-content-center mt-4">
+                                        <Pagination
+                                            current={currentPage}
+                                            total={companies.total}
+                                            pageSize={companies.limit}
+                                            onChange={handlePageChange}
+                                            showSizeChanger
+                                            itemRender={itemRender}
+                                            showTotal={(total, range) =>
+                                                `Hiển thị ${range[0]}-${range[1]} trên ${total} công ty`
+                                            }
+                                        />
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>

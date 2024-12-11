@@ -113,12 +113,23 @@ const Profile: React.FC = () => {
                                         <div className="mt-35 mb-40 box-info-profie">
                                             <div className="image-profile">
                                                 <img
-                                                    src="assets/imgs/page/candidates/candidate-profile.png"
+                                                    src={
+                                                        profileData.avatar ||
+                                                        'assets/imgs/page/candidates/candidate-profile.png'
+                                                    }
                                                     alt="jobbox"
                                                 />
                                             </div>
-                                            <a className="btn btn-apply">Tải lên avatar</a>
-                                            <a className="btn btn-link">Xóa</a>
+                                        </div>
+                                        <div className="form-group">
+                                            <label className="font-sm color-text-mutted mb-10"> URL ảnh đại diện</label>
+                                            <input
+                                                className="form-control"
+                                                type="text"
+                                                name="avatar"
+                                                value={profileData.avatar}
+                                                onChange={handleInputChange}
+                                            />
                                         </div>
                                         <div className="row form-contact">
                                             <div className="col-lg-6 col-md-12">
@@ -170,7 +181,7 @@ const Profile: React.FC = () => {
                                                         className="btn btn-apply-big font-md font-bold"
                                                         onClick={handleSubmit}
                                                     >
-                                                        Save All Changes
+                                                        Lưu tất cả thay đổi
                                                     </button>
                                                 </div>
                                             </div>
@@ -182,7 +193,7 @@ const Profile: React.FC = () => {
                                         role="tabpanel"
                                         aria-labelledby="tab-my-jobs"
                                     >
-                                        <h3 className="mt-0 color-brand-1 mb-50">My Jobs</h3>
+                                        <h3 className="mt-0 color-brand-1 mb-50">Công việc của tôi</h3>
                                         <div className="row display-list">
                                             <div className="col-xl-12 col-12">
                                                 <div className="card-grid-2 hover-up">

@@ -75,12 +75,11 @@
     position: relative;
 }
 .image-compay {
-    position: absolute;
-    top: -80px;
-    left: 0px;
     img {
-        width: 100%;
+        width: 100px;
+        height: 100px;
         border-radius: 16px;
+        object-fit: contain;
     }
 }
 .aboutus-icon {

@@ -36,12 +36,12 @@ export const register = async (data: RegisterDTO) => {
         await axios.post(`${import.meta.env.VITE_API_URL}/auth/register`, data);
         store.dispatch(unLoading());
         store.dispatch(registerSuccess());
-        toast.success('Register successfully, Login now!');
+        toast.success('Đăng ký thành công, Đăng nhập ngay!');
         return true;
     } catch (error: any) {
         store.dispatch(unLoading());
         store.dispatch(registerFailed(error.response.data.errors));
-        toast.success('Register failed!');
+        toast.success('Đăng ký thất bại!');
         return false;
     }
 };
@@ -49,9 +49,9 @@ export const logout = async () => {
     try {
         await axiosInstance.post(`${import.meta.env.VITE_API_URL}/auth/logout`);
         store.dispatch(logoutSuccess());
-        toast.success('Logout successfully!');
+        toast.success('Đăng xuất thành công!');
     } catch (error: any) {
         console.log(error);
-        toast.error('Something wrong!');
+        toast.error('Có lỗi xảy ra!');
     }
 };

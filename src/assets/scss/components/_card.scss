@@ -70,6 +70,11 @@
     a {
         text-decoration: none;
         color: $color-black-1;
+        text-overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
         &:hover {
             color: $color-brand-2;
         }
@@ -131,6 +136,8 @@
             .card-text-price {
                 font-size: 16px;
                 line-height: 26px;
+                margin-top: 10px;
+                display: inline-block;
             }
         }
     }
@@ -757,11 +764,13 @@ ul {
 }
 .card-location {
     font-size: 12px !important;
-    text-align: justify;
     line-height: 1.6;
-    height: 70px;
     text-overflow: ellipsis;
     overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    height: 40px;
 }
 .company-avatar {
     object-fit: contain;

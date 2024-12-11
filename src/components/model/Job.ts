@@ -20,6 +20,7 @@ export interface Job {
 }
 
 export interface CompanyReview {
+    id: string;
     name: string;
     avatarUrl: string;
     address: string;
