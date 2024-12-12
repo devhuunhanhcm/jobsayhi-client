@@ -188,7 +188,16 @@ const AdminUsers: React.FC = () => {
                                     <td>{user.id}</td>
                                     <td>
                                         <div className="d-flex aligns-item-center h-100">
-                                            {user.avatar || <Image src="https://placehold.co/50" rounded />}
+                                            {user.avatar ? (
+                                                <Image src={user.avatar} roundedCircle width={50} height={50} />
+                                            ) : (
+                                                <Image
+                                                    src="https://placehold.co/50"
+                                                    roundedCircle
+                                                    width={50}
+                                                    height={50}
+                                                />
+                                            )}
                                         </div>
                                     </td>
                                     <td>{user.username}</td>
@@ -253,7 +262,11 @@ const AdminUsers: React.FC = () => {
                         <div>
                             <p>
                                 <strong>Avatar:</strong>{' '}
-                                {selectedUser.avatar || <Image src="https://placehold.co/100" />}
+                                {selectedUser.avatar ? (
+                                    <Image src={selectedUser.avatar} />
+                                ) : (
+                                    <Image src="https://placehold.co/100" />
+                                )}
                             </p>
                             <p>
                                 <strong>Username:</strong> {selectedUser.username}

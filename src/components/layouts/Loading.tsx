@@ -8,7 +8,7 @@ function Loading() {
                             <img
                                 src={`${
                                     import.meta.env.VITE_PUBLIC_URL
-                                }/public/assets/imgs/template/meow-loading-unscreen.gif`}
+                                }/assets/imgs/template/meow-loading-unscreen.gif`}
                                 alt="jobBox"
                             />
                         </div>

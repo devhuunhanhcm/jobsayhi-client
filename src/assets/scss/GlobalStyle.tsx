@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+import 'rc-pagination/assets/index.css';
 import './style.scss';
 import React, { ReactNode } from 'react';
 

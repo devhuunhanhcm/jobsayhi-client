@@ -27,7 +27,7 @@
     font-size: $font-xs;
     color: $color-text-mutted;
     display: inline-block;
-    padding: 0px 15px 0px 15px;
+    padding-left: 15px;
     background: url(../assets/imgs/template/icons/briefcase.svg) no-repeat 0px 6px;
 }
 
@@ -70,6 +70,11 @@
     a {
         text-decoration: none;
         color: $color-black-1;
+        text-overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
         &:hover {
             color: $color-brand-2;
         }
@@ -131,6 +136,8 @@
             .card-text-price {
                 font-size: 16px;
                 line-height: 26px;
+                margin-top: 10px;
+                display: inline-block;
             }
         }
     }
@@ -155,6 +162,13 @@
         display: inline-block;
         width: 100%;
         padding: 5px 10px 20px 10px;
+        & div:has(.card-briefcase) {
+            margin-top: 5px;
+            height: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
         .card-2-img-text {
             display: inline-block;
             vertical-align: middle;
@@ -757,14 +771,25 @@ ul {
 }
 .card-location {
     font-size: 12px !important;
-    text-align: justify;
     line-height: 1.6;
-    height: 70px;
     text-overflow: ellipsis;
     overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    height: 40px;
 }
 .company-avatar {
     object-fit: contain;
     width: 50px !important;
     height: 50px !important;
+}
+
+.relate-job {
+    & li img {
+        width: 50px;
+        height: 50px;
+        border-radius: 6px;
+        object-fit: contain;
+    }
 }

@@ -20,6 +20,7 @@ export interface Job {
 }
 
 export interface CompanyReview {
+    id: string;
     name: string;
     avatarUrl: string;
     address: string;
@@ -41,3 +42,40 @@ export interface JobReview {
     createAt: string;
     similarityScore?: number;
 }
+
+export const POSITIONS = [
+    { value: 'FRESHER', label: 'Fresher' },
+    { value: 'JUNIOR', label: 'Junior' },
+    { value: 'MIDDLE', label: 'Middle' },
+    { value: 'SENIOR', label: 'Senior' },
+    { value: 'LEAD', label: 'Lead' },
+    { value: 'EXPERT', label: 'Expert' },
+    { value: 'INTERN', label: 'Intern' },
+    { value: 'MANAGER', label: 'Manager' },
+    { value: 'ARCHITECT', label: 'Architect' },
+    { value: 'DEVELOPER', label: 'Developer' },
+    { value: 'ENGINEER', label: 'Engineer' },
+    { value: 'TESTER', label: 'Tester' },
+    { value: 'ANALYST', label: 'Analyst' },
+    { value: 'CONSULTANT', label: 'Consultant' },
+    { value: 'SPECIALIST', label: 'Specialist' },
+    { value: 'COORDINATOR', label: 'Coordinator' },
+    { value: 'ADMINISTRATOR', label: 'Administrator' },
+    { value: 'TECHNICIAN', label: 'Technician' },
+    { value: 'DIRECTOR', label: 'Director' },
+    { value: 'CHIEF', label: 'Chief' },
+    { value: 'OFFICER', label: 'Officer' },
+    { value: 'PRODUCT_OWNER', label: 'Product Owner' },
+    { value: 'SCRUM_MASTER', label: 'Scrum Master' },
+    { value: 'SUPPORT', label: 'Support' },
+    { value: 'TRAINER', label: 'Trainer' },
+    { value: 'ADVISOR', label: 'Advisor' },
+    { value: 'FULLSTACK', label: 'Fullstack' },
+    { value: 'FRONTEND', label: 'Frontend' },
+    { value: 'BACKEND', label: 'Backend' },
+    { value: 'QA', label: 'QA' },
+    { value: 'DEVOPS', label: 'DevOps' },
+    { value: 'DATA_SCIENTIST', label: 'Data Scientist' },
+    { value: 'MACHINE_LEARNING_ENGINEER', label: 'Machine Learning Engineer' },
+    { value: 'AI_ENGINEER', label: 'AI Engineer' },
+];

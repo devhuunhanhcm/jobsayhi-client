@@ -87,7 +87,7 @@
 
 .box-newsletter {
     padding: 57px 0px 96px 0px;
-    background: url(../imgs/template/bg-newsletter.svg) no-repeat 0px 0px;
+    background: url(../assets/imgs/template/bg-newsletter.svg) no-repeat 0px 0px;
     background-size: cover;
     border-radius: 16px;
     .box-form-newsletter {
@@ -103,7 +103,7 @@
                 padding: 15px;
                 border: 0px;
                 min-height: 60px;
-                background-image: url(../imgs/template/email.svg);
+                background-image: url(../assets/imgs/template/email.svg);
                 background-repeat: no-repeat;
                 background-position: left 17px center;
                 padding-left: 60px;
@@ -116,7 +116,7 @@
     }
     .icon-send-letter {
         position: relative;
-        background-image: url(../imgs/template/icons/apply.svg);
+        background-image: url(../assets/imgs/template/icons/apply.svg);
         background-repeat: no-repeat;
         background-position: left 17px center;
         padding-left: 45px;
@@ -196,7 +196,7 @@
 
             &.checked {
                 &:before {
-                    background: url(../imgs/template/icons/star.svg) no-repeat;
+                    background: url(../assets/imgs/template/icons/star.svg) no-repeat;
                 }
             }
         }
@@ -205,7 +205,7 @@
         &:checked {
             & ~ label {
                 &:before {
-                    background: url(../imgs/template/icons/star.svg) no-repeat;
+                    background: url(../assets/imgs/template/icons/star.svg) no-repeat;
                 }
             }
         }
@@ -221,7 +221,7 @@
 }
 .breacrumb-cover {
     background-color: $background-5;
-    background-image: url(../imgs/page/blog/bg-breadcrumb.png);
+    background-image: url(../assets/imgs/page/blog/bg-breadcrumb.png);
     background-position: top center;
     padding: 50px 0;
 }
@@ -243,7 +243,7 @@
             left: 4px;
             width: 12px;
             height: 12px;
-            background: url(../imgs/template/icons/arrow-breadcrumb.svg) no-repeat center;
+            background: url(../assets/imgs/template/icons/arrow-breadcrumb.svg) no-repeat center;
         }
         a {
             font-size: $font-sm;
@@ -266,7 +266,7 @@
         }
     }
     .home-icon {
-        background: url(../imgs/page/blog/home.svg) no-repeat;
+        background: url(../assets/imgs/page/blog/home.svg) no-repeat;
         padding: 0px 0px 0px 20px;
     }
 }

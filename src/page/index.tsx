@@ -22,6 +22,7 @@ export { default as AdminJobs } from './AdminJobs';
 export { default as AdminUsers } from './AdminUsers';
 export { default as AdminRecruiters } from './AdminRecruiters';
 export { default as AdminCompany } from './AdminCompany';
+export { default as CompanyDetails } from './CompanyDetails';
 export { default as Blog } from './Blog';
 
 export { default as AuthCallback } from './AuthCallback';

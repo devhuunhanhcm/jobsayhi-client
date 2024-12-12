@@ -53,7 +53,7 @@ function JobCard() {
                                                                 ? job.company.avatarUrl
                                                                 : `${
                                                                       import.meta.env.VITE_PUBLIC_URL
-                                                                  }/public/assets/imgs/avatar/default-logo-company.svg`
+                                                                  }/assets/imgs/avatar/default-logo-company.svg`
                                                         }
                                                         alt="jobsayhi"
                                                     />

@@ -34,12 +34,10 @@ export default function NotificationDropdown() {
     const stompClientRef = useRef<Client | null>(null);
     const userId = useAppSelector((state) => state.user.id);
 
-    console.log(state.notifications);
-
     useEffect(() => {
         const connectWebSocket = () => {
             try {
-                const socket = new SockJS(`http://localhost:8080/ws`);
+                const socket = new SockJS(`${import.meta.env.VITE_WEBSOCKET_URL}`);
                 const client = new Client({
                     webSocketFactory: () => socket,
                     debug: console.log,

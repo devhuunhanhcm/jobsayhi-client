@@ -1,5 +1,4 @@
-.box-list-character
-{
+.box-list-character {
     background: $background-white;
     border: 1px solid $color-border-2;
     border-radius: 8px;
@@ -9,19 +8,16 @@
     max-width: 90%;
     margin: 30px auto auto auto;
     width: 100%;
-    ul
-    {
+    ul {
         display: flex;
         padding: 0px;
         list-style: none;
         margin: 0px;
-        li
-        {
+        li {
             display: inline-block;
             width: 100%;
             text-align: center;
-            a
-            {
+            a {
                 font-size: $font-md;
                 line-height: 28px;
                 color: $color-text-paragraph;
@@ -30,8 +26,8 @@
                 width: 28px;
                 max-width: 28px;
                 height: 28px;
-                &:hover, &.active
-                {
+                &:hover,
+                &.active {
                     background-color: $color-border-2;
                     border-radius: 50%;
                     text-align: center;
@@ -41,15 +37,13 @@
         }
     }
 }
-.sidebar-border-bg
-{
+.sidebar-border-bg {
     border: 1px solid $color-border-2;
     background: $background-7 url(../imgs/page/company/bg-hiring.svg) no-repeat bottom left;
     padding: 30px 40px 260px 40px;
     border-radius: 4px;
     margin-bottom: 40px;
-    .text-grey
-    {
+    .text-grey {
         color: $color-border-1;
         font-size: 24px;
         line-height: 37px;
@@ -57,8 +51,7 @@
         text-transform: uppercase;
         display: block;
     }
-    .text-hiring
-    {
+    .text-hiring {
         color: $color-text-paragraph-2;
         font-size: 36px;
         font-weight: 800;
@@ -69,12 +62,10 @@
         margin-top: -15px;
     }
 }
-.bg-right
-{
+.bg-right {
     background: $background-7 url(../imgs/page/company/bg-hiring-right.svg) no-repeat bottom right;
 }
-.box-company-profile
-{
+.box-company-profile {
     max-width: 90%;
     display: table;
     table-layout: fixed;
@@ -83,62 +74,72 @@
     padding: 20px 0px 0px 0px;
     position: relative;
 }
-.image-compay
-{
-    position: absolute;
-    top: -80px;
-    left: 0px;
-    img
-    {
-        width: 100%;
+.image-compay {
+    img {
+        width: 100px;
+        height: 100px;
         border-radius: 16px;
+        object-fit: contain;
     }
 }
-.aboutus-icon
-{
+.aboutus-icon {
     background-image: url(../imgs/page/company/icon-about.svg);
     background-position: 17px 14px;
     background-repeat: no-repeat;
     font-weight: 500;
     padding-left: 45px;
     border-color: $color-border-3;
-    &:hover, &.active
-    {
+    &:hover,
+    &.active {
         color: $color-brand;
         background-image: url(../imgs/page/company/icon-about-hover.svg);
         background-color: $background-white;
         border-color: $color-border-1;
     }
 }
-.recruitment-icon
-{
+.recruitment-icon {
     background-image: url(../imgs/page/company/icon-recruitment.svg);
     background-position: 17px 14px;
     background-repeat: no-repeat;
     font-weight: 500;
     padding-left: 45px;
     border-color: $color-border-3;
-    &:hover, &.active
-    {
+    &:hover,
+    &.active {
         color: $color-brand;
         background-image: url(../imgs/page/company/icon-recruitment-hover.svg);
         background-color: $background-white;
         border-color: $color-border-1;
     }
 }
-.people-icon
-{
+.people-icon {
     background-image: url(../imgs/page/company/icon-people.svg);
     background-position: 17px 14px;
     background-repeat: no-repeat;
     font-weight: 500;
     padding-left: 45px;
     border-color: $color-border-3;
-    &:hover, &.active
-    {
+    &:hover,
+    &.active {
         color: $color-brand;
         background-image: url(../imgs/page/company/icon-people-hover.svg);
         background-color: $background-white;
         border-color: $color-border-1;
+    }
+}
+.company-card {
+    & .image-box a {
+    }
+    & .image-box a img {
+        width: 80px;
+        height: 80px;
+        object-fit: contain;
+    }
+    & .card-location {
+        height: 70px;
+    }
+    & .font-bold {
+        height: 52px;
+        overflow: hidden;
     }
 }

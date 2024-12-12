@@ -60,7 +60,9 @@ const SearchByCVResult: React.FC<SearchByCVResultProps> = () => {
                     response = await axios.post(
                         `${import.meta.env.VITE_API_AI_URL}/recommend/drive-url-file`,
                         { file_url: existingFileUrl },
-                        { params },
+                        {
+                            headers: { 'Content-Type': 'multipart/form-data' },
+                        },
                     );
                 }
 

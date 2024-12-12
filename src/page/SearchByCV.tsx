@@ -10,6 +10,7 @@ import LoadingSearch from '@/components/layouts/LoadingSearch';
 import { LuHardDriveUpload } from 'react-icons/lu';
 import { setJobsAction } from '@/redux/Slice/RecommendationsSlice';
 import { useNavigate } from 'react-router-dom';
+import TextBanner from '@/components/layouts/TextBanner';
 
 interface CVFile {
     id: string;
@@ -48,7 +49,7 @@ const SearchByCV: React.FC = () => {
             const response = await axiosInstance.get<{
                 hasErrors: boolean;
                 content: CVFile[];
-            }>('http://localhost:8080/api/v1/files');
+            }>(`${import.meta.env.VITE_API_URL}/files`);
             setCvFiles(response.data.content || []);
         } catch (err) {
             console.error('Error fetching CV files:', err);
@@ -79,53 +80,60 @@ const SearchByCV: React.FC = () => {
             return;
         }
 
-        setError(null);
-        setIsLoading(true);
-        try {
-            let response;
+        navigate('/search-by-cv/result', {
+            state: {
+                file: uploadedFile,
+                existingFileUrl: selectedExistingFile?.url,
+            },
+        });
 
-            if (uploadedFile) {
-                // Handle newly uploaded file
-                const formData = new FormData();
-                formData.append('cv', uploadedFile);
-                response = await axios.post(`${import.meta.env.VITE_API_AI_URL}/recommend/file`, formData, {
-                    headers: { 'Content-Type': 'multipart/form-data' },
-                });
-            } else if (selectedExistingFile) {
-                response = await axios.post(
-                    `${import.meta.env.VITE_API_AI_URL}/recommend/drive-url-file`,
-                    { file_url: selectedExistingFile.url },
-                    {
-                        headers: { 'Content-Type': 'multipart/form-data' },
-                    },
-                );
-            }
+        // setError(null);
+        // setIsLoading(true);
+        // try {
+        //     let response;
 
-            if (response?.data.status === 'success') {
-                const data = response.data;
-                const jobPaging = {
-                    data: data.data,
-                    total: data.totalItems,
-                    page: data.currentPage,
-                    limit: 5,
-                };
-                console.log(jobPaging);
+        //     if (uploadedFile) {
+        //         // Handle newly uploaded file
+        //         const formData = new FormData();
+        //         formData.append('cv', uploadedFile);
+        //         response = await axios.post(`${import.meta.env.VITE_API_AI_URL}/recommend/file`, formData, {
+        //             headers: { 'Content-Type': 'multipart/form-data' },
+        //         });
+        //     } else if (selectedExistingFile) {
+        //         response = await axios.post(
+        //             `${import.meta.env.VITE_API_AI_URL}/recommend/drive-url-file`,
+        //             { file_url: selectedExistingFile.url },
+        //             {
+        //                 headers: { 'Content-Type': 'multipart/form-data' },
+        //             },
+        //         );
+        //     }
 
-                dispatch(setJobsAction(jobPaging));
-                navigate('/search-by-cv/result', {
-                    state: {
-                        file: uploadedFile,
-                        existingFileUrl: selectedExistingFile?.url,
-                    },
-                });
-            }
-        } catch (err) {
-            console.error('Error getting recommendations:', err);
-            setError('Failed to get job recommendations');
-            toast.error('Xử lý gợi ý thất bại. Hãy thử lại sau.');
-        } finally {
-            setIsLoading(false);
-        }
+        //     if (response?.data.status === 'success') {
+        //         const data = response.data;
+        //         const jobPaging = {
+        //             data: data.data,
+        //             total: data.totalItems,
+        //             page: data.currentPage,
+        //             limit: 5,
+        //         };
+        //         console.log(jobPaging);
+
+        //         dispatch(setJobsAction(jobPaging));
+        //         navigate('/search-by-cv/result', {
+        //             state: {
+        //                 file: uploadedFile,
+        //                 existingFileUrl: selectedExistingFile?.url,
+        //             },
+        //         });
+        //     }
+        // } catch (err) {
+        //     console.error('Error getting recommendations:', err);
+        //     setError('Failed to get job recommendations');
+        //     toast.error('Xử lý gợi ý thất bại. Hãy thử lại sau.');
+        // } finally {
+        //     setIsLoading(false);
+        // }
     };
 
     return (
@@ -133,7 +141,13 @@ const SearchByCV: React.FC = () => {
             {isLoading ? <LoadingSearch /> : ''}
 
             <Container className="mt-4">
-                <div className="d-flex flex-column align-items-center flex-shrink-0">
+                <TextBanner
+                    title="Tìm kiếm công việc bằng CV của bạn!"
+                    desc="Tìm kiếm thông tin công việc mới nhất và phù hợp nhất đối với cv của bạn"
+                    subDesc="Công việc dựa theo độ tương tự cv của bạn và bài đăng của các nhà tuyển dụng. Tìm việc ngay nhé !!"
+                    bgImage="/assets/imgs/banner/banner-search.jpg"
+                />
+                <div className="d-flex flex-column align-items-center flex-shrink-0 mt-20">
                     <h5 className="mb-20">Chọn file CV để gợi ý công việc</h5>
                     {error && <div className="alert alert-danger">{error}</div>}
                     <div>

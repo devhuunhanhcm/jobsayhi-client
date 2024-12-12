@@ -1,0 +1,19 @@
+.dashboard-date-picker {
+    display: flex;
+    margin-bottom: 30px;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+    & input {
+        border-radius: 8px;
+        cursor: pointer;
+        width: 100px;
+        padding: 5px 10px;
+    }
+    & span {
+        margin: 0 -10px;
+    }
+    & strong {
+        margin-right: -10px;
+    }
+}

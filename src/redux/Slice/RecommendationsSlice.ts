@@ -1,6 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import store from '../store';
-import { logoutInfo } from './UserSlice';
 import { JobReview } from '@/components/model/Job';
 
 export interface iJobsPagination {

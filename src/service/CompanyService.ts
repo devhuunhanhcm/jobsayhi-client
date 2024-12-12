@@ -25,6 +25,17 @@ export const getCompanyProfile = async (userId: string) => {
         return null;
     }
 };
+export const getCompanyDetails = async (companyId: string) => {
+    try {
+        store.dispatch(loading());
+        const response = await axiosInstance.get(`${import.meta.env.VITE_API_URL}/company/details/${companyId}`);
+        store.dispatch(unLoading());
+        return response.data.content;
+    } catch (error: any) {
+        store.dispatch(unLoading());
+        return null;
+    }
+};
 export const updateCompanyProfile = async (userId: string, dto: ICompanyProfileDTO) => {
     try {
         store.dispatch(loading());

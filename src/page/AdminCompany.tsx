@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Table, Button, Badge, Dropdown, Card, Modal, InputGroup, Form, Image } from 'react-bootstrap';
-import { Eye, Pencil, Trash, Filter, SortNumericDown, SortNumericUp, Search } from 'react-bootstrap-icons';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { Eye, Pencil, Filter, SortNumericDown, SortNumericUp, Search } from 'react-bootstrap-icons';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import axios from 'axios';
 import { loading, unLoading } from '@/redux/Slice/LoadingSlice';
 import { IoReload } from 'react-icons/io5';
-import toast from 'react-hot-toast';
 import { itemRender } from './FindJob';
 import Pagination from 'rc-pagination';
 import axiosInstance from '@/api/AxiosInstance';

@@ -68,6 +68,14 @@ function Header() {
                                             </li>
                                         </ul>
                                     </li>
+                                    <li className="has-children">
+                                        <a href="/company">Nhà tuyển dụng</a>
+                                        <ul className="sub-menu">
+                                            <li>
+                                                <a href="/company">Nhà tuyển dụng mới nhất</a>
+                                            </li>
+                                        </ul>
+                                    </li>
                                     {currentRole.length > 0 && currentRole === 'ROLE_COMPANY' ? (
                                         <li className="has-children">
                                             <a href="/recruiter">Tuyển Dụng</a>
@@ -80,14 +88,6 @@ function Header() {
                                     ) : (
                                         ''
                                     )}
-                                    <li className="has-children">
-                                        <a href="candidates-grid.html">Ứng viên</a>
-                                        <ul className="sub-menu">
-                                            <li>
-                                                <a href="candidates-grid.html">Ứng viên</a>
-                                            </li>
-                                        </ul>
-                                    </li>
 
                                     <li className="has-children">
                                         <a href="/blog">Blog</a>
@@ -133,13 +133,20 @@ function Header() {
                         </div>
                         <div className="header-right">
                             {isLoged && userInfo ? (
-                                <div className="container mt-5 d-flex">
+                                <div className="container mt-5 d-flex align-items-center">
                                     <NotificationDropdown />
                                     <div className="dropdown account-bar">
                                         <NavDropdown
                                             title={
                                                 <div className="d-inline-flex align-items-center">
-                                                    <PersonCircle size={20} className="me-2" />
+                                                    <img
+                                                        src={userInfo.avatar || 'https://placehold.co/20'}
+                                                        alt="avatar"
+                                                        className="rounded-circle me-2"
+                                                        width={40}
+                                                        height={40}
+                                                        style={{ objectFit: 'cover', flexShrink: 0 }}
+                                                    />
                                                     {userInfo.username}
                                                 </div>
                                             }
@@ -214,14 +221,6 @@ function Header() {
                                             ''
                                         )}
 
-                                        <li className="has-children">
-                                            <a href="candidates-grid.html">Ứng viên</a>
-                                            <ul className="sub-menu">
-                                                <li>
-                                                    <a href="candidates-grid.html">Top những ứng viên</a>
-                                                </li>
-                                            </ul>
-                                        </li>
                                         <li className="has-children">
                                             <a href="blog-grid.html">Blog</a>
                                             <ul className="sub-menu">

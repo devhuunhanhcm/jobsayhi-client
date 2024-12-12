@@ -1,11 +1,10 @@
 import JobCardGrid from '@/components/layouts/JobCardGrid';
-import { JobReview } from '@/components/model/Job';
+import { JobReview, POSITIONS } from '@/components/model/Job';
 import axios from 'axios';
 import Select from 'react-select';
 import { IoLocationOutline } from 'react-icons/io5';
 import { BiCategory } from 'react-icons/bi';
 import Pagination from 'rc-pagination';
-import 'rc-pagination/assets/index.css';
 import { useEffect, useRef, useState } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { useAppDispatch } from '@/redux/hooks';
@@ -39,6 +38,8 @@ interface SearchFormData {
     keyword: string;
     location: SelectOption | null;
     categoryName: SelectOption | null;
+    position: SelectOption | null;
+    experience: string | null;
 }
 
 interface SelectOption {
@@ -106,6 +107,8 @@ const FindJob: React.FC = () => {
         keyword: keyword,
         location: city.length > 0 ? { label: city, value: city } : null,
         categoryName: category.length > 0 ? { label: category, value: category } : null,
+        position: null,
+        experience: null,
     });
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [searchResults, setSearchResults] = useState<SearchResult>({
@@ -137,7 +140,7 @@ const FindJob: React.FC = () => {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const response = await axios.get<CategoryResponse>('http://localhost:8080/api/v1/category');
+                const response = await axios.get<CategoryResponse>(`${import.meta.env.VITE_API_URL}/category`);
                 setCategories(response.data.content);
             } catch (error) {
                 console.error('Error fetching categories:', error);
@@ -162,8 +165,11 @@ const FindJob: React.FC = () => {
     }, []);
 
     useEffect(() => {
-        handleSearch();
-    }, [currentPage]);
+        const delayDebounceFn = setTimeout(() => {
+            handleSearch();
+        }, 300);
+        return () => clearTimeout(delayDebounceFn);
+    }, [currentPage, formData]);
 
     const handleSearch = async (e?: React.FormEvent) => {
         e?.preventDefault();
@@ -172,17 +178,19 @@ const FindJob: React.FC = () => {
             ?.replace(/^Thành phố\s*/i, '')
             ?.replace(/^Tỉnh\s*/i, '')
             ?.trim();
-        console.log('rut gon location: ', normalizedLocation);
 
         try {
             dispatch(loading());
             const response = await axios.post(
-                `http://localhost:8080/api/v1/job/search?keyword=${formData.keyword}&limit=${searchResults.limit}&page=${searchResults.page}&order-by=title`,
+                `${import.meta.env.VITE_API_URL}/job/search?keyword=${formData.keyword}&limit=${
+                    searchResults.limit
+                }&page=${searchResults.page}&order-by=createAt`,
                 {
                     location: normalizedLocation || '',
-                    experience: null,
+                    experience: formData.experience || '',
                     categoryName: formData.categoryName?.value || '',
                     skills: [],
+                    position: formData.position?.value || null,
                 },
             );
             topRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -312,47 +320,69 @@ const FindJob: React.FC = () => {
                                 </div>
                             </div>
                         </div>
+                        {/* filter */}
                         <div className="col-lg-3 col-md-12 col-sm-12 col-12">
                             <div className="sidebar-shadow none-shadow mb-30">
                                 <div className="sidebar-filters">
                                     <div className="filter-block head-border mb-30">
-                                        <h5>
-                                            Bộ lọc nâng cao
-                                            <a className="link-reset" href="#">
-                                                Khôi phục
-                                            </a>
-                                        </h5>
+                                        <h5>Bộ lọc nâng cao</h5>
+                                    </div>
+                                    <div className="filter-block mb-30">
+                                        <h5 className="medium-heading mb-10">Thành phố</h5>
+                                        <div className="form-group">
+                                            <Select
+                                                value={formData.location}
+                                                onChange={(option) =>
+                                                    setFormData((prev) => ({ ...prev, location: option }))
+                                                }
+                                                options={locationOptions}
+                                                placeholder="Địa điểm"
+                                                isClearable
+                                                styles={customStyles}
+                                                className="mr-10"
+                                                components={{
+                                                    IndicatorSeparator: () => <IoLocationOutline />,
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="filter-block mb-30">
+                                        <h5 className="medium-heading mb-10">Danh mục</h5>
+                                        <div className="form-group">
+                                            <Select
+                                                value={formData.categoryName}
+                                                onChange={(option) =>
+                                                    setFormData((prev) => ({ ...prev, categoryName: option }))
+                                                }
+                                                options={categoryOptions}
+                                                placeholder="Danh mục"
+                                                isClearable
+                                                styles={customStyles}
+                                                className="mr-10"
+                                                components={{
+                                                    IndicatorSeparator: () => <BiCategory />,
+                                                }}
+                                            />
+                                        </div>
                                     </div>
 
                                     <div className="filter-block mb-30">
                                         <h5 className="medium-heading mb-10">Vị trí</h5>
                                         <div className="form-group">
-                                            <ul className="list-checkbox">
-                                                <li>
-                                                    <label className="cb-container">
-                                                        <input type="checkbox" />
-                                                        <span className="text-small">Senior</span>
-                                                        <span className="checkmark" />
-                                                    </label>
-                                                    <span className="number-item">12</span>
-                                                </li>
-                                                <li>
-                                                    <label className="cb-container">
-                                                        <input type="checkbox" />
-                                                        <span className="text-small">Junior</span>
-                                                        <span className="checkmark" />
-                                                    </label>
-                                                    <span className="number-item">35</span>
-                                                </li>
-                                                <li>
-                                                    <label className="cb-container">
-                                                        <input type="checkbox" />
-                                                        <span className="text-small">Fresher</span>
-                                                        <span className="checkmark" />
-                                                    </label>
-                                                    <span className="number-item">56</span>
-                                                </li>
-                                            </ul>
+                                            <Select
+                                                value={formData.position}
+                                                onChange={(option) =>
+                                                    setFormData((prev) => ({ ...prev, position: option }))
+                                                }
+                                                options={POSITIONS}
+                                                placeholder="Vị trí tuyển dụng"
+                                                isClearable
+                                                styles={customStyles}
+                                                className="mr-10"
+                                                components={{
+                                                    IndicatorSeparator: () => <BiCategory />,
+                                                }}
+                                            />
                                         </div>
                                     </div>
                                     <div className="filter-block mb-30">
@@ -360,76 +390,102 @@ const FindJob: React.FC = () => {
                                         <div className="form-group">
                                             <ul className="list-checkbox">
                                                 <li>
-                                                    <label className="cb-container">
-                                                        <input type="checkbox" />
-                                                        <span className="text-small">Thực tập sinh</span>
+                                                    <label
+                                                        className="cb-container"
+                                                        onClick={() =>
+                                                            setFormData((prev) => ({
+                                                                ...prev,
+                                                                experience: 'Không yêu cầu kinh nghiệm',
+                                                            }))
+                                                        }
+                                                    >
+                                                        <input
+                                                            type="checkbox"
+                                                            checked={
+                                                                'Không yêu cầu kinh nghiệm' === formData?.experience
+                                                            }
+                                                        />
+                                                        <span className="text-small">Không yêu cầu </span>
                                                         <span className="checkmark" />
                                                     </label>
-                                                    <span className="number-item">56</span>
                                                 </li>
                                                 <li>
-                                                    <label className="cb-container">
-                                                        <input type="checkbox" />
-                                                        <span className="text-small">Entry Level</span>
+                                                    <label
+                                                        className="cb-container"
+                                                        onClick={() =>
+                                                            setFormData((prev) => ({ ...prev, experience: '1 năm' }))
+                                                        }
+                                                    >
+                                                        <input
+                                                            type="checkbox"
+                                                            checked={'1 năm' === formData?.experience}
+                                                        />
+                                                        <span className="text-small">1 năm </span>
                                                         <span className="checkmark" />
                                                     </label>
-                                                    <span className="number-item">87</span>
                                                 </li>
                                                 <li>
-                                                    <label className="cb-container">
-                                                        <input type="checkbox" />
-                                                        <span className="text-small">Associate</span>
+                                                    <label
+                                                        className="cb-container"
+                                                        onClick={() =>
+                                                            setFormData((prev) => ({ ...prev, experience: '2 năm' }))
+                                                        }
+                                                    >
+                                                        <input
+                                                            type="checkbox"
+                                                            checked={'2 năm' === formData?.experience}
+                                                        />
+                                                        <span className="text-small">2 năm </span>
                                                         <span className="checkmark" />
                                                     </label>
-                                                    <span className="number-item">24</span>
                                                 </li>
                                                 <li>
-                                                    <label className="cb-container">
-                                                        <input type="checkbox" />
-                                                        <span className="text-small">Mid Level</span>
+                                                    <label
+                                                        className="cb-container"
+                                                        onClick={() =>
+                                                            setFormData((prev) => ({ ...prev, experience: '3 năm' }))
+                                                        }
+                                                    >
+                                                        <input
+                                                            type="checkbox"
+                                                            checked={'3 năm' === formData?.experience}
+                                                        />
+                                                        <span className="text-small">3 năm </span>
                                                         <span className="checkmark" />
                                                     </label>
-                                                    <span className="number-item">45</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                    <div className="filter-block mb-20">
-                                        <h5 className="medium-heading mb-15">Loại công việc</h5>
-                                        <div className="form-group">
-                                            <ul className="list-checkbox">
-                                                <li>
-                                                    <label className="cb-container">
-                                                        <input type="checkbox" />
-                                                        <span className="text-small">Toàn thời gian</span>
-                                                        <span className="checkmark" />
-                                                    </label>
-                                                    <span className="number-item">25</span>
                                                 </li>
                                                 <li>
-                                                    <label className="cb-container">
-                                                        <input type="checkbox" />
-                                                        <span className="text-small">Bán thời gian</span>
+                                                    <label
+                                                        className="cb-container"
+                                                        onClick={() =>
+                                                            setFormData((prev) => ({ ...prev, experience: '4 năm' }))
+                                                        }
+                                                    >
+                                                        <input
+                                                            type="checkbox"
+                                                            checked={'4 năm' === formData?.experience}
+                                                        />
+                                                        <span className="text-small">4 năm </span>
                                                         <span className="checkmark" />
                                                     </label>
-                                                    <span className="number-item">64</span>
                                                 </li>
                                                 <li>
-                                                    <label className="cb-container">
-                                                        <input type="checkbox" />
-                                                        <span className="text-small">Remote</span>
+                                                    <label
+                                                        className="cb-container"
+                                                        onClick={() =>
+                                                            setFormData((prev) => ({
+                                                                ...prev,
+                                                                experience: 'trên 5 năm',
+                                                            }))
+                                                        }
+                                                    >
+                                                        <input
+                                                            type="checkbox"
+                                                            checked={'trên 5 năm' === formData?.experience}
+                                                        />
+                                                        <span className="text-small">Trên 5 năm </span>
                                                         <span className="checkmark" />
                                                     </label>
-                                                    <span className="number-item">78</span>
-                                                </li>
-                                                <li>
-                                                    <label className="cb-container">
-                                                        <input type="checkbox" />
-                                                        <span className="text-small">Freelancer</span>
-                                                        <span className="checkmark" />
-                                                    </label>
-                                                    <span className="number-item">97</span>
                                                 </li>
                                             </ul>
                                         </div>

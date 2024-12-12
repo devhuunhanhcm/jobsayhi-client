@@ -68,12 +68,24 @@ const CompanyProfile: React.FC = () => {
                                     role="tabpanel"
                                     aria-labelledby="tab-my-profile"
                                 >
-                                    <h3 className="mt-0 mb-15 color-brand-1">Tài khoản</h3>
+                                    <h3 className="mt-0 mb-15 color-brand-1">Công ty</h3>
                                     <div className="mt-35 mb-40 box-info-profie">
                                         <div className="image-profile">
-                                            <img src="https://placehold.co/500x500" alt="company" />
+                                            <img
+                                                src={companyProfile.avatarUrl || 'https://placehold.co/500x500'}
+                                                alt="company"
+                                            />
                                         </div>
-                                        <a className="btn btn-apply">Tải lên avatar</a>
+                                    </div>
+                                    <div className="form-group">
+                                        <label className="font-sm color-text-mutted mb-10">Url Ảnh đại diện</label>
+                                        <input
+                                            className="form-control"
+                                            type="text"
+                                            name="avatarUrl"
+                                            value={companyProfile.avatarUrl}
+                                            onChange={handleInputChange}
+                                        />
                                     </div>
                                     <div className="row form-contact">
                                         <div className="col-lg-6 col-md-12">
@@ -143,7 +155,7 @@ const CompanyProfile: React.FC = () => {
                                                     className="btn btn-apply-big font-md font-bold"
                                                     onClick={handleSubmit}
                                                 >
-                                                    Save All Changes
+                                                    Lưu tất cả thay đổi
                                                 </button>
                                             </div>
                                         </div>

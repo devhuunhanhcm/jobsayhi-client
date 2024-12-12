@@ -22,7 +22,7 @@ const JobCardGrid: React.FC<IProps> = ({ job }) => {
                                     <img src={job.company.avatarUrl} alt="jobBox" />
                                 </div>
                                 <div className="right-info">
-                                    <a className="name-job" href="">
+                                    <a className="name-job" href={`/company-details/${job.company.id}`}>
                                         {job.company.name}
                                     </a>
                                     <span className="location-small">{job.location}</span>
