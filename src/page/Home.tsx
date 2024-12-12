@@ -59,13 +59,13 @@ function Home() {
                                     </figure>
                                 </div>
                                 <div className="text-info">
-                                    <h3>Công cụ tìm kiếm việc làm</h3>
+                                    <h3>Công cụ tìm kiếm việc làm sử dụng AI</h3>
                                     <p className="font-sm color-text-paragraph-2">
                                         Sử dụng công cụ tìm kiếm việc làm của chúng tôi để tìm kiếm các công việc mới
                                         nhất và phù hợp nhất với bạn.
                                     </p>
                                     <div className="mt-15">
-                                        <a className="btn btn-arrow-right" href="/find">
+                                        <a className="btn btn-arrow-right" href="/search-by-cv">
                                             Tìm hiểu thêm
                                         </a>
                                     </div>

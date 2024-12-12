@@ -145,6 +145,7 @@ const SearchByCV: React.FC = () => {
                     title="Tìm kiếm công việc bằng CV của bạn!"
                     desc="Tìm kiếm thông tin công việc mới nhất và phù hợp nhất đối với cv của bạn"
                     subDesc="Công việc dựa theo độ tương tự cv của bạn và bài đăng của các nhà tuyển dụng. Tìm việc ngay nhé !!"
+                    bgImage="/assets/imgs/banner/banner-search.jpg"
                 />
                 <div className="d-flex flex-column align-items-center flex-shrink-0 mt-20">
                     <h5 className="mb-20">Chọn file CV để gợi ý công việc</h5>

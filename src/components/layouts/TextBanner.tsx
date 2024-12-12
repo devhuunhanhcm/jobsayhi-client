@@ -14,7 +14,12 @@ const TextBanner: React.FC<TextBannerProps> = ({ title, desc, subDesc, bgImage }
                 <div className="container">
                     <div
                         className="banner-hero banner-company"
-                        style={{ backgroundImage: `url(${bgImage})`, backgroundPosition: 'center center' }}
+                        style={{
+                            backgroundImage: `url(${bgImage})`,
+                            backgroundPosition: 'center center',
+                            backgroundRepeat: 'no-repeat',
+                            backgroundSize: 'cover',
+                        }}
                     >
                         <div className="block-banner text-center">
                             <h3 className="wow animate__animated animate__fadeInUp text-white">{title}</h3>

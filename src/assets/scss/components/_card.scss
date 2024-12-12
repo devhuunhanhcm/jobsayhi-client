@@ -27,7 +27,7 @@
     font-size: $font-xs;
     color: $color-text-mutted;
     display: inline-block;
-    padding: 0px 15px 0px 15px;
+    padding-left: 15px;
     background: url(../assets/imgs/template/icons/briefcase.svg) no-repeat 0px 6px;
 }
 
@@ -162,6 +162,13 @@
         display: inline-block;
         width: 100%;
         padding: 5px 10px 20px 10px;
+        & div:has(.card-briefcase) {
+            margin-top: 5px;
+            height: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
         .card-2-img-text {
             display: inline-block;
             vertical-align: middle;

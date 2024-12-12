@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Job, JobReview } from '../components/model/Job';
 import { getJobDetails, getRelateJobs } from '../service/JobService';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { formatTime } from '@/components/time/time';
 import { Form, Modal } from 'react-bootstrap';
 import { FileInfo } from './MyCV';
 import UploadFileService from '@/service/UploadFileService';
 import axiosInstance from '@/api/AxiosInstance';
 import { loading, unLoading } from '@/redux/Slice/LoadingSlice';
-import { useAppDispatch } from '@/redux/hooks';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import toast from 'react-hot-toast';
 interface ApplyJob {
     message: string;
@@ -21,7 +21,8 @@ const JobDetails: React.FC = () => {
     const [showApply, setShowApply] = useState(false);
     const [fileInfos, setFileInfos] = useState<FileInfo[]>([]);
     const dispatch = useAppDispatch();
-
+    const userId = useAppSelector((state) => state.user.id);
+    const navigate = useNavigate();
     const [relateJobs, setRelateJob] = useState<Job[]>([]);
 
     useEffect(() => {
@@ -89,6 +90,27 @@ const JobDetails: React.FC = () => {
             console.error('Error loading files:', error);
         }
     };
+
+    const handleSaveJob = async () => {
+        if (!userId) return navigate('/login');
+        dispatch(loading());
+        try {
+            const response = await axiosInstance.post(
+                `${import.meta.env.VITE_API_URL}/users/favorites/${jobId}`,
+                null,
+                {
+                    params: { userId },
+                },
+            );
+            toast.success('Lưu công việc thành công!');
+            console.log('Job saved successfully:', response.data);
+        } catch (error) {
+            toast.error('Lưu công việc thất bại!');
+            console.error('Error saving job:', error);
+        }
+        dispatch(unLoading());
+    };
+
     return (
         <>
             <section className="section-box mt-50">
@@ -301,7 +323,7 @@ const JobDetails: React.FC = () => {
                                                 <a className="btn btn-default mr-15" onClick={() => setShowApply(true)}>
                                                     Ứng tuyển
                                                 </a>
-                                                <a className="btn btn-border" href="#">
+                                                <a className="btn btn-border" href="#" onClick={handleSaveJob}>
                                                     Lưu
                                                 </a>
                                             </div>
@@ -397,7 +419,7 @@ const JobDetails: React.FC = () => {
                                 <h6 className="f-18">Công việc tương tự</h6>
                                 <div className="sidebar-list-job">
                                     <ul className="relate-job">
-                                        {relateJobs.map((j) => (
+                                        {relateJobs?.map((j) => (
                                             <li key={j.id}>
                                                 <div className="card-list-4 wow animate__animated animate__fadeIn hover-up">
                                                     <div className="image">

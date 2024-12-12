@@ -88,14 +88,6 @@ function Header() {
                                     ) : (
                                         ''
                                     )}
-                                    <li className="has-children">
-                                        <a href="/candidates">Ứng viên</a>
-                                        <ul className="sub-menu">
-                                            <li>
-                                                <a href="/candidates">Ứng viên</a>
-                                            </li>
-                                        </ul>
-                                    </li>
 
                                     <li className="has-children">
                                         <a href="/blog">Blog</a>
@@ -141,7 +133,7 @@ function Header() {
                         </div>
                         <div className="header-right">
                             {isLoged && userInfo ? (
-                                <div className="container mt-5 d-flex">
+                                <div className="container mt-5 d-flex align-items-center">
                                     <NotificationDropdown />
                                     <div className="dropdown account-bar">
                                         <NavDropdown
@@ -151,8 +143,9 @@ function Header() {
                                                         src={userInfo.avatar || 'https://placehold.co/20'}
                                                         alt="avatar"
                                                         className="rounded-circle me-2"
-                                                        width={20}
-                                                        height={20}
+                                                        width={40}
+                                                        height={40}
+                                                        style={{ objectFit: 'cover', flexShrink: 0 }}
                                                     />
                                                     {userInfo.username}
                                                 </div>
@@ -228,14 +221,6 @@ function Header() {
                                             ''
                                         )}
 
-                                        <li className="has-children">
-                                            <a href="/candidates">Ứng viên</a>
-                                            <ul className="sub-menu">
-                                                <li>
-                                                    <a href="/candidates">Top những ứng viên</a>
-                                                </li>
-                                            </ul>
-                                        </li>
                                         <li className="has-children">
                                             <a href="blog-grid.html">Blog</a>
                                             <ul className="sub-menu">
