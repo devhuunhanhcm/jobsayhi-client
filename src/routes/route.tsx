@@ -63,7 +63,7 @@ const publicPages = [
     { path: '/upload', component: UploadFile, roles: ['ROLE_USER', 'ROLE_ADMIN'] },
     { path: '/profile', component: Profile },
     { path: '/my-cv', component: MyCV, roles: ['ROLE_USER', 'ROLE_ADMIN'] },
-    { path: '/search-by-cv', component: SearchByCV, roles: ['ROLE_USER', 'ROLE_ADMIN'] },
+    { path: '/search-by-cv', component: SearchByCV, roles: ['ROLE_USER', 'ROLE_COMPANY', 'ROLE_ADMIN'] },
     { path: '/search-by-cv/result', component: SearchByCVResult, roles: ['ROLE_USER', 'ROLE_ADMIN'] },
 ];
 

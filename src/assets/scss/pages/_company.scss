@@ -133,7 +133,8 @@
     & .image-box a img {
         width: 80px;
         height: 80px;
-        object-fit: contain;
+        object-fit: cover;
+        border-radius: 50%;
     }
     & .card-location {
         height: 70px;

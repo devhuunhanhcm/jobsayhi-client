@@ -135,7 +135,7 @@ function Header() {
                             {isLoged && userInfo ? (
                                 <div className="container mt-5 d-flex align-items-center">
                                     <NotificationDropdown />
-                                    <div className="dropdown account-bar">
+                                    <div className="dropdown account-bar mr-20">
                                         <NavDropdown
                                             title={
                                                 <div className="d-inline-flex align-items-center">

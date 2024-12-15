@@ -105,6 +105,7 @@ const CompanyProfile: React.FC = () => {
                                                     className="form-control"
                                                     type="text"
                                                     name="email"
+                                                    placeholder="Email"
                                                     value={companyProfile.email}
                                                     onChange={handleInputChange}
                                                 />
@@ -116,6 +117,18 @@ const CompanyProfile: React.FC = () => {
                                                     type="text"
                                                     name="phone"
                                                     value={companyProfile.phone}
+                                                    onChange={handleInputChange}
+                                                />
+                                            </div>
+                                            <div className="form-group">
+                                                <label className="font-sm color-text-mutted mb-10">
+                                                    Địa chỉ công ty
+                                                </label>
+                                                <input
+                                                    className="form-control"
+                                                    type="text"
+                                                    name="address"
+                                                    value={companyProfile.address}
                                                     onChange={handleInputChange}
                                                 />
                                             </div>

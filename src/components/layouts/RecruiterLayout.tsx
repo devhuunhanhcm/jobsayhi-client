@@ -103,10 +103,10 @@ const RecruiterLayout: React.FC<RecruiterLayoutProps> = ({ children }) => {
                     {!isSidebarMinimized && (
                         <Collapse in={openSubmenus['post']}>
                             <div>
-                                <Nav.Link href="/recruiter/create-job" className="text-dark  ps-4">
+                                <Nav.Link href="/recruiter/create-job" className="text-dark  pl-60">
                                     Tạo bài viết mới
                                 </Nav.Link>
-                                <Nav.Link href="/recruiter/job-list" className="text-dark  ps-4">
+                                <Nav.Link href="/recruiter/job-list" className="text-dark  pl-60">
                                     Danh sách bài viết
                                 </Nav.Link>
                             </div>

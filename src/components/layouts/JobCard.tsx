@@ -58,9 +58,12 @@ function JobCard() {
                                                         alt="jobsayhi"
                                                     />
                                                     <div className="info-right-img">
-                                                        <h6 className="color-brand-1 lh-base company-name">
+                                                        <a
+                                                            href={`/company-details/${job.company.id}`}
+                                                            className="color-brand-1 lh-base company-name"
+                                                        >
                                                             {job.company.name}
-                                                        </h6>
+                                                        </a>
                                                         <span className="card-location font-xxs pl-15 color-text-paragraph-2">
                                                             {job.company.address}
                                                         </span>

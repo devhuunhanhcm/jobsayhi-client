@@ -389,7 +389,9 @@ const JobDetails: React.FC = () => {
                                             />
                                         </figure>
                                         <div className="sidebar-info">
-                                            <span className="sidebar-company">{job?.company.name}</span>
+                                            <a href={`/company-details/${job?.company.id}`} className="sidebar-company">
+                                                {job?.company.name}
+                                            </a>
                                             <span className="card-location">{job?.company.address}</span>
                                         </div>
                                     </div>

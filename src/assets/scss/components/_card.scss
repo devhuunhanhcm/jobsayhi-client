@@ -38,6 +38,7 @@
     padding: 0px 0px 0px 20px;
     background: url(../assets/imgs/template/icons/location.svg) no-repeat 0px 6px;
     line-height: 24px;
+    padding-top: 3px;
 }
 
 // new
@@ -780,7 +781,7 @@ ul {
     height: 40px;
 }
 .company-avatar {
-    object-fit: contain;
+    object-fit: cover;
     width: 50px !important;
     height: 50px !important;
 }

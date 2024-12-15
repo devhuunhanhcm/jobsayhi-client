@@ -120,16 +120,7 @@ function Login() {
                                         ''
                                     )}
                                 </div>
-                                <div className="login_footer form-group d-flex justify-content-between">
-                                    <label className="cb-container">
-                                        <input type="checkbox" />
-                                        <span className="text-small">Nhớ trong 30 ngày</span>
-                                        <span className="checkmark" />
-                                    </label>
-                                    <a className="text-muted" href="page-contact.html">
-                                        Quên mật khẩu
-                                    </a>
-                                </div>
+                                <div className="login_footer form-group d-flex justify-content-between"></div>
                                 {errorMessage && <p className="text-danger mt-2 mb-2">{errorMessage}</p>}
                                 <div></div>
                                 <div className="form-group">

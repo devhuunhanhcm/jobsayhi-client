@@ -199,14 +199,6 @@ const JobManagementDashboard: React.FC = () => {
                         </Card.Body>
                     </Card>
                 </Col>
-                <Col md={2} className="d-flex align-items-center">
-                    <Button variant="outline-primary" className="me-2" onClick={handleExportPDF}>
-                        <AiOutlineFilePdf /> Xuất PDF
-                    </Button>
-                    <Button variant="outline-success" onClick={handleExportExcel}>
-                        <AiOutlineFileExcel /> Xuất Excel
-                    </Button>
-                </Col>
             </Row>
 
             {/* Charts */}

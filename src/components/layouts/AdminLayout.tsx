@@ -1,17 +1,9 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Nav, Navbar, NavDropdown, Button, Collapse } from 'react-bootstrap';
+import { Container, Row, Col, Nav, Navbar, NavDropdown, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { House, People, Gear, Bell, PersonCircle, List, XLg } from 'react-bootstrap-icons';
-import { CiMail, CiSettings } from 'react-icons/ci';
+import { List, XLg } from 'react-bootstrap-icons';
 import { FaUsersViewfinder } from 'react-icons/fa6';
-import {
-    HiChevronDown,
-    HiChevronUp,
-    HiOutlineBellAlert,
-    HiOutlineInformationCircle,
-    HiOutlinePlus,
-    HiOutlineUserGroup,
-} from 'react-icons/hi2';
+import { HiOutlineUserGroup } from 'react-icons/hi2';
 import { GrArticle } from 'react-icons/gr';
 import { MdOutlineBusiness, MdOutlineDashboardCustomize } from 'react-icons/md';
 import { useAppSelector } from '@/redux/hooks';
@@ -111,12 +103,6 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
                     <Nav.Link href="/admin/company" className="text-dark ">
                         <MdOutlineBusiness className="me-2" size={22} />
                         {!isSidebarMinimized && 'Công ty'}
-                    </Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link href="#!" className="text-dark ">
-                        <CiSettings className="me-2" size={24} />
-                        {!isSidebarMinimized && 'Cài đặt'}
                     </Nav.Link>
                 </Nav.Item>
             </Nav>
