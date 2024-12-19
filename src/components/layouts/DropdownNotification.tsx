@@ -4,7 +4,6 @@ import { Client } from '@stomp/stompjs';
 import { formatDistanceToNow } from 'date-fns';
 import { vi } from 'date-fns/locale';
 import { HiOutlineBellAlert } from 'react-icons/hi2';
-import { BsThreeDotsVertical, BsCheck, BsTrash } from 'react-icons/bs';
 import { Notification, NotificationState } from '../model/Notification';
 import { useAppSelector } from '@/redux/hooks';
 import axiosInstance from '@/api/AxiosInstance';
@@ -94,8 +93,6 @@ export default function NotificationDropdown() {
         }));
     };
 
-    const handleNotificationClick = (notification: Notification) => {};
-
     const markAsRead = async (notificationId: string, e: React.MouseEvent) => {
         e.stopPropagation();
         try {
@@ -167,7 +164,6 @@ export default function NotificationDropdown() {
                                 className={`notification-item position-relative p-3 ${
                                     notification.read ? 'bg-light' : 'text-mute'
                                 }`}
-                                onClick={() => handleNotificationClick(notification)}
                                 style={{ cursor: 'pointer' }}
                             >
                                 <div className="d-flex justify-content-between w-100">

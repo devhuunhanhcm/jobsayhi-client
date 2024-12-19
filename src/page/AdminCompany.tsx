@@ -186,7 +186,11 @@ const AdminCompany: React.FC = () => {
                                     <td>{user.id}</td>
                                     <td>
                                         <div className="d-flex aligns-item-center h-100">
-                                            <Image src={user.avatarUrl || 'https://placehold.co/50'} rounded />
+                                            <Image
+                                                className="avatar-circle"
+                                                src={user.avatarUrl || 'https://placehold.co/50'}
+                                                rounded
+                                            />
                                         </div>
                                     </td>
                                     <td>{user.name}</td>

@@ -5,10 +5,7 @@ function Footer() {
                 <div className="row">
                     <div className="footer-col-1 col-md-3 col-sm-12">
                         <a href="index.html">
-                            <img
-                                alt="jobBox"
-                                src={`${import.meta.env.VITE_PUBLIC_URL}/assets/imgs/logo/logo-jobsayhi.png`}
-                            />
+                            <img alt="jobBox" src={`/assets/imgs/logo/logo-jobsayhi.png`} />
                         </a>
                         <div className="mt-20 mb-20 font-xs color-text-paragraph-2">
                             Jobsayhi một website tìm việc thông minh ứng dụng AI để tìm việc chính xác và phù hợp nhất

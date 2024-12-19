@@ -132,7 +132,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
                             <a className="d-flex" href="/">
                                 <img
                                     alt="jobsayhi"
-                                    src={`${import.meta.env.VITE_PUBLIC_URL}/assets/imgs/logo/logo-jobsayhi.png`}
+                                    src={`/assets/imgs/logo/logo-jobsayhi.png`}
                                     className="logo-header"
                                     height="40px"
                                 />

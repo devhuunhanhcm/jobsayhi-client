@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useAppSelector } from '@/redux/hooks';
 import { getProfile } from '@/service/UserService';
 import { logout } from '@/service/AuthService';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { RiVipCrownFill } from 'react-icons/ri';
 import { NavDropdown } from 'react-bootstrap';
 import { PersonCircle } from 'react-bootstrap-icons';
@@ -17,6 +17,12 @@ function Header() {
     const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
     const token = useAppSelector((state) => state.auth.token);
     const [currentRole, setCurrentRole] = useState<string>('');
+
+    const location = useLocation();
+
+    const isActive = (path: string) => {
+        return location.pathname === path ? 'active' : '';
+    };
 
     useEffect(() => {
         if (token) {
@@ -46,7 +52,7 @@ function Header() {
                                 <a className="d-flex" href="/">
                                     <img
                                         alt="jobsayhi"
-                                        src={`${import.meta.env.VITE_PUBLIC_URL}/assets/imgs/logo/logo-jobsayhi.png`}
+                                        src={`/assets/imgs/logo/logo-jobsayhi.png`}
                                         className="logo-header"
                                     />
                                 </a>
@@ -56,32 +62,44 @@ function Header() {
                             <nav className="nav-main-menu">
                                 <ul className="main-menu">
                                     <li>
-                                        <a className="active" href="/">
+                                        <a className={isActive('/')} href="/">
                                             Trang chủ
                                         </a>
                                     </li>
                                     <li className="has-children">
-                                        <a href="/find">Việc làm</a>
+                                        <a href="/find" className={isActive('/find')}>
+                                            Việc làm
+                                        </a>
                                         <ul className="sub-menu">
                                             <li>
-                                                <a href="/find">Việc làm</a>
+                                                <a href="/find" className={isActive('/find')}>
+                                                    Việc làm
+                                                </a>
                                             </li>
                                         </ul>
                                     </li>
                                     <li className="has-children">
-                                        <a href="/company">Nhà tuyển dụng</a>
+                                        <a href="/company" className={isActive('/company')}>
+                                            Nhà tuyển dụng
+                                        </a>
                                         <ul className="sub-menu">
                                             <li>
-                                                <a href="/company">Nhà tuyển dụng mới nhất</a>
+                                                <a href="/company" className={isActive('/company')}>
+                                                    Nhà tuyển dụng mới nhất
+                                                </a>
                                             </li>
                                         </ul>
                                     </li>
                                     {currentRole.length > 0 && currentRole === 'ROLE_COMPANY' ? (
                                         <li className="has-children">
-                                            <a href="/recruiter">Tuyển Dụng</a>
+                                            <a href="/recruiter" className={isActive('/recruiter')}>
+                                                Tuyển Dụng
+                                            </a>
                                             <ul className="sub-menu">
                                                 <li>
-                                                    <a href="/recruiter">Tuyển Dụng</a>
+                                                    <a href="/recruiter" className={isActive('/recruiter')}>
+                                                        Tuyển Dụng
+                                                    </a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -90,10 +108,14 @@ function Header() {
                                     )}
 
                                     <li className="has-children">
-                                        <a href="/blog">Blog</a>
+                                        <a href="/blog" className={isActive('/blog')}>
+                                            Blog
+                                        </a>
                                         <ul className="sub-menu">
                                             <li>
-                                                <a href="/blog">Blog</a>
+                                                <a href="/blog" className={isActive('/blog')}>
+                                                    Blog
+                                                </a>
                                             </li>
                                         </ul>
                                     </li>
@@ -101,13 +123,17 @@ function Header() {
                                         <a href="#!">CV</a>
                                         <ul className="sub-menu">
                                             <li>
-                                                <a href="/my-cv">Quản lý CV</a>
+                                                <a href="/my-cv" className={isActive('/my-cv')}>
+                                                    Quản lý CV
+                                                </a>
                                             </li>
                                             <li>
-                                                <a href="/upload">Tải lên CV</a>
+                                                <a href="/upload" className={isActive('/upload')}>
+                                                    Tải lên CV
+                                                </a>
                                             </li>
                                             <li>
-                                                <a href="/search-by-cv">
+                                                <a href="/search-by-cv" className={isActive('/search-by-cv')}>
                                                     <RiVipCrownFill size={18} color="#f1c40f" /> Tìm việc qua CV
                                                 </a>
                                             </li>
@@ -115,7 +141,9 @@ function Header() {
                                     </li>
                                     {currentRole.length > 0 && currentRole === 'ROLE_ADMIN' ? (
                                         <li>
-                                            <a href="/admin">Admin</a>
+                                            <a href="/admin" className={isActive('/admin')}>
+                                                Admin
+                                            </a>
                                         </li>
                                     ) : (
                                         ''
@@ -196,24 +224,32 @@ function Header() {
                                 <nav>
                                     <ul className="mobile-menu font-heading">
                                         <li>
-                                            <a className="active" href="/">
+                                            <a className={isActive('/')} href="/">
                                                 Trang chủ
                                             </a>
                                         </li>
                                         <li className="has-children">
-                                            <a href="/find">Việc làm</a>
+                                            <a href="/find" className={isActive('/find')}>
+                                                Việc làm
+                                            </a>
                                             <ul className="sub-menu">
                                                 <li>
-                                                    <a href="/find">Danh sách việc làm</a>
+                                                    <a href="/find" className={isActive('/find')}>
+                                                        Danh sách việc làm
+                                                    </a>
                                                 </li>
                                             </ul>
                                         </li>
                                         {currentRole.length > 0 && currentRole === 'ROLE_COMPANY' ? (
                                             <li className="has-children">
-                                                <a href="/recruiter">Tuyển Dụng</a>
+                                                <a href="/recruiter" className={isActive('/recruiter')}>
+                                                    Tuyển Dụng
+                                                </a>
                                                 <ul className="sub-menu">
                                                     <li>
-                                                        <a href="/recruiter">Tuyển Dụng</a>
+                                                        <a href="/recruiter" className={isActive('/recruiter')}>
+                                                            Tuyển Dụng
+                                                        </a>
                                                     </li>
                                                 </ul>
                                             </li>
@@ -222,30 +258,42 @@ function Header() {
                                         )}
 
                                         <li className="has-children">
-                                            <a href="blog-grid.html">Blog</a>
+                                            <a href="/blog" className={isActive('/blog')}>
+                                                Blog
+                                            </a>
                                             <ul className="sub-menu">
                                                 <li>
-                                                    <a href="page-about.html">Blog</a>
+                                                    <a href="/blog" className={isActive('/blog')}>
+                                                        Blog
+                                                    </a>
                                                 </li>
                                             </ul>
                                         </li>
                                         <li className="has-children">
-                                            <a href="/search-by-cv">Cv</a>
+                                            <a href="/search-by-cv" className={isActive('/search-by-cv')}>
+                                                Cv
+                                            </a>
                                             <ul className="sub-menu">
                                                 <li>
-                                                    <a href="/my-cv">Quản lý CV</a>
+                                                    <a href="/my-cv" className={isActive('/my-cv')}>
+                                                        Quản lý CV
+                                                    </a>
                                                 </li>
                                                 <li>
-                                                    <a href="/upload">Tải lên CV</a>
+                                                    <a href="/upload" className={isActive('/upload')}>
+                                                        Tải lên CV
+                                                    </a>
                                                 </li>
-                                                <a href="/search-by-cv">
+                                                <a href="/search-by-cv" className={isActive('/search-by-cv')}>
                                                     <RiVipCrownFill size={18} color="#f1c40f" /> Tìm việc qua CV
                                                 </a>
                                             </ul>
                                         </li>
                                         {currentRole.length > 0 && currentRole === 'ROLE_ADMIN' ? (
                                             <li>
-                                                <a href="/admin">Admin</a>
+                                                <a href="/admin" className={isActive('/admin')}>
+                                                    Admin
+                                                </a>
                                             </li>
                                         ) : (
                                             ''

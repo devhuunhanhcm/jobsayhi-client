@@ -51,9 +51,7 @@ function JobCard() {
                                                         src={
                                                             job?.company?.avatarUrl && job.company.avatarUrl.length > 0
                                                                 ? job.company.avatarUrl
-                                                                : `${
-                                                                      import.meta.env.VITE_PUBLIC_URL
-                                                                  }/assets/imgs/avatar/default-logo-company.svg`
+                                                                : `/assets/imgs/avatar/default-logo-company.svg`
                                                         }
                                                         alt="jobsayhi"
                                                     />

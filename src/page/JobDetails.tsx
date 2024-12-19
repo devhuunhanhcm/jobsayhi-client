@@ -140,7 +140,7 @@ const JobDetails: React.FC = () => {
                                     {/* <div className="banner-hero banner-image-single mt-10 mb-20">
                                         <img
                                             src={`${
-                                                import.meta.env.VITE_PUBLIC_URL
+                                                
                                             }/assets/imgs/page/job-single-2/img.png`}
                                             alt="jobBox"
                                         />
@@ -151,9 +151,7 @@ const JobDetails: React.FC = () => {
                                             <div className="col-md-6 d-flex">
                                                 <div className="sidebar-icon-item">
                                                     <img
-                                                        src={`${
-                                                            import.meta.env.VITE_PUBLIC_URL
-                                                        }/assets/imgs/page/job-single/industry.svg`}
+                                                        src={`/assets/imgs/page/job-single/industry.svg`}
                                                         alt="jobBox"
                                                     />
                                                 </div>
@@ -167,9 +165,7 @@ const JobDetails: React.FC = () => {
                                             <div className="col-md-6 d-flex mt-sm-15">
                                                 <div className="sidebar-icon-item">
                                                     <img
-                                                        src={`${
-                                                            import.meta.env.VITE_PUBLIC_URL
-                                                        }/assets/imgs/page/job-single/job-level.svg`}
+                                                        src={`/assets/imgs/page/job-single/job-level.svg`}
                                                         alt="jobBox"
                                                     />
                                                 </div>
@@ -184,12 +180,7 @@ const JobDetails: React.FC = () => {
                                         <div className="row mt-25">
                                             <div className="col-md-6 d-flex mt-sm-15">
                                                 <div className="sidebar-icon-item">
-                                                    <img
-                                                        src={`${
-                                                            import.meta.env.VITE_PUBLIC_URL
-                                                        }/assets/imgs/page/job-single/salary.svg`}
-                                                        alt="jobBox"
-                                                    />
+                                                    <img src={`/assets/imgs/page/job-single/salary.svg`} alt="jobBox" />
                                                 </div>
                                                 <div className="sidebar-text-info ml-10">
                                                     <span className="text-description salary-icon mb-10">Lương</span>
@@ -199,9 +190,7 @@ const JobDetails: React.FC = () => {
                                             <div className="col-md-6 d-flex">
                                                 <div className="sidebar-icon-item">
                                                     <img
-                                                        src={`${
-                                                            import.meta.env.VITE_PUBLIC_URL
-                                                        }/assets/imgs/page/job-single/experience.svg`}
+                                                        src={`/assets/imgs/page/job-single/experience.svg`}
                                                         alt="jobBox"
                                                     />
                                                 </div>
@@ -217,9 +206,7 @@ const JobDetails: React.FC = () => {
                                             <div className="col-md-6 d-flex mt-sm-15">
                                                 <div className="sidebar-icon-item">
                                                     <img
-                                                        src={`${
-                                                            import.meta.env.VITE_PUBLIC_URL
-                                                        }/assets/imgs/page/job-single/job-type.svg`}
+                                                        src={`/assets/imgs/page/job-single/job-type.svg`}
                                                         alt="jobBox"
                                                     />
                                                 </div>
@@ -233,9 +220,7 @@ const JobDetails: React.FC = () => {
                                             <div className="col-md-6 d-flex mt-sm-15">
                                                 <div className="sidebar-icon-item">
                                                     <img
-                                                        src={`${
-                                                            import.meta.env.VITE_PUBLIC_URL
-                                                        }/assets/imgs/page/job-single/deadline.svg`}
+                                                        src={`/assets/imgs/page/job-single/deadline.svg`}
                                                         alt="jobBox"
                                                     />
                                                 </div>
@@ -253,9 +238,7 @@ const JobDetails: React.FC = () => {
                                             <div className="col-md-6 d-flex mt-sm-15">
                                                 <div className="sidebar-icon-item">
                                                     <img
-                                                        src={`${
-                                                            import.meta.env.VITE_PUBLIC_URL
-                                                        }/assets/imgs/page/job-single/updated.svg`}
+                                                        src={`/assets/imgs/page/job-single/updated.svg`}
                                                         alt="jobBox"
                                                     />
                                                 </div>
@@ -273,9 +256,7 @@ const JobDetails: React.FC = () => {
                                             <div className="col-md-6 d-flex mt-sm-15">
                                                 <div className="sidebar-icon-item">
                                                     <img
-                                                        src={`${
-                                                            import.meta.env.VITE_PUBLIC_URL
-                                                        }/assets/imgs/page/job-single/location.svg`}
+                                                        src={`/assets/imgs/page/job-single/location.svg`}
                                                         alt="jobBox"
                                                     />
                                                 </div>
@@ -334,33 +315,25 @@ const JobDetails: React.FC = () => {
                                                 <a className="mr-5 d-inline-block d-middle" href="#">
                                                     <img
                                                         alt="jobBox"
-                                                        src={`${
-                                                            import.meta.env.VITE_PUBLIC_URL
-                                                        }/assets/imgs/template/icons/share-fb.svg`}
+                                                        src={`/assets/imgs/template/icons/share-fb.svg`}
                                                     />
                                                 </a>
                                                 <a className="mr-5 d-inline-block d-middle" href="#">
                                                     <img
                                                         alt="jobBox"
-                                                        src={`${
-                                                            import.meta.env.VITE_PUBLIC_URL
-                                                        }/assets/imgs/template/icons/share-tw.svg`}
+                                                        src={`/assets/imgs/template/icons/share-tw.svg`}
                                                     />
                                                 </a>
                                                 <a className="mr-5 d-inline-block d-middle" href="#">
                                                     <img
                                                         alt="jobBox"
-                                                        src={`${
-                                                            import.meta.env.VITE_PUBLIC_URL
-                                                        }/assets/imgs/template/icons/share-red.svg`}
+                                                        src={`/assets/imgs/template/icons/share-red.svg`}
                                                     />
                                                 </a>
                                                 <a className="d-inline-block d-middle" href="#">
                                                     <img
                                                         alt="jobBox"
-                                                        src={`${
-                                                            import.meta.env.VITE_PUBLIC_URL
-                                                        }/assets/imgs/template/icons/share-whatsapp.svg`}
+                                                        src={`/assets/imgs/template/icons/share-whatsapp.svg`}
                                                     />
                                                 </a>
                                             </div>
@@ -381,9 +354,7 @@ const JobDetails: React.FC = () => {
                                                 src={
                                                     job?.company?.avatarUrl && job.company.avatarUrl.length > 0
                                                         ? job.company.avatarUrl
-                                                        : `${
-                                                              import.meta.env.VITE_PUBLIC_URL
-                                                          }/assets/imgs/avatar/default-logo-company.svg`
+                                                        : `/assets/imgs/avatar/default-logo-company.svg`
                                                 }
                                                 alt="jobsayhi"
                                             />
@@ -431,9 +402,7 @@ const JobDetails: React.FC = () => {
                                                                     j?.company?.avatarUrl &&
                                                                     j.company.avatarUrl.length > 0
                                                                         ? j.company.avatarUrl
-                                                                        : `${
-                                                                              import.meta.env.VITE_PUBLIC_URL
-                                                                          }/assets/imgs/avatar/default-logo-company.svg`
+                                                                        : `/assets/imgs/avatar/default-logo-company.svg`
                                                                 }
                                                                 alt="jobBox"
                                                             />

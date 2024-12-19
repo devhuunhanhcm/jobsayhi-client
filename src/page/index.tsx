@@ -12,6 +12,7 @@ export { default as CreateJob } from './CreateJob';
 export { default as JobsList } from './JobList';
 export { default as JobEdit } from './JobEdit';
 export { default as ManagerJobApplies } from './ManagerJobApplies';
+export { default as AdminManagerJobApplies } from './AdminManagerJobApplies';
 export { default as CompanyProfile } from './CompanyProfile';
 export { default as SearchByCV } from './SearchByCV';
 export { default as SearchByCVResult } from './SearchByCVResult';

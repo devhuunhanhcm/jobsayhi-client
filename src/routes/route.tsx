@@ -27,6 +27,7 @@ import {
     SearchByCVResult,
     AuthCallback,
     CompanyDetails,
+    AdminManagerJobApplies,
 } from '../page';
 import AdminLayout from '@/components/layouts/AdminLayout';
 import Company from '@/page/Company';
@@ -82,6 +83,7 @@ const recruiterChildren = [
 const adminChildren = [
     { path: 'jobs', component: AdminJobs },
     { path: 'recruiters', component: AdminRecruiters },
+    { path: 'manager-applies', component: AdminManagerJobApplies },
     { path: 'company', component: AdminCompany },
     { path: 'users', component: AdminUsers },
 ].map((route) => createAdminRoute(route.path, route.component));

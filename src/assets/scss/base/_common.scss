@@ -704,3 +704,13 @@ textarea.form-control {
     width: 100%;
     object-fit: cover;
 }
+.avatar-circle {
+    height: 50px;
+    width: 50px;
+    border-radius: 50% !important;
+    object-fit: cover;
+}
+td {
+    text-align: left;
+    vertical-align: middle;
+}

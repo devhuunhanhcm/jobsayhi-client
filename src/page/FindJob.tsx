@@ -53,7 +53,7 @@ export interface SearchResult {
     page: number;
     limit: number;
 }
-export const itemRender = (current: number, type: string, element: React.ReactNode) => {
+export const itemRender = (_current: number, type: string, element: React.ReactNode) => {
     if (type === 'prev') {
         return (
             <button className="rc-pagination-item-link">

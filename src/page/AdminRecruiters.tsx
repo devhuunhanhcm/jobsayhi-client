@@ -189,6 +189,7 @@ const AdminRecruiters: React.FC = () => {
                                             <Image
                                                 width={50}
                                                 height={50}
+                                                className="avatar-circle"
                                                 src={user.avatar || 'https://placehold.co/50'}
                                                 roundedCircle
                                             />
@@ -205,7 +206,7 @@ const AdminRecruiters: React.FC = () => {
                                                 variant="outline-info"
                                                 size="sm"
                                                 className="me-1"
-                                                href={`/recruiter/manager-applies?id=${user.id}`}
+                                                href={`/company-details/${user.id}`}
                                             >
                                                 <Eye />
                                             </Button>

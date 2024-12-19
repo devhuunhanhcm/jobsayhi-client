@@ -24,15 +24,8 @@ interface CategoryResponse {
     hasErrors: boolean;
     content: Category[];
     errors: string;
-    status: number;
     timestamp: string;
 }
-
-const STATUS = [
-    { value: 'OPEN', label: 'Mở đăng ký' },
-    { value: 'CLOSED', label: 'Đóng đăng ký' },
-    { value: 'HIDE', label: 'Ẩn bài viết' },
-];
 
 export const customStylesSelect = {
     control: (provided: any) => ({
@@ -63,7 +56,6 @@ interface JobDto {
     location: { value: string; label: string } | null;
     experience: string;
     position: { value: string; label: string } | null;
-    status: { value: string; label: string } | null;
     description: string;
     requirements: string;
     benefits: string;
@@ -99,7 +91,6 @@ const CreateJob: React.FC = () => {
         experience: '',
         position: null,
         category: null,
-        status: null,
         description: '',
         requirements: '',
         benefits: '',
@@ -157,7 +148,6 @@ const CreateJob: React.FC = () => {
         const data = {
             ...jobForm,
             id: userId,
-            status: jobForm.status?.value,
             location: jobForm.location?.value,
             categoryId: jobForm.category?.value,
             position: jobForm.position?.value,
@@ -347,19 +337,6 @@ const CreateJob: React.FC = () => {
                                         value={jobForm.workingLocation}
                                         onChange={handleInputChange}
                                         placeholder="Địa chỉ làm việc"
-                                    />
-                                </Form.Group>
-                            </Col>
-                            <Col md={6}>
-                                <Form.Group className="mb-3">
-                                    <Form.Label>Trạng thái bài viết</Form.Label>
-                                    <Select
-                                        value={jobForm.status}
-                                        onChange={(option) => setJobForm((prev) => ({ ...prev, status: option }))}
-                                        options={STATUS}
-                                        placeholder="Trạng thái của bài viết"
-                                        isClearable
-                                        styles={customStylesSelect}
                                     />
                                 </Form.Group>
                             </Col>

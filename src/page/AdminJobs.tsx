@@ -22,7 +22,7 @@ export interface JobDto {
     location: string;
     experience: string;
     position: string;
-    status: 'OPEN' | 'CLOSED' | 'IN_PROGRESS';
+    status: 'CLOSED' | 'OPEN' | 'HIDE' | 'PENDING_APPROVAL' | 'REJECT';
     description: string;
     requirements: string;
     benefits: string;
@@ -45,7 +45,7 @@ type SearchResult = {
     limit: number;
     orderBy: string;
 };
-type JobStatus = 'OPEN' | 'CLOSED' | 'HIDE';
+type JobStatus = 'CLOSED' | 'OPEN' | 'HIDE' | 'PENDING_APPROVAL' | 'REJECT';
 
 const AdminJobs: React.FC = () => {
     const [currentPage, setCurrentPage] = useState<number>(1);
@@ -143,6 +143,10 @@ const AdminJobs: React.FC = () => {
                 return <Badge bg="danger">Đóng</Badge>;
             case 'HIDE':
                 return <Badge bg="dark">Ẩn</Badge>;
+            case 'PENDING_APPROVAL':
+                return <Badge bg="warning">Chờ duyệt</Badge>;
+            case 'REJECT':
+                return <Badge bg="secondary">Từ chối</Badge>;
             default:
                 return <Badge bg="secondary">{status}</Badge>;
         }
@@ -205,9 +209,13 @@ const AdminJobs: React.FC = () => {
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
                                 <Dropdown.Item onClick={() => setStatusFilter(null)}>Tất cả</Dropdown.Item>
-                                <Dropdown.Item onClick={() => setStatusFilter('OPEN')}>Đang mở</Dropdown.Item>
-                                <Dropdown.Item onClick={() => setStatusFilter('CLOSED')}>Đang đóng</Dropdown.Item>
-                                <Dropdown.Item onClick={() => setStatusFilter('HIDE')}>Đang Ẩn</Dropdown.Item>
+                                <Dropdown.Item onClick={() => setStatusFilter('OPEN')}>Mở</Dropdown.Item>
+                                <Dropdown.Item onClick={() => setStatusFilter('CLOSED')}>Đóng</Dropdown.Item>
+                                <Dropdown.Item onClick={() => setStatusFilter('HIDE')}>Ẩn</Dropdown.Item>
+                                <Dropdown.Item onClick={() => setStatusFilter('PENDING_APPROVAL')}>
+                                    Chờ duyệt
+                                </Dropdown.Item>
+                                <Dropdown.Item onClick={() => setStatusFilter('REJECT')}>Từ chối</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                         <Button className="btn-reload" onClick={fetchJobs}>
@@ -253,7 +261,7 @@ const AdminJobs: React.FC = () => {
                                             variant="outline-info"
                                             size="sm"
                                             className="me-1"
-                                            href={`/recruiter/manager-applies?id=${job.id}`}
+                                            href={`/admin/manager-applies?id=${job.id}`}
                                         >
                                             <Eye />
                                         </Button>

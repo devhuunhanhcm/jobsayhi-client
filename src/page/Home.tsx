@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
-import { WOW } from 'wowjs';
 import 'animate.css';
 import SearchingBar from '@/components/layouts/SearchingBar';
 import JobCard from '../components/layouts/JobCard';
+// import { WOW } from 'wowjs';
 
 function Home() {
-    useEffect(() => {
-        new WOW().init();
-    }, []);
+    // useEffect(() => {
+    //     new WOW().init();
+    // }, []);
 
     return (
         <main className="main">
