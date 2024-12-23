@@ -17,15 +17,17 @@ const JobCardGrid: React.FC<IProps> = ({ job }) => {
                     )}
                     <div className="row">
                         <div>
-                            <div className="card-grid-2-image-left">
-                                <div className="image-box">
-                                    <img src={job.company.avatarUrl} alt="jobBox" />
-                                </div>
-                                <div className="right-info">
-                                    <a className="name-job" href={`/company-details/${job.company.id}`}>
-                                        {job.company.name}
-                                    </a>
-                                    <span className="location-small">{job.location}</span>
+                            <div className="card-grid-2-image-left ">
+                                <div className="d-flex">
+                                    <div className="image-box">
+                                        <img src={job.company.avatarUrl} alt="jobBox" />
+                                    </div>
+                                    <div className="right-info">
+                                        <a className="name-job" href={`/company-details/${job.company.id}`}>
+                                            {job.company.name}
+                                        </a>
+                                        <span className="location-small">{job.location}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -44,15 +46,15 @@ const JobCardGrid: React.FC<IProps> = ({ job }) => {
                                 <div className="col-lg-7 col-7">
                                     <span className="card-text-price">{job.salary}</span>
                                 </div>
-                                <div className="col-lg-5 col-5 text-end">
+                                <a href={`/job-details/${job.id}`} className="col-lg-5 col-5 text-end">
                                     <div
                                         className="btn btn-apply-now"
                                         data-bs-toggle="modal"
                                         data-bs-target="#ModalApplyJobForm"
                                     >
-                                        Ứng tuyển
+                                        Chi tiết
                                     </div>
-                                </div>
+                                </a>
                             </div>
                         </div>
                     </div>

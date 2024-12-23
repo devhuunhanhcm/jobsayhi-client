@@ -284,9 +284,16 @@ function Header() {
                                                         Tải lên CV
                                                     </a>
                                                 </li>
-                                                <a href="/search-by-cv" className={isActive('/search-by-cv')}>
-                                                    <RiVipCrownFill size={18} color="#f1c40f" /> Tìm việc qua CV
-                                                </a>
+                                                <li>
+                                                    <a href="/search-by-cv" className={isActive('/search-by-cv')}>
+                                                        Tìm việc qua CV
+                                                        <RiVipCrownFill
+                                                            size={18}
+                                                            color="#f1c40f"
+                                                            style={{ marginLeft: '5px' }}
+                                                        />
+                                                    </a>
+                                                </li>
                                             </ul>
                                         </li>
                                         {currentRole.length > 0 && currentRole === 'ROLE_ADMIN' ? (

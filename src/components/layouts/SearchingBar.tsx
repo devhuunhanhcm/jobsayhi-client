@@ -151,36 +151,39 @@ const SearchingBar: React.FC = () => {
 
                         <div className="form-find mt-40 wow animate__animated animate__fadeIn" data-wow-delay=".2s">
                             <form onSubmit={handleSearch}>
-                                <div className="box-industry" style={{ minWidth: '200px' }}>
-                                    <Select
-                                        value={formData.categoryName}
-                                        onChange={(option) =>
-                                            setFormData((prev) => ({ ...prev, categoryName: option }))
-                                        }
-                                        options={categoryOptions}
-                                        placeholder="Danh mục"
-                                        isClearable
-                                        styles={customStyles}
-                                        className="mr-10"
-                                        components={{
-                                            IndicatorSeparator: () => <BiCategory />,
-                                        }}
-                                    />
-                                </div>
-
-                                <div style={{ minWidth: '200px' }}>
-                                    <Select
-                                        value={formData.location}
-                                        onChange={(option) => setFormData((prev) => ({ ...prev, location: option }))}
-                                        options={locationOptions}
-                                        placeholder="Địa điểm"
-                                        isClearable
-                                        styles={customStyles}
-                                        className="mr-10"
-                                        components={{
-                                            IndicatorSeparator: () => <IoLocationOutline />,
-                                        }}
-                                    />
+                                <div className="d-flex w-100 filter-search">
+                                    <div className="box-industry" style={{ minWidth: '200px' }}>
+                                        <Select
+                                            value={formData.categoryName}
+                                            onChange={(option) =>
+                                                setFormData((prev) => ({ ...prev, categoryName: option }))
+                                            }
+                                            options={categoryOptions}
+                                            placeholder="Danh mục"
+                                            isClearable
+                                            styles={customStyles}
+                                            className="mr-10"
+                                            components={{
+                                                IndicatorSeparator: () => <BiCategory />,
+                                            }}
+                                        />
+                                    </div>
+                                    <div className="box-location" style={{ minWidth: '200px', width: '100%' }}>
+                                        <Select
+                                            value={formData.location}
+                                            onChange={(option) =>
+                                                setFormData((prev) => ({ ...prev, location: option }))
+                                            }
+                                            options={locationOptions}
+                                            placeholder="Địa điểm"
+                                            isClearable
+                                            styles={customStyles}
+                                            className="mr-10"
+                                            components={{
+                                                IndicatorSeparator: () => <IoLocationOutline />,
+                                            }}
+                                        />
+                                    </div>
                                 </div>
 
                                 <input
@@ -203,9 +206,8 @@ const SearchingBar: React.FC = () => {
                             data-wow-delay=".3s"
                         >
                             <strong>Từ khóa phổ biến:</strong>
-                            <a href="#">Designer</a>, <a href="#">Web</a>, <a href="#">IOS</a>,{' '}
-                            <a href="#">Developer</a>, <a href="#">PHP</a>, <a href="#">Senior</a>,{' '}
-                            <a href="#">Engineer</a>
+                            <span>Designer</span>, <span>Web</span>, <span>IOS</span>, <span>Developer</span>,{' '}
+                            <span>PHP</span>, <span>Senior</span>, <span>Engineer</span>
                         </div>
                     </div>
                 </div>
